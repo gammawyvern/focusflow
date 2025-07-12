@@ -6,10 +6,10 @@ This is the step-by-step guide to spin up your ASP.NET Core MVC project with Web
 
 ## ✅ 1. Create Base .NET 8 MVC Project
 
-- [ ] Use Rider’s **Web App (Model-View-Controller)** template
-- [ ] Target **.NET 8.0**
-- [ ] Set the same name for solution and project (e.g., `FocusFlow`)
-- [ ] Initialize Git repository
+- [x] Use Rider’s **Web App (Model-View-Controller)** template
+- [x] Target **.NET 8.0**
+- [x] Set the same name for solution and project (e.g., `FocusFlow`)
+- [x] Initialize Git repository
 
 ---
 
