@@ -15,10 +15,10 @@ This is the step-by-step guide to spin up your ASP.NET Core MVC project with Web
 
 ## ✅ 2. Clean Out Boilerplate
 
-- [ ] Remove default `Privacy` view/controller
-- [ ] Clean `_Layout.cshtml` (remove nav links, footer, etc.)
-- [ ] Remove unused default styles/scripts
-- [ ] Delete dummy content from views
+- [x] Remove default `Privacy` view/controller
+- [x] Clean `_Layout.cshtml` (remove nav links, footer, etc.)
+- [x] Remove unused default styles/scripts
+- [x] Delete dummy content from views
 
 ---
 
