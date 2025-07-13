@@ -1,3 +1,4 @@
+
 @{
     ViewData["Title"] = "Style Guide";
 }
@@ -68,5 +69,75 @@
             <p>This is a simple card component with padding, rounded corners, and a subtle shadow. Useful for grouping related content.</p>
             <button class="accent-2">Card Action</button>
         </div>
+    </section>
+
+    <hr />
+
+    <section>
+        <h2>Lists</h2>
+        <h3>Unordered List</h3>
+        <ul>
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ul>
+
+        <h3>Ordered List</h3>
+        <ol>
+            <li>Step one</li>
+            <li>Step two</li>
+            <li>Step three</li>
+        </ol>
+    </section>
+    
+    <section>
+        <h2>Extras & Utilities</h2>
+
+        <h3>Image</h3>
+        <img src="~/sample_image.png" alt="Sample Image" style="width: 300px;"/>
+
+        <h3>Horizontal Rule</h3>
+        <p>Before the rule</p>
+        <hr />
+        <p>After the rule</p>
+
+        <h3>Inline Code</h3>
+        <p>Use the <code>accent-1</code> class to style your buttons.</p>
+
+        <h3>Code Block</h3>
+        <pre><code>body {
+  background-color: var(--bg);
+  color: var(--text);
+}</code></pre>
+
+        <h3>Table</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Forms</td>
+                <td>Complete</td>
+            </tr>
+            <tr>
+                <td>Buttons</td>
+                <td>Complete</td>
+            </tr>
+            <tr>
+                <td>Tables</td>
+                <td>Added</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Disabled Inputs</h3>
+        <input type="text" disabled value="Disabled input" />
+        <select disabled>
+            <option>Disabled select</option>
+        </select>
     </section>
 </div>
