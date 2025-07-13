@@ -1,0 +1,178 @@
+/* ========================================
+   THEME: Light (default) + Dark (via .dark-mode)
+   ======================================== */
+:root {
+    --bg: #f4f1ee;
+    --text: #2c2c2c;
+    --accent-1: #aacfcf;      /* soft mint */
+    --accent-2: #f7c59f;      /* pastel peach */
+    --accent-3: #d7b9d5;      /* muted lavender */
+    --accent-hover-1: #98bcbc;
+    --accent-hover-2: #e6b388;
+    --accent-hover-3: #cba9c3;
+    --accent-text: #2c2c2c;
+
+    --link: var(--accent-1);
+    --border: #dcdcdc;
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+}
+
+.dark-mode {
+    --bg: #1e1e1e;
+    --text: #e2e2e2;
+    --accent-1: #aacfcf;
+    --accent-2: #f7c59f;
+    --accent-3: #d7b9d5;
+    --accent-hover-1: #91b5b5;
+    --accent-hover-2: #e4ae83;
+    --accent-hover-3: #c89bbc;
+    --accent-text: #2c2c2c;
+
+    --link: #9fbad0;
+    --border: #3a3a3a;
+    --card-bg: #2a2a2a;
+    --input-bg: #2f2f2f;
+}
+
+/* ========================================
+   Reset & Base
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+h2 {
+    font-size: 1.75rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    max-width: 60ch;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: bolder;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button.accent-1 {
+    background-color: var(--accent-1);
+    color: var(--accent-text);
+}
+button.accent-1:hover {
+    background-color: var(--accent-hover-1);
+}
+
+button.accent-2 {
+    background-color: var(--accent-2);
+    color: var(--accent-text);
+}
+button.accent-2:hover {
+    background-color: var(--accent-hover-2);
+}
+
+button.accent-3 {
+    background-color: var(--accent-3);
+    color: var(--accent-text);
+}
+button.accent-3:hover {
+    background-color: var(--accent-hover-3);
+}
+
+/* ========================================
+   Forms
+   ======================================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    color: var(--text);
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--accent-3);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(215, 185, 213, 0.3);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* ========================================
+   Layout & Utility
+   ======================================== */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+}
