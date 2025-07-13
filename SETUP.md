@@ -24,15 +24,16 @@ This is the step-by-step guide to spin up your ASP.NET Core MVC project with Web
 
 ## ✅ 3. Add "Under Construction" Message
 
-- [ ] Edit `Views/Home/Index.cshtml`
-- [ ] Add centered “🚧 Under Construction” message
+- [x] Edit `Views/Home/Index.cshtml`
+- [x] Add centered “🚧 Under Construction” message
 
 ---
 
 ## ✅ 4. Set Up Webpack
 
-- [ ] Create `/src/` directory and `index.js` file
-- [ ] Run `npm init -y`
-- [ ] Install Webpack and loaders:
+- [x] Create `/client-ui` directory with `js` and `css` endpoints
+- [x] Run `npm init`
+- [x] Install Webpack and loaders:
   ```bash
   npm install --save-dev webpack webpack-cli css-loader style-loader
+  ```
