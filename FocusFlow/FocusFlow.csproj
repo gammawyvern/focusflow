@@ -12,6 +12,11 @@
 
     <ItemGroup>
       <Folder Include="Models\" />
+      <Folder Include="wwwroot\dist\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
     </ItemGroup>
 
 </Project>
