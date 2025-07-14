@@ -37,3 +37,16 @@ This is the step-by-step guide to spin up your ASP.NET Core MVC project with Web
   ```bash
   npm install --save-dev webpack webpack-cli css-loader style-loader
   ```
+- [x] Create Webpack Config File
+
+## ✅ 5. Create Base Styles
+- [x] Typography
+- [x] Components
+- [x] Form Inputs
+
+## ✅ 6. Setup EF Core
+- [ ] ?
+
+## Optional
+- [ ] Typescript
+- [ ] Sass
