@@ -1,16 +1,16 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-// using FocusFlow.Models;
+
+using FocusFlow.Data;
 
 namespace FocusFlow.Controllers;
 
 public class FocusController: Controller
 {
-    private readonly ILogger<FocusController> _logger;
+    private readonly AppDbContext _dbContext;
 
-    public FocusController(ILogger<FocusController> logger)
+    public FocusController(AppDbContext dbContext)
     {
-        _logger = logger;
+        _dbContext = dbContext;
     }
 
     public IActionResult Index()
