@@ -16,10 +16,6 @@ public class TasksController: Controller
 
     public IActionResult Index()
     {
-        var testItem = new TaskItem();
-        this._dbContext.Tasks.Add(testItem);
-        this._dbContext.SaveChanges();
-        
         return View();
     }
 }
