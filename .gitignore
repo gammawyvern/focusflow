@@ -14,6 +14,8 @@ out/
 secrets.json
 appsettings.json
 appsettings.*.json
+!appsettings.Template.json
+!appsettings.Development.Template.json
 *.db
 *.db-shm
 *.db-wal
