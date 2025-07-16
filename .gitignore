@@ -12,7 +12,8 @@ out/
 
 ## ASP.NET Core secrets
 secrets.json
-appsetting.json
+appsettings.json
+appsettings.*.json
 *.db
 *.db-shm
 *.db-wal
