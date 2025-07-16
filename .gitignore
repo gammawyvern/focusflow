@@ -1,10 +1,40 @@
+## Build results
 bin/
 obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+out/
+*.log
 
-# Webpack ignores
-FocusFlow/client-ui/node_modules/
-FocusFlow/client-ui/package-lock.json
-FocusFlow/wwwroot/dist/
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## ASP.NET Core secrets
+secrets.json
+*.db
+*.db-shm
+*.db-wal
+
+## Rider (JetBrains)
+.idea/
+*.DotSettings.user
+*.sln.iml
+
+## VS Code (optional)
+.vscode/
+
+## OS junk
+.DS_Store
+Thumbs.db
+
+## npm/node
+package-lock.json
+node_modules/
+dist/
+*.tsbuildinfo
+
+## Others
+*.swp
+*.bak
+*.tmp
