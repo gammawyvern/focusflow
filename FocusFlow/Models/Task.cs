@@ -1,6 +1,6 @@
 namespace FocusFlow.Models;
 
-public class TaskItem
+public sealed class Task
 {
     public int Id { get; init; }
     public string Title { get; init; } = string.Empty;
