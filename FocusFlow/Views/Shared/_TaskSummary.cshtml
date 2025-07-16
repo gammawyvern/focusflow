@@ -1,5 +1,14 @@
 @model IEnumerable<FocusFlow.Models.TaskSummaryViewModel>
 
 <div class="card">
-    <h2>Task Summary is under construction.</h2>
+    @foreach (var taskSummary in Model)
+    {
+        <div class="tasks-summary">
+            <div class="task-info">
+                <h3 class="task-title">@taskSummary.Title</h3>
+                <p class="task-description">@taskSummary.Description</p>
+            </div>
+            <button class="accent-3"> Set Active </button>
+        </div>
+    }
 </div>

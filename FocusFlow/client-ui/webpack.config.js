@@ -4,7 +4,7 @@ module.exports = {
     mode: 'development',
     entry: {
         main: './js/index.js',
-        styles: './css/styles.css'
+        styles: './css/index.css'
     },
     output: {
         filename: '[name].bundle.js',
