@@ -1,7 +1,10 @@
-﻿@{
+﻿@model FocusFlow.Models.DashboardViewModel
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
 <div>
     <h1> Dashboard page is currently under construction. </h1>
+    @await Html.PartialAsync("_TaskSummary", Model.TaskSummaries)
 </div>
