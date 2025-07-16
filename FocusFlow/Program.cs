@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
 using FocusFlow.Data;
-using FocusFlow.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

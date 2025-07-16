@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 
-using FocusFlow.Models;
 using FocusFlow.Data;
 
 namespace FocusFlow.Controllers;

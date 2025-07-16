@@ -1,6 +1,4 @@
-using FocusFlow.Models;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Task = FocusFlow.Models.Task;
+using Task = FocusFlow.Data.Entities.Task;
 
 namespace FocusFlow.Data;
 
