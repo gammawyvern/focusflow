@@ -6,9 +6,8 @@ public static class DbInitializer
 {
     public static void Seed(AppDbContext context)
     {
-        if (context.Tasks.Any()) { return; }
-    
-        context.Tasks.AddRange(
+        var seedTasks = new List<Task>
+        {
             new Task
             {
                 Title = "Create Database",
@@ -17,19 +16,42 @@ public static class DbInitializer
             },
             new Task
             {
-                Title = "Learn about EF Core",
-                Description = "Understand the core principles, migrations, etc.",
-                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1))
+                Title = "",
+                Description = "Task without title",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
             },
             new Task
             {
-                Title = "Have weekly code review",
-                Description = "Go over project setup, basic models, etc.",
+                Title = "Wipe butt",
+                Description = "I forgot earlier",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
+            },
+            new Task
+            {
+                Title = "Task with just title",
+                Description = "",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
+            },
+            new Task
+            {
+                Title = "Task with very long title and description",
+                Description = "This is sample text that is long enough to not easily display on a short line.",
                 DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1))
             }
+        };
+        
+        seedTasks.AddRange(
+            Enumerable.Range(1, 20).Select(num => new Task
+            {
+                Title = $"Sample task {num}",
+                Description = $"Sample description {num}",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
+            })
         );
         
+        context.RemoveRange(context.Tasks);
+        context.Tasks.AddRange(seedTasks);
         context.SaveChanges();
-        Console.WriteLine("Seeded Task database.");
+        Console.WriteLine("Reset and seeded Task database.");
     }
 }
