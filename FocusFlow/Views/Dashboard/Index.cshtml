@@ -4,7 +4,17 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div>
-    <h1> Dashboard page is currently under construction. </h1>
-    @await Html.PartialAsync("_TaskSummary", Model.TaskSummaries)
+<div class="dashboard-main">
+    <div class="dashboard-tasks-panel">
+        @await Html.PartialAsync("_TaskSummary", Model.TaskSummaries)
+    </div>
+
+    <div class="dashboard-right-panel">
+        <div class="dashboard-timer-panel">
+            Placeholder for timer
+        </div>
+        <div class="dashboard-stats-panel">
+            Placeholder for stats
+        </div>
+    </div>
 </div>

@@ -8,7 +8,10 @@
                 <h3 class="task-title">@taskSummary.Title</h3>
                 <p class="task-description">@taskSummary.Description</p>
             </div>
-            <button class="accent-3"> Set Active </button>
+            @if (!taskSummary.IsActive)
+            {
+                <button class="accent-2"> Set Active </button>
+            }
         </div>
     }
 </div>

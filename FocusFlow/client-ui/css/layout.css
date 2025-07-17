@@ -1,3 +1,5 @@
+/* Main _Layout / nav styles */
+
 .app-layout {
     display: flex;
     height: 100vh;
@@ -48,4 +50,46 @@
     flex-grow: 1;
     padding: 2rem;
     overflow-y: auto;
+}
+
+/* Dashboard layout styles */
+
+.dashboard-main {
+    display: grid;
+    grid-template-columns: 65fr 35fr;
+    height: 100%;
+    gap: 1rem;
+    
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.dashboard-tasks-panel {
+    overflow-y: auto;
+}
+
+.dashboard-right-panel {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+}
+
+.dashboard-timer-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--accent-text);
+    background-color: var(--accent-1);
+    border-radius: var(--border-radius);
+}
+
+.dashboard-stats-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: var(--accent-text);
+    background-color: var(--accent-3);
+    border-radius: var(--border-radius);
 }
