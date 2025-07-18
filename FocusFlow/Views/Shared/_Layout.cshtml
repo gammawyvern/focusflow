@@ -13,14 +13,9 @@
 <body>
     <div class="app-layout">
         <nav class="site-nav">
-            <div class="nav-inner">
-                @* <div class="nav-logo">Focus Flow</div> *@
-                <ul class="nav-links">
-                    <li><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
-                    <li><a asp-controller="Tasks" asp-action="Index">Tasks</a></li>
-                    <li><a asp-controller="Focus" asp-action="Index">Focus</a></li>
-                </ul>
-            </div>
+            <a class="site-nav-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+            <a class="site-nav-link" asp-controller="Tasks" asp-action="Index">Tasks</a>
+            <a class="site-nav-link" asp-controller="Focus" asp-action="Index">Focus</a>
         </nav>
 
         <main class="site-main" role="main">

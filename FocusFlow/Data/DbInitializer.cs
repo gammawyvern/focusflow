@@ -34,9 +34,9 @@ public static class DbInitializer
             },
             new Task
             {
-                Title = "Task with very long title and description",
-                Description = "This is sample text that is long enough to not easily display on a short line.",
-                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1))
+                Title = "Task with very long title and description word word word word word word word word word word word word word word",
+                Description = "This is sample text that is long enough to not easily display on a short line. word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
             }
         };
         

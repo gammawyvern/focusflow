@@ -1,14 +1,17 @@
-.card:has(.tasks-summary) {
-    flex-grow: 1;
+.dashboard-task-summary {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
 }
 
 .tasks-summary {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     column-gap: 1rem;
     
     padding: 0.5rem;
-    overflow-x: hidden;
     border-radius: var(--border-radius);
     border: 1px solid var(--accent-2);
 }
@@ -16,32 +19,20 @@
 .task-info {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
-    overflow: hidden;
-    text-align: left;
 }
 
-.task-title,
-.task-description {
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
+.task-title {
+    justify-self: end;
     text-overflow: ellipsis;
     margin: 0;
 }
 
-.task-title {
-    flex-shrink: 1;
-}
-
 .task-description {
-    flex: 1 1 auto;
-    text-align: left;
-    overflow: hidden;
-    text-wrap: wrap;
+    justify-self: start;
+    overflow-wrap: break-word;
+    margin: 0;
 }
 
 .tasks-summary > button {
     flex-shrink: 0;
-    margin-left: auto;
 }
