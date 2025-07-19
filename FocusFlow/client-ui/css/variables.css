@@ -1,5 +1,5 @@
 :root {
-    --background: #f4f1ee;
+    --background: #dddddd;
     --input-background: #ffffff;
     --card-background: #ffffff;
     
@@ -14,7 +14,7 @@
     --accent-text: #2c2c2c;
     
     --link: var(--accent-1);
-    --border-color: #dcdcdc;
+    --border-color: #aaaaaa;
     
     /* General */
     --default-border-radius: 8px;
