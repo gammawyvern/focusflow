@@ -2,10 +2,11 @@ namespace FocusFlow.Models;
 
 public sealed class TaskSummaryViewModel
 {
-    public string Title { get; init; } 
-    public string Description { get; init; }
-    public bool IsCompleted { get; init; }
-    public string TimeLoggedString { get; init; } 
-    public string DueDateString { get; init; } 
-    public bool IsActive { get; init; }
+    public required int Id { get; init; }
+    public required string Title { get; init; } 
+    public required string Description { get; init; }
+    public required bool IsCompleted { get; init; }
+    public required string TimeLoggedString { get; init; } 
+    public required string DueDateString { get; init; } 
+    public required bool IsActive { get; init; }
 }

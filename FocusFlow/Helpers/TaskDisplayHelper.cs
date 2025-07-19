@@ -25,6 +25,7 @@ public static class TaskDisplayHelper
     {
         return new TaskSummaryViewModel
         {
+            Id = task.Id,
             Title = task.Title,
             Description = task.Description,
             IsCompleted = task.IsCompleted,

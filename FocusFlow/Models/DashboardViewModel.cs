@@ -2,5 +2,5 @@ namespace FocusFlow.Models;
 
 public sealed class DashboardViewModel
 {
-    public IEnumerable<TaskSummaryViewModel> TaskSummaries { get; init; }
+    public required IEnumerable<TaskSummaryViewModel> TaskSummaries { get; init; }
 }
