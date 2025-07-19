@@ -1,0 +1,49 @@
+/* Dashboard Layout */
+
+.dashboard-main {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "dashboard-tasks dashboard-timer"
+        "dashboard-tasks dashboard-stats";
+    gap: var(--default-spacing);
+
+    height: 100%;
+    padding: var(--default-spacing);
+    overflow-y: hidden;
+    border-radius: var(--default-border-radius);
+}
+
+.dashboard-tasks-panel {
+    grid-area: dashboard-tasks;
+
+    overflow-y: auto;
+    background-color: var(--card-bg);
+    border-radius: var(--default-border-radius);
+}
+
+.dashboard-timer-panel {
+    grid-area: dashboard-timer;
+
+    background-color: var(--accent-1);
+    border-radius: var(--default-border-radius);
+}
+
+.dashboard-stats-panel {
+    grid-area: dashboard-stats;
+
+    background-color: var(--accent-3);
+    border-radius: var(--default-border-radius);
+}
+
+/* Dashboard Tasks Summary Styles */
+
+.dashboard-task-summary {
+    background-color: var(--card-bg);
+    border-radius: var(--default-border-radius);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+}
