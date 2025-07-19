@@ -1,5 +1,5 @@
 :root {
-    --bg: #f4f1ee;
+    --background: #f4f1ee;
     --text: #2c2c2c;
     --accent-1: #aacfcf;
     --accent-2: #f7c59f;
@@ -20,7 +20,7 @@
 }
 
 .dark-mode {
-    --bg: #1e1e1e;
+    --background: #1e1e1e;
     --text: #e2e2e2;
     --accent-1: #aacfcf;
     --accent-2: #f7c59f;
@@ -33,5 +33,5 @@
     --link: #b0c7df;
     --border-color: #3a3a3a;
     --card-bg: #2a2a2a;
-    --input-bg: #2f2f2f;
+    --input-bg: #404040;
 }
