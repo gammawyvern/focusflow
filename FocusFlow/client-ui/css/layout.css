@@ -54,7 +54,7 @@
     gap: 1rem;
 
     height: 100%;
-    padding: 2rem;
+    padding: 1rem;
     overflow-y: hidden;
     border-radius: var(--border-radius);
 }

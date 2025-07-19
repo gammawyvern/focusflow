@@ -3,13 +3,18 @@
 <div class="dashboard-task-summary">
     @foreach (var taskSummary in Model)
     {
-        <div class="task-summary">
-            <h3 class="task-title">@taskSummary.Title</h3>
-            <p class="task-description">@taskSummary.Description</p>
-            @if (!taskSummary.IsActive)
-            {
-                <button class="accent-2"> Set Active </button>
-            }
+        <div class="task">
+            <div class="task-complete">O</div>
+            <div class="task-title">@taskSummary.Title</div>
+            <div class="task-description">@taskSummary.Description</div>
+            <div class="task-time">0h 30m</div>
+            <div class="task-delete"></div>
         </div>
+        /*
+        @if (!taskSummary.IsActive)
+        {
+            <button class="accent-2"> Set Active </button>
+        }
+        */
     }
 </div>
