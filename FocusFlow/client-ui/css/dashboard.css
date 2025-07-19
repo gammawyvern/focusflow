@@ -20,6 +20,7 @@
     grid-area: dashboard-tasks;
 
     overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--card-background);
     border-radius: var(--default-border-radius);
 }
