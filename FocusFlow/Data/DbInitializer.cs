@@ -12,19 +12,22 @@ public static class DbInitializer
             {
                 Title = "Create Database",
                 Description = "Setup MySQL and install SSMS.",
-                DueDate = DateOnly.FromDateTime(DateTime.Now)
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 600
             },
             new Task
             {
                 Title = "",
                 Description = "Task without title",
-                DueDate = DateOnly.FromDateTime(DateTime.Now)
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 4000
             },
             new Task
             {
                 Title = "Wipe butt",
                 Description = "I forgot earlier",
-                DueDate = DateOnly.FromDateTime(DateTime.Now)
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 4046
             },
             new Task
             {

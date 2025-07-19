@@ -1,14 +1,14 @@
 @model IEnumerable<FocusFlow.Models.TaskSummaryViewModel>
 
 <div class="dashboard-task-summary">
-    <h2 class="dashboard-task-header">Tasks</h2>
+    <h2 class="dashboard-task-header">Today's Tasks</h2>
     @foreach (var taskSummary in Model)
     {
         <div class="task">
             <div class="task-complete">O</div>
             <div class="task-title">@taskSummary.Title</div>
             <div class="task-description">@taskSummary.Description</div>
-            <div class="task-time">0h 30m</div>
+            <div class="task-time">@taskSummary.TimeLoggedString</div>
             <div class="task-delete"></div>
         </div>
         /*

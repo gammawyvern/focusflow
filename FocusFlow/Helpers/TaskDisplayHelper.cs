@@ -13,7 +13,7 @@ public static class TaskDisplayHelper
         var hours = seconds / SecondsPerHour;
         var minutes = (seconds % SecondsPerHour) / SecondsPerMinute;
         
-        return  $"{hours:D2}h {minutes:D2}s";
+        return  $"{hours:D2}h {minutes:D2}m";
     }
 
     public static string FormatDateOnly(DateOnly date)
