@@ -12,7 +12,6 @@
     gap: var(--default-spacing);
 
     height: 100%;
-    padding: var(--default-spacing);
     overflow-y: hidden;
     border-radius: var(--default-border-radius);
 }
@@ -21,7 +20,7 @@
     grid-area: dashboard-tasks;
 
     overflow-y: auto;
-    background-color: var(--card-bg);
+    background-color: var(--card-background);
     border-radius: var(--default-border-radius);
 }
 
@@ -41,9 +40,28 @@
 
 /* Dashboard Tasks Summary Styles */
 
+h2.dashboard-task-header {
+    line-height: 1;
+    margin-bottom: var(--default-spacing);
+}
+
 .dashboard-task-summary {
-    background-color: var(--card-bg);
+    background-color: var(--card-background);
     border-radius: var(--default-border-radius);
     padding: 1rem;
     border: 1px solid var(--border-color);
+}
+
+.dashboard-tasks-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+}
+
+.dashboard-tasks-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.dashboard-tasks-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover-2);
 }

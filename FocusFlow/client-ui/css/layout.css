@@ -2,7 +2,7 @@
 
 .app-layout {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-areas: "navbar main-content";
     
     height: 100vh;
@@ -14,7 +14,7 @@
     grid-area: navbar;
     
     overflow: hidden;
-    background-color: var(--card-bg);
+    background-color: var(--card-background);
     
     border-right: 2px solid var(--accent-1);
     border-top-right-radius: var(--default-border-radius);
@@ -43,12 +43,14 @@
     display: grid;
     grid-template-rows: auto 1fr;
     
+    padding: var(--default-spacing);
     overflow: hidden;
 }
 
 .page-header {
-    grid-row: 1;
-    
-    padding-top: var(--default-spacing);
-    padding-left: var(--default-spacing);
+    line-height: 1;
+    background-color: var(--card-background);
+    padding: var(--default-spacing);
+    border-radius: var(--default-border-radius);
+    margin: 0 0 var(--default-spacing) 0;
 }
