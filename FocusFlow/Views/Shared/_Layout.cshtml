@@ -18,7 +18,8 @@
             <a class="site-nav-link" asp-controller="Focus" asp-action="Index">Focus</a>
         </nav>
 
-        <main class="site-main" role="main">
+        <main class="page-main" role="main">
+            <h1 class="page-header">@ViewData["Title"]</h1>
             @RenderBody()
         </main>
     </div>

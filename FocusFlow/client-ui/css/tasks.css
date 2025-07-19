@@ -1,12 +1,12 @@
 .dashboard-task-summary {
     background-color: var(--card-bg);
-    border-radius: var(--border-radius);
+    border-radius: var(--default-border-radius);
     padding: 1rem;
     border: 1px solid var(--border-color);
 }
 
-.task:first-child {
-    border-top: 1px solid var(--accent-2);
+.dashboard-task-header {
+    line-height: 1;
 }
 
 .task {
@@ -17,13 +17,15 @@
         "check title del"
         ".     desc  time";
     column-gap: 1rem;
-    
+
     padding: 0.5rem;
-    
-    border-right: 1px solid var(--accent-2);
-    border-bottom: 1px solid var(--accent-2);
-    border-left: 1px solid var(--accent-2);
-    border-radius: var(--border-radius);
+
+    border: 1px solid var(--accent-2);
+    border-radius: var(--default-border-radius);
+}
+
+.task + .task {
+    border-top: none;
 }
 
 .task-complete {

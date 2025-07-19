@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using FocusFlow.Data;
 using FocusFlow.Models;
+using FocusFlow.Helpers;
 
 namespace FocusFlow.Controllers;
 
@@ -19,14 +20,8 @@ public class DashboardController : Controller
         var today = DateOnly.FromDateTime(DateTime.Now);
         var taskSummaries = this._dbContext.Tasks
             .Where(task => task.DueDate == today)
-            .Select(task => new TaskSummaryViewModel {
-                Title = task.Title,
-                Description  =  task.Description,
-                IsCompleted  =   task.IsCompleted,
-                TimeLoggedString  = $"{task.SecondsLogged / 60} mins", 
-                DueDateString  = task.DueDate.ToString("ddd, MMM dd"), 
-                IsActive = false
-            }).ToList();
+            .Select(task => TaskDisplayHelper.TaskEntityToView(task))
+            .ToList();
 
         var dashboardView = new DashboardViewModel
         {

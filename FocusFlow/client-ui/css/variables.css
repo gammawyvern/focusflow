@@ -13,6 +13,10 @@
     --border-color: #dcdcdc;
     --card-bg: #ffffff;
     --input-bg: #ffffff;
+    
+    /* General */
+    --default-border-radius: 8px;
+    --default-spacing: 16px;
 }
 
 .dark-mode {
@@ -30,5 +34,4 @@
     --border-color: #3a3a3a;
     --card-bg: #2a2a2a;
     --input-bg: #2f2f2f;
-    --border-radius: 5px;
 }

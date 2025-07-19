@@ -17,14 +17,14 @@
     background-color: var(--card-bg);
     
     border-right: 2px solid var(--accent-1);
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+    border-top-right-radius: var(--default-border-radius);
+    border-bottom-right-radius: var(--default-border-radius);
 }
 
 .site-nav-link {
     display: block;
     font-weight: bold;
-    padding: 1rem;
+    padding: var(--default-spacing);
     
     color: var(--text);
 }
@@ -37,26 +37,39 @@
 
 /* Main */
 
-.site-main {
+.page-main {
     grid-area: main-content;
     
+    display: grid;
+    grid-template-rows: auto 1fr;
+    
     overflow: hidden;
+}
+
+.page-header {
+    grid-row: 1;
+    
+    padding-top: var(--default-spacing);
+    padding-left: var(--default-spacing);
 }
 
 /* Dashboard layout styles */
 
 .dashboard-main {
+    grid-row: 2;
+    
     display: grid;
     grid-template-columns: 6fr 4fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas:
         "dashboard-tasks dashboard-timer"
         "dashboard-tasks dashboard-stats";
-    gap: 1rem;
+    gap: var(--default-spacing);
 
     height: 100%;
-    padding: 1rem;
+    padding: var(--default-spacing);
     overflow-y: hidden;
-    border-radius: var(--border-radius);
+    border-radius: var(--default-border-radius);
 }
 
 .dashboard-tasks-panel {
@@ -64,19 +77,19 @@
     
     overflow-y: auto;
     background-color: var(--card-bg);
-    border-radius: var(--border-radius);
+    border-radius: var(--default-border-radius);
 }
 
 .dashboard-timer-panel {
     grid-area: dashboard-timer;
 
     background-color: var(--accent-1);
-    border-radius: var(--border-radius);
+    border-radius: var(--default-border-radius);
 }
 
 .dashboard-stats-panel {
     grid-area: dashboard-stats;
 
     background-color: var(--accent-3);
-    border-radius: var(--border-radius);
+    border-radius: var(--default-border-radius);
 }
