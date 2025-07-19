@@ -12,6 +12,7 @@
 
     --text: #2c2c2c;
     --accent-text: #2c2c2c;
+    --disabled-text: #404040;
     
     --link: var(--accent-1);
     --border-color: #aaaaaa;
@@ -27,6 +28,7 @@
     --card-background: #2a2a2a;
     
     --text: #e2e2e2;
+    --disabled-text: #c4c4c4;
 
     --border-color: #3a3a3a;
 }

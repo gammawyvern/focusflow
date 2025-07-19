@@ -21,22 +21,14 @@
 
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: var(--card-background);
-    border-radius: var(--default-border-radius);
 }
 
 .dashboard-timer-panel {
     grid-area: dashboard-timer;
-
-    background-color: var(--accent-1);
-    border-radius: var(--default-border-radius);
 }
 
 .dashboard-stats-panel {
     grid-area: dashboard-stats;
-
-    background-color: var(--accent-3);
-    border-radius: var(--default-border-radius);
 }
 
 /* Dashboard Tasks Summary Styles */
@@ -44,13 +36,6 @@
 h2.dashboard-task-header {
     line-height: 1;
     margin-bottom: var(--default-spacing);
-}
-
-.dashboard-task-summary {
-    background-color: var(--card-background);
-    border-radius: var(--default-border-radius);
-    padding: 1rem;
-    border: 1px solid var(--border-color);
 }
 
 .dashboard-tasks-panel::-webkit-scrollbar-thumb {

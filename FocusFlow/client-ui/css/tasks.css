@@ -1,3 +1,5 @@
+/* Base Task Styling */
+
 .task {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -15,7 +17,32 @@
 
 .task + .task {
     border-top: none;
+    
 }
+
+/* Task Text Styling */
+
+.task[data-active="true"] {
+    color: var(--text);
+    font-weight: bold;
+}
+
+.task[data-active="false"] {
+    color: var(--disabled-text);
+    font-weight: normal;
+}
+
+.task[data-active="true"]:hover {
+    text-decoration: none;
+}
+
+.task[data-active="false"]:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--accent-2);
+}
+
+/* Task Other Information Styling */
 
 .task-complete {
     grid-area: check;
@@ -53,9 +80,3 @@
     justify-content: end;
     align-items: start;
 }
-
-/*
-.tasks-summary > button {
-    flex-shrink: 0;
-}
-*/

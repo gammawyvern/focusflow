@@ -21,7 +21,7 @@ public static class TaskDisplayHelper
         return date.ToString("ddd, MMM dd");
     }
 
-    public static TaskSummaryViewModel TaskEntityToView(Task task)
+    public static TaskSummaryViewModel TaskEntityToView(Task task, int? activeId)
     {
         return new TaskSummaryViewModel
         {
@@ -31,7 +31,7 @@ public static class TaskDisplayHelper
             IsCompleted = task.IsCompleted,
             TimeLoggedString = FormatSecondsLogged(task.SecondsLogged),
             DueDateString = FormatDateOnly(task.DueDate),
-            IsActive = false
+            IsActive = task.Id == activeId
         };
     }
 }
