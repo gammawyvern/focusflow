@@ -13,7 +13,10 @@
             <div class="task-title">@taskSummary.Title</div>
             <div class="task-description">@taskSummary.Description</div>
             <div class="task-time">@taskSummary.TimeLoggedString</div>
-            <div class="task-delete"></div>
+            @if (taskSummary.IsActive)
+            {
+                <img class="task-active" src="assets/progressBar.png" alt="Active Task Icon"/>
+            }
         </a>
     }
 </div>

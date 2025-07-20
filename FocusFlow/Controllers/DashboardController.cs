@@ -26,6 +26,7 @@ public class DashboardController : Controller
         var dashboardView = new DashboardViewModel
         {
             TaskSummaries = taskSummaries
+                .OrderByDescending(task => task.IsActive)
         };
             
         return View(dashboardView);
