@@ -2,11 +2,11 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import TaskSummaryPanel from './components/TaskSummaryPanel';
-
-console.log("This is a test");
+import TaskManagerPanel from './components/TaskManagerPanel';
 
 const mounts = [
     { id: 'task-summary-component', component: <TaskSummaryPanel /> },
+    { id: 'task-manager-component', component: <TaskManagerPanel /> }
 ];
 
 mounts.forEach(({ id, component }) => {

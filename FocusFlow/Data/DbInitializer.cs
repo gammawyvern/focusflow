@@ -53,7 +53,7 @@ public static class DbInitializer
         );
         
         context.RemoveRange(context.Tasks);
-        context.Tasks.AddRange(seedTasks);
+        context.Tasks.AddRange(seedTasks[..3]);
         context.SaveChanges();
         Console.WriteLine("Reset and seeded Task database.");
     }

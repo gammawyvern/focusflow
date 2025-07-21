@@ -1,6 +1,9 @@
 @import './variables.css';
 
 @import './base.css';
+
 @import './layout.css';
 @import './dashboard.css';
+@import './task-manager.css';
+
 @import './tasks.css';
