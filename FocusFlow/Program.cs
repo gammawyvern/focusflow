@@ -32,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboard}/{action=Index}/{activeTaskId?}");
+    pattern: "{controller=Dashboard}/{action=Index}");
 
 app.Run();

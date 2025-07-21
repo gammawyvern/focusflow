@@ -15,12 +15,12 @@ public class DashboardController : Controller
         this._dbContext = dbContext;
     }
 
-    public IActionResult Index(int? activeTaskId)
+    public IActionResult Index()
     {
         var today = DateOnly.FromDateTime(DateTime.Now);
         var taskSummaries = this._dbContext.Tasks
             .Where(task => task.DueDate == today)
-            .Select(task => TaskDisplayHelper.TaskEntityToView(task, activeTaskId))
+            .Select(task => TaskDisplayHelper.TaskEntityToView(task))
             .ToList();
 
         var dashboardView = new DashboardViewModel

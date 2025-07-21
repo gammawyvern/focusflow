@@ -16,7 +16,7 @@
     border-radius: var(--default-border-radius);
 }
 
-.dashboard-tasks-panel {
+.dashboard-task-panel {
     grid-area: dashboard-tasks;
 
     overflow-y: auto;
@@ -38,16 +38,16 @@ h2.dashboard-task-header {
     margin-bottom: var(--default-spacing);
 }
 
-.dashboard-tasks-panel::-webkit-scrollbar-thumb {
+.dashboard-task-panel::-webkit-scrollbar-thumb {
     background: var(--accent-2);
 }
 
-.dashboard-tasks-panel::-webkit-scrollbar-thumb {
+.dashboard-task-panel::-webkit-scrollbar-thumb {
     background: var(--accent-2);
     border: 3px solid transparent;
     background-clip: content-box;
 }
 
-.dashboard-tasks-panel::-webkit-scrollbar-thumb:hover {
+.dashboard-task-panel::-webkit-scrollbar-thumb:hover {
     background: var(--accent-hover-2);
 }

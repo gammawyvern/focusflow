@@ -26,8 +26,4 @@
       </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="client-ui\js\components\" />
-    </ItemGroup>
-
 </Project>
