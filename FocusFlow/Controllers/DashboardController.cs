@@ -8,7 +8,7 @@ using FocusFlow.Repositories;
 
 namespace FocusFlow.Controllers;
 
-public class DashboardController() : Controller
+public class DashboardController: Controller
 {
     public IActionResult Index()
     {
