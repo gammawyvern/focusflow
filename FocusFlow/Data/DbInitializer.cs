@@ -52,8 +52,8 @@ public static class DbInitializer
             })
         );
         
-        context.RemoveRange(context.Tasks);
-        context.Tasks.AddRange(seedTasks[..3]);
+        context.RemoveRange(context.TaskItems);
+        context.TaskItems.AddRange(seedTasks);
         context.SaveChanges();
         Console.WriteLine("Reset and seeded Task database.");
     }
