@@ -13,8 +13,7 @@ const TaskSummaryPanel = () => {
     }, []);
     
     return (
-        <div className="card" style={{ minHeight: '100%' }}>
-            <h2 className="dashboard-task-header">Today's Tasks</h2>
+        <>
             {tasks.map((task) => (
                 <a
                     key={task.id}
@@ -34,7 +33,7 @@ const TaskSummaryPanel = () => {
                     )}
                 </a>
             ))}
-        </div>
+        </>
     );
 };
 
