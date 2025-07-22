@@ -1,10 +1,12 @@
 path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 module.exports = {
     mode: 'development',
     entry: {
-        main: './js/index.js',
-        styles: './css/styles.css'
+        app: './js/index.jsx',
+        layout: './css/index.css'
     },
     output: {
         filename: '[name].bundle.js',
@@ -14,8 +16,24 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
             }
         ]
+    },
+    plugins: [
+        new RemoveEmptyScriptsPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+        })
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx']
     }
 };

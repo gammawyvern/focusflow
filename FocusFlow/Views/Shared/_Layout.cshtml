@@ -7,28 +7,24 @@
     <link rel="icon" type="image/png" href="~/favicon.png">
     <title>@ViewData["Title"] - FocusFlow</title>
 
-    <script src="~/dist/styles.bundle.js"></script>
+    <link rel="stylesheet" href="~/dist/layout.css" />
 </head>
 
 <body>
     <div class="app-layout">
         <nav class="site-nav">
-            <div class="nav-inner">
-                @* <div class="nav-logo">Focus Flow</div> *@
-                <ul class="nav-links">
-                    <li><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
-                    <li><a asp-controller="Tasks" asp-action="Index">Tasks</a></li>
-                    <li><a asp-controller="Focus" asp-action="Index">Focus</a></li>
-                </ul>
-            </div>
+            <a class="site-nav-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+            <a class="site-nav-link" asp-controller="TaskManager" asp-action="Index">Tasks</a>
+            <a class="site-nav-link" asp-controller="Focus" asp-action="Index">Focus</a>
         </nav>
 
-        <main class="site-main" role="main">
+        <main class="page-main" role="main">
+            <h1 class="card">@ViewData["Title"]</h1>
             @RenderBody()
         </main>
     </div>
     
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/dist/app.bundle.js"></script>
 </body>
 
 </html>

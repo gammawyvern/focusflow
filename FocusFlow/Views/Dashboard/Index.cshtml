@@ -2,6 +2,12 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div>
-    <h1> Dashboard page is currently under construction. </h1>
+<div class="dashboard-main">
+    @await Component.InvokeAsync("TaskSummaryPanel")
+    <div class="dashboard-timer-panel">
+        <div class="card" style="height: 100%;"></div>
+    </div>
+    <div class="dashboard-stats-panel">
+        <div class="card" style="height: 100%;"></div>
+    </div>
 </div>

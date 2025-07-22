@@ -1,4 +1,4 @@
-using Task = FocusFlow.Data.Entities.Task;
+using FocusFlow.Data.Entities;
 
 namespace FocusFlow.Data;
 
@@ -6,30 +6,55 @@ public static class DbInitializer
 {
     public static void Seed(AppDbContext context)
     {
-        if (context.Tasks.Any()) { return; }
-    
-        context.Tasks.AddRange(
-            new Task
+        var seedTasks = new List<TaskItem>
+        {
+            new TaskItem
             {
                 Title = "Create Database",
                 Description = "Setup MySQL and install SSMS.",
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 600
+            },
+            new TaskItem
+            {
+                Title = "",
+                Description = "Task without title",
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 4000
+            },
+            new TaskItem
+            {
+                Title = "Wipe butt",
+                Description = "I forgot earlier",
+                DueDate = DateOnly.FromDateTime(DateTime.Now),
+                SecondsLogged = 4046
+            },
+            new TaskItem
+            {
+                Title = "Task with just title",
+                Description = "",
                 DueDate = DateOnly.FromDateTime(DateTime.Now)
             },
-            new Task
+            new TaskItem
             {
-                Title = "Learn about EF Core",
-                Description = "Understand the core principles, migrations, etc.",
-                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-1))
-            },
-            new Task
-            {
-                Title = "Have weekly code review",
-                Description = "Go over project setup, basic models, etc.",
-                DueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1))
+                Title = "Task with very long title and description word word word word word word word word word word word word word word",
+                Description = "This is sample text that is long enough to not easily display on a short line. word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
             }
+        };
+        
+        seedTasks.AddRange(
+            Enumerable.Range(1, 20).Select(num => new TaskItem
+            {
+                Title = $"Sample task {num}",
+                Description = $"Sample description {num}",
+                DueDate = DateOnly.FromDateTime(DateTime.Now)
+            })
         );
         
+        context.RemoveRange(context.TaskItems);
+        context.TaskItems.AddRange(seedTasks);
         context.SaveChanges();
-        Console.WriteLine("Seeded Task database.");
+        Console.WriteLine("Reset and seeded Task database.");
     }
 }

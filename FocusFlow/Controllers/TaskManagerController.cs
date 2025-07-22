@@ -4,11 +4,11 @@ using FocusFlow.Data;
 
 namespace FocusFlow.Controllers;
 
-public class TasksController: Controller
+public class TaskManagerController: Controller
 {
     private readonly AppDbContext _dbContext;
 
-    public TasksController(AppDbContext dbContext)
+    public TaskManagerController(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }

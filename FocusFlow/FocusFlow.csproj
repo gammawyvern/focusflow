@@ -9,7 +9,7 @@
     <ItemGroup>
       <AdditionalFiles Include="Views\Focus\Index.cshtml" />
       <AdditionalFiles Include="Views\StyleGuide\Index.cshtml" />
-      <AdditionalFiles Include="Views\Tasks\Index.cshtml" />
+      <AdditionalFiles Include="Views\TaskManager\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
