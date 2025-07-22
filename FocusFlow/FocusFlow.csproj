@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Views\Dashboard\_TaskSummary.cshtml" />
       <AdditionalFiles Include="Views\Focus\Index.cshtml" />
       <AdditionalFiles Include="Views\StyleGuide\Index.cshtml" />
       <AdditionalFiles Include="Views\TaskManager\Index.cshtml" />

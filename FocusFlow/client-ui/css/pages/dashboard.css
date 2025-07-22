@@ -1,0 +1,27 @@
+/* Dashboard Layout */
+
+.dashboard-main {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "task-summary dashboard-timer"
+        "task-summary dashboard-stats";
+    gap: var(--default-spacing);
+
+    height: 100%;
+    overflow-y: hidden;
+    border-radius: var(--default-border-radius);
+}
+
+.dashboard-timer-panel {
+    grid-area: dashboard-timer;
+}
+
+.dashboard-stats-panel {
+    grid-area: dashboard-stats;
+}
+
+/* Dashboard Tasks Summary Styles */
