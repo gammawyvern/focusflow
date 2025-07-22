@@ -7,14 +7,21 @@
     grid-template-columns: 6fr 4fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-        "task-summary dashboard-timer"
-        "task-summary dashboard-stats";
+        "dashboard-tasks dashboard-timer"
+        "dashboard-tasks dashboard-stats";
     gap: var(--default-spacing);
 
     height: 100%;
     overflow-y: hidden;
     border-radius: var(--default-border-radius);
 }
+
+.dashboard-task-summary-panel {
+     grid-area: dashboard-tasks;
+
+     overflow-y: auto;
+     overflow-x: hidden;
+ }
 
 .dashboard-timer-panel {
     grid-area: dashboard-timer;
@@ -25,3 +32,17 @@
 }
 
 /* Dashboard Tasks Summary Styles */
+
+.dashboard-task-summary-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+}
+
+.dashboard-task-summary-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.dashboard-task-summary-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover-2);
+}
