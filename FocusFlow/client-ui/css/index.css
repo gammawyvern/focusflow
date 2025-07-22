@@ -4,6 +4,7 @@
 @import './base/task.css';
 
 @import './pages/dashboard.css';
+@import './pages/task-manager.css';
 
 @import './components/task-summary.css';
 @import './components/task-manager.css';

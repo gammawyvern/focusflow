@@ -1,23 +1,4 @@
-/* Task Manager Layout */
-
-.task-manager-main {
-    grid-row: 2;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:
-        "task-manager-main";
-    gap: var(--default-spacing);
-
-    height: 100%;
-    overflow-y: hidden;
-    border-radius: var(--default-border-radius);
-}
-
-.task-manager-panel {
-    grid-area: task-manager-main;
-
-    overflow-y: auto;
-    overflow-x: hidden;
+.task-manager-header {
+    line-height: 1;
+    margin-bottom: var(--default-spacing);
 }

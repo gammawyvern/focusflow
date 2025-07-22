@@ -4,6 +4,6 @@
 
 <div class="task-manager-main">
     <div class="task-manager-panel">
-        <div id="task-manager-component" style="height: 100%"></div>
+        @await Component.InvokeAsync("TaskManager")
     </div>
 </div>
