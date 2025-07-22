@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FocusFlow.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250716192953_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250722004740_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace FocusFlow.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FocusFlow.Data.Entities.Task", b =>
+            modelBuilder.Entity("FocusFlow.Data.Entities.TaskItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace FocusFlow.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("TaskItems");
                 });
 #pragma warning restore 612, 618
         }
