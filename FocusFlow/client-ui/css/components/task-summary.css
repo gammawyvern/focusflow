@@ -1,0 +1,27 @@
+.task-summary-panel {
+    grid-area: task-summary;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.task-summary-header {
+    line-height: 1;
+    margin-bottom: var(--default-spacing);
+}
+
+/* Task Summary Scrollbar. */
+
+.task-summary-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+}
+
+.task-summary-panel::-webkit-scrollbar-thumb {
+    background: var(--accent-2);
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.task-summary-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover-2);
+}

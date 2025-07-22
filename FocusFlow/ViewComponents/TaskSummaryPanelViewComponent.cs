@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FocusFlow.ViewComponents;
 
-public class TaskPanelViewComponent : ViewComponent
+public class TaskSummaryPanelViewComponent : ViewComponent
 {
     public IViewComponentResult Invoke()
     {
