@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FocusFlow.Repositories;
 
-public class TaskItemRepository(AppDbContext appDbContext): IRepository<TaskItem>
+public class TaskItemRepository(AppDbContext appDbContext): ITaskItemRepository
 {
     private readonly AppDbContext _appDbContext = appDbContext;
     
@@ -30,10 +30,10 @@ public class TaskItemRepository(AppDbContext appDbContext): IRepository<TaskItem
     
     /* Custom Task Functions. */
 
-    public IEnumerable<TaskItem> GetTasksByDate(DateOnly date)
+    public IEnumerable<TaskItem> GetTaskItemsByDueDate(DateOnly dueDate)
     {
         return _appDbContext.TaskItems
-            .Where(taskItem => taskItem.DueDate == date)
+            .Where(taskItem => taskItem.DueDate == dueDate)
             .ToList();
     }
 }
