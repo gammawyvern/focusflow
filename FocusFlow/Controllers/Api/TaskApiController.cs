@@ -8,7 +8,7 @@ namespace FocusFlow.Controllers.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TaskApiController(IRepository<TaskItem> taskItemRepository) : Controller
+public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> GetTasks()
