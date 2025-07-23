@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const TaskSummaryPanel = () => {
+const TaskSummary = () => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        fetch('/api/TaskApi')
+        fetch('/api/tasks')
             .then((res) => res.json())
             .then(setTasks)
             .catch((err) => {
@@ -18,12 +18,12 @@ const TaskSummaryPanel = () => {
                 <a
                     key={task.id}
                     className="task"
-                    data-active={task.isActive?.toString()}
+                    data-active={false}
                 >
                     <div className="task-complete">O</div>
                     <div className="task-title">{task.title}</div>
                     <div className="task-description">{task.description}</div>
-                    <div className="task-time">{task.timeLoggedString}</div>
+                    <div className="task-time">{task.secondsLogged}</div>
                     {task.isActive && (
                         <img
                             className="task-active"
@@ -37,4 +37,4 @@ const TaskSummaryPanel = () => {
     );
 };
 
-export default TaskSummaryPanel;
+export default TaskSummary;
