@@ -1,28 +1,21 @@
 import React, {useEffect, useState} from 'react';
 
+import TaskTable from './Task/TaskTable';
+
 const TaskManager = () => {
-    const [taskViews, setTaskViews] = useState([]);
+    const [tasks, setTasks] = useState([]);
     
     useEffect(() => {
         fetch('/api/tasks')
             .then((res) => res.json())
-            .then(setTaskViews)
+            .then(setTasks)
             .catch((err) => {
                 console.error('Failed to fetch tasks', err);
             })
     }, []);
     
     return (
-        <div style={{
-            height: "100%",
-            backgroundColor: "lightgray",
-            color: "black"
-        }}>
-            Task Manager Placeholder
-            {taskViews.map(task => (
-                <div>{task.title}</div>
-            ))}
-        </div>
+        <TaskTable tasks={tasks} />
     )
 }
 
