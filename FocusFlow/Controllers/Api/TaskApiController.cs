@@ -7,7 +7,7 @@ using FocusFlow.Repositories;
 namespace FocusFlow.Controllers.Api;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/tasks")]
 public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
 {
     [HttpGet]
@@ -15,7 +15,7 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
     {
         var tasks = await taskItemRepository.GetAllAsync();
         var taskViews = tasks
-            .Select(TaskItemMapper.TaskItemToTaskSummaryViewModel)
+            .Select(TaskItemMapper.ToDto)
             .ToList();
         
         return Ok(taskViews);
