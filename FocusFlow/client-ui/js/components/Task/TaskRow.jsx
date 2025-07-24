@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { formatSeconds, formatDate } from "../../utils/taskFormatters";
 import { TaskModes } from "../../constants/modes";
 
 const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isSelfEditing, setIsSelfEditing] = useState(false);
     const [editData, setEditData] = useState({
         title: task.title,
         description: task.description,
@@ -29,7 +29,7 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
 
         if (response.ok) {
             onUpdate(updatedDto);
-            setIsEditing(false);
+            setIsSelfEditing(false);
         } else {
             console.error('Failed to update task');
         }
@@ -37,13 +37,25 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
     
     const handleEditCancel = () => {
         setEditData({ ...task });
-        setIsEditing(false);
+        setIsSelfEditing(false);
     }
     
-    const handleDeleteClick = async () => {
+    const handleDelete = async () => {
         await fetch(`/api/tasks/${task.id}`, { method: 'DELETE' });
         onDelete(task.id);
     };
+
+    useEffect(() => {
+        if (mode !== TaskModes.VIEW && isSelfEditing) {
+            setIsSelfEditing(false);
+        }
+        
+        if (mode !== TaskModes.EDIT) {
+            setEditData({ ...task });
+        }
+    }, [mode]);
+
+    const isEditable = mode === TaskModes.EDIT || isSelfEditing;
 
     return (
         <tr>
@@ -51,7 +63,7 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
                 <input
                     type="checkbox"
                     checked={editData.isCompleted}
-                    disabled={!isEditing}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setEditData({ ...editData, isCompleted: e.target.checked })
                     }
@@ -61,14 +73,14 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
                 <input
                     type="text"
                     value={editData.title}
-                    disabled={!isEditing}
+                    disabled={!isEditable}
                     onChange={(e) => 
                         setEditData({ ...editData, title: e.target.value })
                     }
                 />
                 <textarea
                     value={editData.description}
-                    disabled={!isEditing}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setEditData({ ...editData, description: e.target.value })
                     }
@@ -78,7 +90,7 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
                 <input
                     type="date"
                     value={editData.dueDate}
-                    disabled={!isEditing}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setEditData({ ...editData, dueDate: e.target.value })
                     }
@@ -88,25 +100,25 @@ const TaskRow = ({ task, onUpdate, onDelete, mode }) => {
                 <input
                     type="number"
                     value={editData.secondsLogged}
-                    disabled={!isEditing}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setEditData({ ...editData, secondsLogged: Number(e.target.value) })
                     }
                 />
             </td>
             <td>
-                {mode !== TaskModes.VIEW ? (
-                    <></>
-                ) : mode === TaskModes.VIEW && isEditing ? (
+                {mode === TaskModes.VIEW && isSelfEditing ? (
                     <>
-                        <button onClick={handleEditCancel}>Cancel</button>
-                        <button onClick={handleEditSave}>Save</button>
+                        <button onClick={handleEditSave} className="accent-1">Confirm</button>
+                        <button onClick={handleEditCancel} className="accent-2">Cancel</button>
+                    </>
+                ) : mode === TaskModes.VIEW && !isSelfEditing ? (
+                    <>
+                        <button onClick={() => setIsSelfEditing(true)} className="accent-3">Edit</button>
+                        <button onClick={handleDelete} className="accent-2">Delete</button>
                     </>
                 ) : (
-                    <>
-                        <button onClick={() => setIsEditing(true)}>Edit</button>
-                        <button onClick={handleDeleteClick}>Delete</button>
-                    </>
+                    <></>
                 )}
             </td>
         </tr>
