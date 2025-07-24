@@ -75,7 +75,7 @@ const TaskManager = () => {
             ) : (
                 <div>
                     <button onClick={handleTaskCreate} className="accent-3">Create Task</button>
-                    <button onClick={() => setMode(TaskModes.DELETE)} className="accent-2">Delete Mode</button>
+                    {/* <button onClick={() => setMode(TaskModes.DELETE)} className="accent-2">Delete Mode</button> */}
                 </div>
             )} 
             
