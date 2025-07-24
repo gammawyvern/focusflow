@@ -2,43 +2,76 @@ import React, {useEffect, useState} from 'react';
 
 import TaskTable from './Task/TaskTable';
 import { TaskModes } from "../constants/modes";
+import Loading from "../components/Loading";
 
 const TaskManager = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [tasks, setTasks] = useState([]);
-    const [mode, setMode] = useState(TaskModes.VIEW);
+    const [mode, setMode] = useState(TaskModes.EDIT);
 
     useEffect(() => {
         fetch('/api/tasks')
             .then((res) => res.json())
             .then(setTasks)
-            .catch((err) => {
-                console.error('Failed to fetch tasks', err);
-            })
+            .catch(err => console.error(err))
+            .finally(() => setIsLoading(false));
     }, []);
-    
-    const handleTaskUpdate = (updatedTask) => {
-        setTasks(prevTasks =>
-            prevTasks.map(task =>
-                task.id === updatedTask.id ? updatedTask : task
+
+    useEffect(() => {
+        const handleBeforeUnload = async (e) => {
+            await fetch('/api/tasks/bulk', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tasks),
+            });
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    }, [tasks]);
+
+    const handleTaskUpdate = (id, field, value) => {
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, [field]: value } : task
             )
         );
     };
 
-    const handleTaskDelete = (id) => {
+    const handleTaskCreate = async () => {
+        const res = await fetch('/api/tasks', {
+            method: 'POST',
+        });
+
+        if (res.ok) {
+            const newTask = await res.json();
+            setTasks(prev => [...prev, newTask]);
+        }
+    };
+
+    const handleTaskDelete = async (id) => {
+        await fetch(`/api/tasks/${id}`, {
+            method: 'DELETE'
+        });
+        
         setTasks(prev => prev.filter(task => task.id !== id));
     };
     
+    if (isLoading) {
+        return <Loading />;
+    }
+    
     return (
         <>
-            {mode === TaskModes.VIEW ? (
+            {mode === TaskModes.DELETE ? (
                 <div>
-                    <button onClick={() => setMode(TaskModes.EDIT)} className="accent-3">Edit Mode</button>
-                    <button onClick={() => setMode(TaskModes.DELETE)} className="accent-2">Delete Mode</button>
+                    <button onClick={() => setMode(TaskModes.EDIT)} className="accent-1">Confirm</button>
+                    <button onClick={() => setMode(TaskModes.EDIT)} className="accent-2">Cancel</button>
                 </div>
             ) : (
                 <div>
-                    <button onClick={() => setMode(TaskModes.VIEW)} className="accent-1">Confirm</button>
-                    <button onClick={() => setMode(TaskModes.VIEW)} className="accent-2">Cancel</button>
+                    <button onClick={handleTaskCreate} className="accent-3">Create Task</button>
+                    <button onClick={() => setMode(TaskModes.DELETE)} className="accent-2">Delete Mode</button>
                 </div>
             )} 
             
@@ -46,10 +79,9 @@ const TaskManager = () => {
                 tasks={tasks}
                 onTaskUpdate={handleTaskUpdate}
                 onTaskDelete={handleTaskDelete}
-                mode={mode}
             />
         </>
-    )
+    );
 }
 
 export default TaskManager;
