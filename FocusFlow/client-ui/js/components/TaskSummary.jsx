@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import Loading from "./Loading";
 
 const TaskSummary = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         fetch('/api/tasks')
             .then((res) => res.json())
             .then(setTasks)
-            .catch((err) => {
-                console.error('Failed to fetch tasks:', err);
-            });
+            .catch(err => console.error(err))
+            .finally(() => setIsLoading(false));
     }, []);
+    
+    if (isLoading) {
+        return <Loading />;
+    }
     
     return (
         <>
