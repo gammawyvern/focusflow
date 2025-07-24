@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskRow from './TaskRow';
 
-const TaskTable = ({ tasks, onDeleteTask, mode }) => {
+const TaskTable = ({ tasks, onTaskUpdate, onTaskDelete, mode}) => {
     return (
         <table>
             <thead>
@@ -19,7 +19,8 @@ const TaskTable = ({ tasks, onDeleteTask, mode }) => {
                     <TaskRow
                         key={task.id}
                         task={task}
-                        onDelete={onDeleteTask}
+                        onUpdate={onTaskUpdate}
+                        onDelete={onTaskDelete}
                         mode={mode}
                     />
                 ))}
