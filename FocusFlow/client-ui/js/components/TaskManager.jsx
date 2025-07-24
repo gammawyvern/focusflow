@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import TaskTable from './Task/TaskTable';
 import { TaskModes } from "../constants/modes";
@@ -8,6 +8,10 @@ const TaskManager = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [tasks, setTasks] = useState([]);
     const [mode, setMode] = useState(TaskModes.EDIT);
+
+    const sortedTasks = useMemo(() => (
+        tasks.slice().sort((a, b) => a.isCompleted - b.isCompleted)
+    ), [tasks]);
 
     useEffect(() => {
         fetch('/api/tasks')
@@ -76,7 +80,7 @@ const TaskManager = () => {
             )} 
             
             <TaskTable
-                tasks={tasks}
+                tasks={sortedTasks}
                 onTaskUpdate={handleTaskUpdate}
                 onTaskDelete={handleTaskDelete}
             />
