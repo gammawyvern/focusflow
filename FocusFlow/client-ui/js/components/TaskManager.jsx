@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 
 import TaskTable from './Task/TaskTable';
+import { TaskModes } from "../constants/modes";
 
 const TaskManager = () => {
     const [tasks, setTasks] = useState([]);
+    const [mode, setMode] = useState(TaskModes.VIEW);
 
     const handleDeleteTask = (id) => {
         setTasks(prev => prev.filter(task => task.id !== id));
@@ -19,7 +21,11 @@ const TaskManager = () => {
     }, []);
     
     return (
-        <TaskTable tasks={tasks} onDeleteTask={handleDeleteTask} />
+        <TaskTable
+            tasks={tasks}
+            onDeleteTask={handleDeleteTask}
+            mode={mode}
+        />
     )
 }
 

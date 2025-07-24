@@ -2,7 +2,7 @@ import React from 'react';
 
 import { formatSeconds, formatDate } from "../../utils/taskFormatters";
 
-const TaskRow = ({ task, onDelete }) => {
+const TaskRow = ({ task, onDelete, mode }) => {
     const handleDeleteClick = async () => {
         await fetch(`/api/tasks/${task.id}`, { method: 'DELETE' });
         onDelete(task.id);
