@@ -10,6 +10,7 @@ const TaskRow = ({ task, onUpdate, onDelete }) => {
                     onChange={(e) => onUpdate(task.id, 'isCompleted', e.target.checked)}
                 />
             </td>
+            
             <td>
                 <input
                     type="text"
@@ -21,6 +22,7 @@ const TaskRow = ({ task, onUpdate, onDelete }) => {
                     onChange={(e) => onUpdate(task.id, 'description', e.target.value)}
                 />
             </td>
+            
             <td>
                 <input
                     type="date"
@@ -28,13 +30,34 @@ const TaskRow = ({ task, onUpdate, onDelete }) => {
                     onChange={(e) => onUpdate(task.id, 'dueDate', e.target.value)}
                 />
             </td>
+            
             <td>
                 <input
                     type="number"
-                    value={task.secondsLogged}
-                    onChange={(e) => onUpdate(task.id, 'secondsLogged', Number(e.target.value))}
+                    min="0"
+                    step="1"
+                    value={Math.floor(task.secondsLogged / 3600)}
+                    onChange={(e) => {
+                        const hours = Math.max(0, parseInt(e.target.value) || 0);
+                        const minutes = Math.floor((task.secondsLogged % 3600) / 60);
+                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                    }}
+                />
+                :
+                <input
+                    type="number"
+                    min="0"
+                    max="59"
+                    step="1"
+                    value={Math.floor((task.secondsLogged % 3600) / 60)}
+                    onChange={(e) => {
+                        const minutes = Math.min(59, Math.max(0, parseInt(e.target.value) || 0));
+                        const hours = Math.floor(task.secondsLogged / 3600);
+                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                    }}
                 />
             </td>
+            
             <td>
                 <button onClick={(e) => onDelete(task.id)} className="accent-2">Delete</button>
                 {/* Could have a duplicate button later on. */}

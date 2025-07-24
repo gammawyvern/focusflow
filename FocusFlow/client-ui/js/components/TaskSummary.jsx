@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
+import { formatSeconds } from "../utils/taskFormatters";
+
 import Loading from "./Loading";
 
 const TaskSummary = () => {
@@ -28,7 +31,7 @@ const TaskSummary = () => {
                     <div className="task-complete">O</div>
                     <div className="task-title">{task.title}</div>
                     <div className="task-description">{task.description}</div>
-                    <div className="task-time">{task.secondsLogged}</div>
+                    <div className="task-time">{formatSeconds(task.secondsLogged)}</div>
                     {task.isActive && (
                         <img
                             className="task-active"
