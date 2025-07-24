@@ -42,6 +42,7 @@
     
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: var(--default-spacing);
     
     padding: var(--default-spacing);
     overflow: hidden;
@@ -51,6 +52,6 @@
     line-height: 1;
     background-color: var(--card-background);
     padding: var(--default-spacing);
+    border: 1px solid var(--border-color);
     border-radius: var(--default-border-radius);
-    margin: 0 0 var(--default-spacing) 0;
 }

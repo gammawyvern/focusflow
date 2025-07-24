@@ -3,7 +3,9 @@
 }
 
 <div class="dashboard-main">
-    @await Component.InvokeAsync("TaskSummaryPanel")
+    <div class="dashboard-task-summary-panel">
+        @await Component.InvokeAsync("TaskSummary")
+    </div>
     <div class="dashboard-timer-panel">
         <div class="card" style="height: 100%;"></div>
     </div>

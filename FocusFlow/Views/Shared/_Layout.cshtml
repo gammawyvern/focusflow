@@ -14,12 +14,12 @@
     <div class="app-layout">
         <nav class="site-nav">
             <a class="site-nav-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-            <a class="site-nav-link" asp-controller="TaskManager" asp-action="Index">Tasks</a>
-            <a class="site-nav-link" asp-controller="Focus" asp-action="Index">Focus</a>
+            <a class="site-nav-link" asp-controller="TaskManager" asp-action="Index">Task Manager</a>
+            <a class="site-nav-link" asp-controller="Focus" asp-action="Index">Focus Mode</a>
         </nav>
 
         <main class="page-main" role="main">
-            <h1 class="card">@ViewData["Title"]</h1>
+            <h1 class="page-header">@ViewData["Title"]</h1>
             @RenderBody()
         </main>
     </div>
