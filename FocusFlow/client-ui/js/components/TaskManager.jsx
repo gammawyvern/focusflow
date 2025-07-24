@@ -4,7 +4,11 @@ import TaskTable from './Task/TaskTable';
 
 const TaskManager = () => {
     const [tasks, setTasks] = useState([]);
-    
+
+    const handleDeleteTask = (id) => {
+        setTasks(prev => prev.filter(task => task.id !== id));
+    };
+
     useEffect(() => {
         fetch('/api/tasks')
             .then((res) => res.json())
@@ -15,7 +19,7 @@ const TaskManager = () => {
     }, []);
     
     return (
-        <TaskTable tasks={tasks} />
+        <TaskTable tasks={tasks} onDeleteTask={handleDeleteTask} />
     )
 }
 

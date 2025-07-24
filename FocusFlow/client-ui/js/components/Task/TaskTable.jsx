@@ -2,7 +2,7 @@ import React from 'react';
 
 import TaskRow from './TaskRow';
 
-const TaskTable = ({ tasks }) => {
+const TaskTable = ({ tasks, onDeleteTask }) => {
     return (
         <table>
             <thead>
@@ -16,7 +16,7 @@ const TaskTable = ({ tasks }) => {
             </thead>
             <tbody>
                 {tasks.map(task => (
-                    <TaskRow key={task.id} task={task} />
+                    <TaskRow key={task.id} task={task} onDelete={onDeleteTask} />
                 ))}
             </tbody>
         </table>
