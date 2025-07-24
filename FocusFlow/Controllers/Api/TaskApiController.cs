@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using FocusFlow.Helpers.Mapping;
+using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
 using FocusFlow.Dtos;
 
@@ -11,9 +12,9 @@ namespace FocusFlow.Controllers.Api;
 public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
 {
     [HttpPost]
-    public async Task<IActionResult> CreateTask([FromBody] TaskItemDto dto)
+    public async Task<IActionResult> CreateTask([FromBody] TaskItemDto? dto)
     {
-        var entity = TaskItemMapper.ToEntity(dto);
+        var entity = dto == null ? new TaskItem() : TaskItemMapper.ToEntity(dto);
         await taskItemRepository.AddAsync(entity);
         await taskItemRepository.SaveChangesAsync();
         
