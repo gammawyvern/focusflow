@@ -24,13 +24,14 @@ h5 { font-size: 1.5rem; }
 h6 { font-size: 1.25rem; }
 
 a {
-    color: var(--link-color);
-    text-decoration: underline;
+    color: var(--accent-1);
+    text-decoration: none;
     font-weight: bold;
 }
 
 a:hover {
-  text-decoration: underline;
+    color: var(--accent-1-hover);
+    text-decoration: none;
 }
 
 ul, ol {
@@ -46,11 +47,11 @@ hr {
 /* Accent Styling */
 
 .accent-1 { background-color: var(--accent-1); color: var(--accent-text-color); }
-.accent-1:hover { background-color: var(--accent-hover-1); }
+.accent-1:hover { background-color: var(--accent-1-hover); }
 .accent-2 { background-color: var(--accent-2); color: var(--accent-text-color); }
-.accent-2:hover { background-color: var(--accent-hover-2); }
+.accent-2:hover { background-color: var(--accent-2-hover); }
 .accent-3 { background-color: var(--accent-3); color: var(--accent-text-color); }
-.accent-3:hover { background-color: var(--accent-hover-3); }
+.accent-3:hover { background-color: var(--accent-3-hover); }
 
 /* Input Styling */
 
@@ -170,5 +171,5 @@ img {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-hover-1);
+    background: var(--accent-1-hover);
 }

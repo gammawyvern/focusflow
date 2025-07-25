@@ -16,11 +16,11 @@
     /* Common */
     
     --accent-1: #aacfcf;
-    --accent-hover-1: #98bcbc;
+    --accent-1-hover: #98bcbc;
     --accent-2: #f7c59f;
-    --accent-hover-2: #e6b388;
+    --accent-2-hover: #e6b388;
     --accent-3: #d7b9d5;
-    --accent-hover-3: #cba9c3;
+    --accent-3-hover: #cba9c3;
 
     --link-color: var(--accent-1);
 

@@ -38,5 +38,5 @@
 }
 
 .dashboard-task-summary-panel::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-hover-2);
+    background: var(--accent-2-hover);
 }
