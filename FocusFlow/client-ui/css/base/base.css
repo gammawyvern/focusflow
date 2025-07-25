@@ -49,7 +49,7 @@ li {
 }
 
 button {
-  padding: 0.25rem;
+  padding: var(--default-spacing);
   border: none;
   border-radius: var(--default-border-radius);
   cursor: pointer;
@@ -82,19 +82,53 @@ button.accent-3:hover {
   background-color: var(--accent-hover-3);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
+/* Inputs */
+
+input, textarea, select {
   width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 1rem;
+  padding: 8px;
+
+  color: var(--text);
+  accent-color: var(--accent-1);
+  background-color: var(--input-background);
+  
   border: 1px solid var(--border-color);
   border-radius: var(--default-border-radius);
-  background-color: var(--input-background);
-  color: var(--text);
   transition: border-color 0.2s ease;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+input[type="checkbox"] {
+  display: inline-block;
+  position: relative;
+  appearance: none;
+
+  padding: var(--default-spacing);
+  
+  border: 3px solid #eee;
+  border-radius: var(--default-border-radius);
+}
+
+input[type="checkbox"]:checked::after {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  content: "";
+  background: url("../../assets/check.svg") no-repeat center center var(--accent-1);
+  background-size: 40%;
 }
 
 input:focus,
@@ -104,6 +138,16 @@ select:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(215, 185, 213, 0.3);
 }
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Misc, Idk */
 
 label {
   display: block;
@@ -134,29 +178,21 @@ hr {
     margin: 2rem 0;
 }
 
+/* Table styles */
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1rem;
 }
 
 th, td {
     border: 1px solid var(--border-color);
-    padding: 0.5rem;
     text-align: left;
 }
 
 th {
     background-color: var(--accent-1);
     color: var(--accent-text);
-}
-
-input:disabled,
-textarea:disabled,
-select:disabled {
-    background-color: #eee;
-    color: #999;
-    cursor: not-allowed;
 }
 
 code {

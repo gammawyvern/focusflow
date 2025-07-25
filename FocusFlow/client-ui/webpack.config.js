@@ -1,4 +1,4 @@
-path = require('path');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
@@ -23,6 +23,13 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
+                }
+            },
+            {
+                test: /\.svg$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[name][hash][ext]'
                 }
             }
         ]
