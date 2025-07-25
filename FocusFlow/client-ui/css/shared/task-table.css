@@ -1,0 +1,92 @@
+/* General table styling. */
+
+.task-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    table-layout: fixed;
+}
+
+.task-table-header th {
+    
+}
+
+.task-table th,
+.task-table td {
+    border: 4px solid transparent;
+    vertical-align: top;
+}
+
+.task-table th:nth-child(1),
+.task-table td:nth-child(1) {
+    width: 48px; /* checkbox */
+}
+
+.task-table th:nth-child(3),
+.task-table td:nth-child(3) {
+    width: 140px; /* date */
+}
+
+.task-table th:nth-child(4),
+.task-table td:nth-child(4) {
+    width: 120px; /* time inputs */
+}
+
+.task-table th:nth-child(5),
+.task-table td:nth-child(5) {
+    width: 80px; /* button */
+}
+
+/* Row styling. */
+
+.task-table td {
+    background-color: #303030;
+}
+
+.task-table td:first-child {
+    border-top-left-radius: var(--default-border-radius);
+    border-bottom-left-radius: var(--default-border-radius);
+}
+
+.task-table td:last-child {
+    border-top-right-radius: var(--default-border-radius);
+    border-bottom-right-radius: var(--default-border-radius);
+}
+
+
+/* Task row styling. */
+
+.task-row-complete {
+    width: 80px;
+}
+
+.task-row-info {
+    
+}
+
+.task-row-info textarea {
+    resize: none;
+    overflow: hidden;
+    field-sizing: content;
+}
+
+.task-row-time-logged {
+    
+}
+
+.task-row-time-logged-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    border-radius: var(--default-border-radius);
+    background-color: var(--card-background);
+}
+
+.task-row-time-logged input {
+    
+}
+
+.task-row-time-logged input:first-child {
+    text-align: right;
+}

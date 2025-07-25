@@ -4,8 +4,8 @@ import TaskRow from './TaskRow';
 
 const TaskTable = ({ tasks, onTaskUpdate, onTaskDelete }) => {
     return (
-        <table>
-            <thead>
+        <table className="task-table">
+            <thead className="task-table-header">
                 <tr>
                     <th>Status</th>
                     <th>Information</th>
@@ -14,7 +14,7 @@ const TaskTable = ({ tasks, onTaskUpdate, onTaskDelete }) => {
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="task-table-body">
                 {tasks.map(task => (
                     <TaskRow
                         key={task.id}
