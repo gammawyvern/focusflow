@@ -12,7 +12,7 @@
     padding: 0.5rem;
     overflow: hidden;
     border: 1px solid var(--accent-2);
-    border-radius: var(--default-border-radius);
+    border-radius: var(--common-border-radius);
 }
 
 .task + .task {
@@ -23,12 +23,12 @@
 /* Task Text Styling */
 
 .task[data-active="true"] {
-    color: var(--text);
+    color: var(--text-color);
     font-weight: bold;
 }
 
 .task[data-active="false"] {
-    color: var(--disabled-text);
+    color: var(--disabled-text-color);
     font-weight: normal;
 }
 

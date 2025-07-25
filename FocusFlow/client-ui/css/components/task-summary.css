@@ -1,4 +1,4 @@
 .task-summary-header {
     line-height: 1;
-    margin-bottom: var(--default-spacing);
+    margin-bottom: var(--common-spacing);
 }

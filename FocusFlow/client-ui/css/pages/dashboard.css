@@ -9,11 +9,11 @@
     grid-template-areas:
         "dashboard-tasks dashboard-timer"
         "dashboard-tasks dashboard-stats";
-    gap: var(--default-spacing);
+    gap: var(--common-spacing);
 
     height: 100%;
     overflow-y: hidden;
-    border-radius: var(--default-border-radius);
+    border-radius: var(--common-border-radius);
 }
 
 .dashboard-task-summary-panel {
@@ -35,12 +35,6 @@
 
 .dashboard-task-summary-panel::-webkit-scrollbar-thumb {
     background: var(--accent-2);
-}
-
-.dashboard-task-summary-panel::-webkit-scrollbar-thumb {
-    background: var(--accent-2);
-    border: 3px solid transparent;
-    background-clip: content-box;
 }
 
 .dashboard-task-summary-panel::-webkit-scrollbar-thumb:hover {

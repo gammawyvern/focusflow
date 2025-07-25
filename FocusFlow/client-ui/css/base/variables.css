@@ -1,34 +1,48 @@
 :root {
-    --background: #dddddd;
-    --input-background: #ffffff;
-    --card-background: #ffffff;
+    --font-size: 16px;
+    
+    --text-color: #2c2c2c;
+    --accent-text-color: #2c2c2c;
+    --disabled-text-color: #404040;
+
+    --background-color: #dddddd;
+    --input-background-color: #ffffff;
+    --card-background-color: #ffffff;
+    --disabled-background-color: #505050;
+
+    --list-margin: 1.25rem;
+    --border-color: #aaaaaa;
+
+    /* Common */
     
     --accent-1: #aacfcf;
-    --accent-2: #f7c59f;
-    --accent-3: #d7b9d5;
     --accent-hover-1: #98bcbc;
+    --accent-2: #f7c59f;
     --accent-hover-2: #e6b388;
+    --accent-3: #d7b9d5;
     --accent-hover-3: #cba9c3;
 
-    --text: #2c2c2c;
-    --accent-text: #2c2c2c;
-    --disabled-text: #404040;
+    --link-color: var(--accent-1);
+
+    --common-spacing: var(--font-size);
+    --common-spacing-light: calc(var(--common-spacing) / 2);
+    --common-padding: calc(var(--common-spacing) / 4);
     
-    --link: var(--accent-1);
-    --border-color: #aaaaaa;
+    --common-border-width: 2px;
+    --common-border-radius: calc(var(--common-spacing) / 2);
     
-    /* General */
-    --default-border-radius: 8px;
-    --default-spacing: 16px;
+    --common-scrollbar-width: var(--common-spacing);
+    --common-scrollbar-thumb-gap: calc(var(--common-scrollbar-width) / 4);
 }
 
 .dark-mode {
-    --background: #1e1e1e;
-    --input-background: #404040;
-    --card-background: #2a2a2a;
+    --text-color: #e2e2e2;
+    --disabled-text-color: #c4c4c4;
     
-    --text: #e2e2e2;
-    --disabled-text: #c4c4c4;
+    --background-color: #1e1e1e;
+    --input-background-color: #404040;
+    --card-background-color: #2a2a2a;
+    --disabled-background-color: #505050;
 
     --border-color: #3a3a3a;
 }
