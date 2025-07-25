@@ -25,8 +25,9 @@ appsettings.*.json
 *.DotSettings.user
 *.sln.iml
 
-## VS Code (optional)
+## Microsoft
 .vscode/
+.vs/
 
 ## OS junk
 .DS_Store
