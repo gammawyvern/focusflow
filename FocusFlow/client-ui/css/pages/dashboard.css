@@ -35,6 +35,10 @@
 
 .dashboard-task-summary-panel::-webkit-scrollbar-thumb {
     background: var(--accent-2);
+    
+    border: var(--common-scrollbar-thumb-gap) solid transparent;
+    border-radius: var(--common-border-radius);
+    background-clip: content-box;
 }
 
 .dashboard-task-summary-panel::-webkit-scrollbar-thumb:hover {
