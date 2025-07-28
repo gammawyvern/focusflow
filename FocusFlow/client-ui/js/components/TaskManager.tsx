@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 
 import { TaskDto } from "../types/task.dto";
 
@@ -56,9 +56,15 @@ const TaskManager: React.FC = () => {
         setTasks(prev => prev.filter(task => task.id !== id));
     };
 
+    const sortedTasks = useMemo(() => {
+        return [...tasks].sort((a, b) => {
+            return Number(a.isCompleted) - Number(b.isCompleted);
+        });
+    }, [tasks]);
+
     return (
         <TaskList
-            tasks={tasks}
+            tasks={sortedTasks}
             layout="long"
             onTaskCreate={handleTaskCreate}
             onTaskUpdate={handleTaskUpdate}

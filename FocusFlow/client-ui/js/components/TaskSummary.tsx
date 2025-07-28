@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, {useEffect, useState, useMemo, act} from 'react';
 
 import { TaskDto } from "../types/task.dto";
 
@@ -58,7 +58,12 @@ const TaskSummary: React.FC = () => {
     };
     
     const handleSetTaskActive = (id: number) => {
-        setActiveTaskId(id);
+        if (activeTaskId && activeTaskId == id) {
+            setActiveTaskId(undefined);
+        } else {
+            setActiveTaskId(id);
+        }
+        
         /* Will be more complex with timer. */
     }
     
