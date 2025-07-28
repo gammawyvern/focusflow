@@ -7,7 +7,7 @@ import { TaskDto } from "../types/task.dto";
 interface TaskListProps {
     tasks: TaskDto[];
     layout: TaskLayoutType;
-    onTaskCreate: (task: TaskDto) => void;
+    onTaskCreate: () => void;
     onTaskUpdate: (id: number, field: any, value: any) => void;
     onTaskDelete: (id: number) => void;
 }
@@ -27,6 +27,14 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskCreate, onTask
                     />
                 </>
             ))}
+            
+            <button
+                key={-1}
+                className="task-create"
+                onClick={() => {onTaskCreate()}}
+            >
+                New Task
+            </button>
         </div>
     )
 }

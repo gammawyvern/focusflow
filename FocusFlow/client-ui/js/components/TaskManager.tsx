@@ -57,13 +57,15 @@ const TaskManager: React.FC = () => {
     };
 
     return (
-        <TaskList
-            tasks={tasks}
-            layout="long"
-            onTaskCreate={handleTaskCreate}
-            onTaskUpdate={handleTaskUpdate}
-            onTaskDelete={handleTaskDelete}
-        />
+        <>
+            <TaskList
+                tasks={tasks}
+                layout="long"
+                onTaskCreate={handleTaskCreate}
+                onTaskUpdate={handleTaskUpdate}
+                onTaskDelete={handleTaskDelete}
+            />
+        </>
     )
 }
 
