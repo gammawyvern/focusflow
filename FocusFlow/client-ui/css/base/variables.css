@@ -8,6 +8,7 @@
     --background-color: #dddddd;
     --input-background-color: #ffffff;
     --card-background-color: #ffffff;
+    --card-background-color-2: #f0f0f0;
     --disabled-background-color: #505050;
 
     --list-margin: 1.25rem;
@@ -42,6 +43,7 @@
     --background-color: #1e1e1e;
     --input-background-color: #404040;
     --card-background-color: #2a2a2a;
+    --card-background-color-2: #3a3a3a;
     --disabled-background-color: #505050;
 
     --border-color: #3a3a3a;

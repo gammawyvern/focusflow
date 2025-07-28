@@ -1,0 +1,10 @@
+/* Base Task Styling */
+
+.task {
+    background-color: var(--card-background-color-2);
+    
+    border-radius: var(--common-border-radius);
+    /* TODO This color will change on active / hover. */
+    border: var(--common-border-width) solid var(--border-color);
+}
+
