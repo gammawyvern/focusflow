@@ -66,9 +66,7 @@ const LongTask: React.FC<TaskProps> = ({ task, active, onUpdate, onDelete, onCom
             <button 
                 className="task-delete accent-2"
                 onClick={() => onDelete(task.id)}
-            >
-                D
-            </button>
+            />
         </div>
     );
 };

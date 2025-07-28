@@ -10,19 +10,27 @@
 }
 
 .task-set-complete:hover {
-    border: var(--common-border-width) solid var(--accent-1);
+    border: var(--common-border-width) solid var(--accent-1-hover);
 }
 
 .task-set-complete.complete {
     background-color: var(--accent-1);
 }
 
+.task-set-complete.complete:hover {
+    background-color: var(--accent-1-hover);
+}
+
 .task-set-active:hover {
-    border: var(--common-border-width) solid var(--accent-3);
+    border: var(--common-border-width) solid var(--accent-3-hover);
 }
 
 .task.active .task-set-active {
     background-color: var(--accent-3);
+}
+
+.task.active .task-set-active:hover {
+    background-color: var(--accent-3-hover);
 }
 
 .task.active {
