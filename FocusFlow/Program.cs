@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-// Seed database
+/* Seed database
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -25,6 +25,7 @@ using (var scope = app.Services.CreateScope())
         DbInitializer.Seed(dbContext);
     }
 }
+*/
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
