@@ -7,7 +7,7 @@
         @await Component.InvokeAsync("TaskSummary")
     </div>
     <div class="dashboard-timer-panel">
-        <div class="card" style="height: 100%;"></div>
+        @await Component.InvokeAsync("Timer")
     </div>
     <div class="dashboard-stats-panel">
         <div class="card" style="height: 100%;"></div>
