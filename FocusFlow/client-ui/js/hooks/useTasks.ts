@@ -4,12 +4,15 @@ import { TaskDto } from "../types/task.dto";
 
 export function useTasks() {
     const [tasks, setTasks] = useState<TaskDto[]>([]);
+    
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch('/api/tasks')
             .then(res => res.json())
             .then(setTasks)
-            .catch(err => console.error('Failed to fetch tasks', err));
+            .catch(err => console.error(err))
+            .finally(() => setIsLoading(false));
     }, []);
 
     useEffect(() => {
@@ -46,5 +49,5 @@ export function useTasks() {
         setTasks(prev => prev.filter(task => task.id !== id));
     };
 
-    return { tasks, setTasks, createTask, updateTask, deleteTask };
+    return { tasks, setTasks, createTask, updateTask, deleteTask, isLoading };
 }

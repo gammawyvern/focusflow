@@ -3,9 +3,10 @@ import React, { useMemo, useState} from 'react';
 import { useTasks } from "../hooks/useTasks";
 
 import TaskList from "./TaskList";
+import Loading from "./Loading";
 
 const TaskSummary: React.FC = () => {
-    const { tasks, setTasks, createTask, updateTask, deleteTask } = useTasks();
+    const { tasks, setTasks, createTask, updateTask, deleteTask, isLoading } = useTasks();
     
     const [activeTaskId, setActiveTaskId] = useState<number | undefined>(undefined);
 
@@ -15,8 +16,6 @@ const TaskSummary: React.FC = () => {
         } else {
             setActiveTaskId(id);
         }
-        
-        /* Will be more complex with timer. */
     }
     
     const handleTaskComplete = (id: number) => {
@@ -37,6 +36,10 @@ const TaskSummary: React.FC = () => {
                 return Number(a.isCompleted) - Number(b.isCompleted);
             });
     }, [tasks, activeTaskId]);
+    
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return (
         <>

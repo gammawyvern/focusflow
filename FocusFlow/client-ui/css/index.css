@@ -1,6 +1,7 @@
 @import './base/variables.css';
 @import './base/base.css';
 @import './base/app-layout.css';
+@import './base/loading.css';
 
 @import './pages/dashboard.css';
 @import './pages/task-manager.css';
