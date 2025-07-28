@@ -4,9 +4,9 @@ import { TaskProps } from './taskProps';
 
 const LongTask: React.FC<TaskProps> = ({ task, active, onUpdate, onDelete, onComplete, onSetActive }: TaskProps) => {
     return (
-        <div className={"task long-task" + (active ? " active" : "")}>
+        <div className={"task long-task" + (active ? " active" : "") + (task.isCompleted ? ' complete' : '')}>
             <button
-                className={"task-set-complete" + (task.isCompleted ? ' complete' : '')}
+                className="task-set-complete"
                 onClick={() => {
                     if (onComplete) onComplete(task.id);
                     onUpdate(task.id, "isCompleted", !task.isCompleted);
