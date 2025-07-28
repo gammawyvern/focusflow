@@ -80,8 +80,7 @@ select {
 
 input[type]:focus,
 textarea:focus,
-select:focus,
-button:focus {
+select:focus {
   outline: var(--common-border-width) solid var(--accent-3); 
 }
 
