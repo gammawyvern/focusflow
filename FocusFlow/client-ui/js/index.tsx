@@ -1,11 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import TaskSummary from './components/TaskSummary';
+// import TaskSummary from './components/TaskSummary';
 import TaskManager from './components/TaskManager';
 
 const mounts = [
-    { id: 'task-summary-component', component: <TaskSummary /> },
+    // { id: 'task-summary-component', component: <TaskSummary /> },
     { id: 'task-manager-component', component: <TaskManager /> }
 ];
 
