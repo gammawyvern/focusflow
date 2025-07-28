@@ -80,9 +80,9 @@ select {
 
 input[type]:focus,
 textarea:focus,
-select:focus {
-  border-color: var(--accent-3);
-  /* TODO outline: none; */
+select:focus,
+button:focus {
+  outline: var(--common-border-width) solid var(--accent-3); 
 }
 
 input[type]:disabled,
