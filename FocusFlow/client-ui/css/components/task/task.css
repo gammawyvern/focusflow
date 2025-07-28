@@ -8,3 +8,20 @@
     border: var(--common-border-width) solid var(--border-color);
 }
 
+.task-description {
+    height: fit-content;
+    overflow: hidden;
+    resize: none;
+}
+
+.task-time-logged {
+    align-self: start;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-hours-logged {
+    text-align: right;
+}

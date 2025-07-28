@@ -18,7 +18,7 @@ const LongTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
                 value={task.title}
                 onChange={(e) => onUpdate(task.id, 'title', e.target.value)}
             />
-            
+
             <textarea
                 className="task-description"
                 value={task.description}
@@ -32,19 +32,23 @@ const LongTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
                 onChange={(e) => onUpdate(task.id, 'dueDate', e.target.value)}
             />
             
-            <input
-                type="number"
-                className="task-hours-logged"
-                value={task.secondsLogged}
-                onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
-            />
-            
-            <input
-                type="number"
-                className="task-minutes-logged"
-                value={task.secondsLogged}
-                onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
-            />
+            <div className="task-time-logged">
+                <input
+                    type="number"
+                    min={0} step={1}
+                    className="task-hours-logged"
+                    value={task.secondsLogged}
+                    onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
+                />
+                :
+                <input
+                    type="number"
+                    min={0} max={59} step={1}
+                    className="task-minutes-logged"
+                    value={task.secondsLogged}
+                    onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
+                />
+            </div>
         </div>
     );
 };

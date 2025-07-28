@@ -93,6 +93,16 @@ select:disabled {
   background-color: var(--disabled-background-color);
 }
 
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
 /* Table Styling */
 
 table {

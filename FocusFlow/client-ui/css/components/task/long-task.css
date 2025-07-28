@@ -1,0 +1,30 @@
+
+.long-task {
+    display: grid;
+    grid-template-columns: 30px auto 120px 20px;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "complete title duedate del"
+        "complete desc  loggedtime del"
+    ;
+}
+
+.long-task .task-completed {
+    grid-area: complete;
+}
+
+.long-task .task-title {
+    grid-area: title;
+}
+
+.long-task .task-description {
+    grid-area: desc;
+}
+
+.long-task .task-due-date {
+    grid-area: duedate;
+}
+
+.long-task .task-time-logged {
+    grid-area: loggedtime;
+}
