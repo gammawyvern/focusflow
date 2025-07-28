@@ -6,13 +6,16 @@ import { TaskDto } from "../types/task.dto";
 
 interface TaskListProps {
     tasks: TaskDto[];
+    activeTaskId?: number;
     layout: TaskLayoutType;
     onTaskCreate: () => void;
     onTaskUpdate: (id: number, field: any, value: any) => void;
     onTaskDelete: (id: number) => void;
+    onTaskComplete?: (id: number) => void;
+    onSetTaskActive?: (id: number) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskCreate, onTaskUpdate, onTaskDelete }: TaskListProps) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, activeTaskId, layout, onTaskCreate, onTaskUpdate, onTaskDelete, onTaskComplete, onSetTaskActive }: TaskListProps) => {
     const TaskComponent = taskLayouts[layout];
     
     return (
@@ -22,8 +25,11 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskCreate, onTask
                     <TaskComponent
                         key={task.id}
                         task={task}
+                        active={activeTaskId === task.id}
                         onUpdate={onTaskUpdate}
                         onDelete={onTaskDelete}
+                        onComplete={onTaskComplete}
+                        onSetActive={task.isCompleted ? undefined : onSetTaskActive}
                     />
                 </>
             ))}

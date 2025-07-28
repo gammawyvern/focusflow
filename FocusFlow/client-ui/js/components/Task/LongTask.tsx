@@ -2,16 +2,21 @@ import React from 'react';
 
 import { TaskProps } from './taskProps';
 
-const LongTask: React.FC<TaskProps> = ({ task, onUpdate, onDelete }: TaskProps) => {
+const LongTask: React.FC<TaskProps> = ({ task, active, onUpdate, onDelete, onComplete, onSetActive }: TaskProps) => {
     return (
-        <div className="task long-task">
-            <input
-                type="checkbox"
-                className="task-completed"
-                checked={task.isCompleted}
-                onChange={(e) => onUpdate(task.id, 'isCompleted', e.target.checked)}
+        <div className={"task long-task" + (active ? " active" : "")}>
+            <button
+                className={"task-set-complete" + (task.isCompleted ? ' complete' : '')}
+                onClick={() => {
+                    if (onComplete) onComplete(task.id);
+                    onUpdate(task.id, "isCompleted", !task.isCompleted);
+                }}
             />
-            
+
+            {onSetActive !== undefined && (
+                <button className="task-set-active" onClick={() => onSetActive(task.id)}></button>
+            )}
+
             <input
                 type="text"
                 className="task-title"

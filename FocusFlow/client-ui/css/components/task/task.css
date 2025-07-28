@@ -2,10 +2,31 @@
 
 .task {
     background-color: var(--card-background-color-2);
+    padding: var(--common-padding);
     
     border-radius: var(--common-border-radius);
     /* TODO This color will change on active / hover. */
     border: var(--common-border-width) solid var(--border-color);
+}
+
+.task-set-complete:hover {
+    border: var(--common-border-width) solid var(--accent-1);
+}
+
+.task-set-complete.complete {
+    background-color: var(--accent-1);
+}
+
+.task-set-active:hover {
+    border: var(--common-border-width) solid var(--accent-3);
+}
+
+.task.active .task-set-active {
+    background-color: var(--accent-3);
+}
+
+.task.active {
+    border: var(--common-border-width) solid var(--accent-3);
 }
 
 .task-description {

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import { TaskDto } from "../types/task.dto";
 
 import TaskList from "./TaskList";
 
-const TaskManager: React.FC = () => {
+const TaskSummary: React.FC = () => {
     const [tasks, setTasks] = useState<TaskDto[]>([]);
-    
+    const [activeTaskId, setActiveTaskId] = useState<number | undefined>(undefined);
+
     useEffect(() => {
         fetch('/api/tasks')
             .then((res) => res.json())
@@ -55,16 +56,41 @@ const TaskManager: React.FC = () => {
 
         setTasks(prev => prev.filter(task => task.id !== id));
     };
+    
+    const handleSetTaskActive = (id: number) => {
+        setActiveTaskId(id);
+        /* Will be more complex with timer. */
+    }
+    
+    const handleTaskComplete = (id: number) => {
+        if (id == activeTaskId) setActiveTaskId(undefined);
+    }
+
+    const sortedTasks = useMemo(() => {
+        return [...tasks].sort((a, b) => {
+            if (activeTaskId !== undefined) {
+                if (a.id === activeTaskId) return -1;
+                if (b.id === activeTaskId) return 1;
+            }
+            
+            return Number(a.isCompleted) - Number(b.isCompleted);
+        });
+    }, [tasks, activeTaskId]);
 
     return (
-        <TaskList
-            tasks={tasks}
-            layout="long"
-            onTaskCreate={handleTaskCreate}
-            onTaskUpdate={handleTaskUpdate}
-            onTaskDelete={handleTaskDelete}
-        />
+        <>
+            <TaskList
+                tasks={sortedTasks}
+                activeTaskId={activeTaskId}
+                layout="long"
+                onTaskCreate={handleTaskCreate}
+                onTaskUpdate={handleTaskUpdate}
+                onTaskDelete={handleTaskDelete}
+                onTaskComplete={handleTaskComplete}
+                onSetTaskActive={handleSetTaskActive}
+            />
+        </>
     )
 }
 
-export default TaskManager;
+export default TaskSummary;
