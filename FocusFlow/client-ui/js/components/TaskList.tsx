@@ -7,10 +7,12 @@ import { TaskDto } from "../types/task.dto";
 interface TaskListProps {
     tasks: TaskDto[];
     layout: TaskLayoutType;
+    onTaskCreate: (task: TaskDto) => void;
     onTaskUpdate: (id: number, field: any, value: any) => void;
+    onTaskDelete: (id: number) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskUpdate }: TaskListProps) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskCreate, onTaskUpdate, onTaskDelete }: TaskListProps) => {
     const TaskComponent = taskLayouts[layout];
     
     return (
@@ -21,6 +23,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskUpdate }: Task
                         key={task.id}
                         task={task}
                         onUpdate={onTaskUpdate}
+                        onDelete={onTaskDelete}
                     />
                 </>
             ))}

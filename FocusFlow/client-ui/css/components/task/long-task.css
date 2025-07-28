@@ -1,12 +1,14 @@
 
 .long-task {
     display: grid;
-    grid-template-columns: 30px auto 120px 20px;
+    grid-template-columns: 30px auto 120px 30px;
     grid-template-rows: auto auto;
     grid-template-areas:
-        "complete title duedate del"
-        "complete desc  loggedtime del"
+        "complete title duedate    del"
+        ".        desc  loggedtime ."
     ;
+    
+    gap: var(--common-padding);
 }
 
 .long-task .task-completed {
@@ -27,4 +29,8 @@
 
 .long-task .task-time-logged {
     grid-area: loggedtime;
+}
+
+.long-task .task-delete {
+    grid-area: del;
 }

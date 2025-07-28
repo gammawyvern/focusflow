@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TaskProps } from './taskProps';
 
-const LongTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
+const LongTask: React.FC<TaskProps> = ({ task, onUpdate, onDelete }: TaskProps) => {
     return (
         <div className="task long-task">
             <input
@@ -37,18 +37,33 @@ const LongTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
                     type="number"
                     min={0} step={1}
                     className="task-hours-logged"
-                    value={task.secondsLogged}
-                    onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
+                    value={Math.floor(task.secondsLogged / 3600)}
+                    onChange={(e) => {
+                        const hours = Math.max(0, parseInt(e.target.value) || 0);
+                        const minutes = Math.floor((task.secondsLogged % 3600) / 60);
+                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                    }}
                 />
                 :
                 <input
                     type="number"
                     min={0} max={59} step={1}
                     className="task-minutes-logged"
-                    value={task.secondsLogged}
-                    onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
+                    value={Math.floor((task.secondsLogged % 3600) / 60)}
+                    onChange={(e) => {
+                        const minutes = Math.min(59, Math.max(0, parseInt(e.target.value) || 0));
+                        const hours = Math.floor(task.secondsLogged / 3600);
+                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                    }}
                 />
             </div>
+            
+            <button 
+                className="task-delete accent-2"
+                onClick={() => onDelete(task.id)}
+            >
+                D
+            </button>
         </div>
     );
 };

@@ -9,7 +9,7 @@
 }
 
 .task-description {
-    height: fit-content;
+    field-sizing: content;
     overflow: hidden;
     resize: none;
 }
