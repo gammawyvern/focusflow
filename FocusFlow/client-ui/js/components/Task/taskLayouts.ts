@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import CompactTask from './CompactTask';
+import { TaskProps } from "./taskProps";
+
+import CompactTask from "./CompactTask";
 import LongTask from "./LongTask";
 
-import { TaskRendererProps, TaskLayoutType } from "../../types/task-layout";
+export type TaskLayoutType = 'compact' | 'long';
 
-export const taskLayouts: Record<TaskLayoutType, React.ComponentType<TaskRendererProps>> = {
+export const taskLayouts: Record<TaskLayoutType, React.ComponentType<TaskProps>> = {
     compact: CompactTask,
     long: LongTask
 };

@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
-import { TaskProps } from './task-props';
+import React from 'react';
 
-const LongTask: React.FC<TaskProps> = ({ task, onUpdate }) => {
-    const [localTask, setLocalTask] = useState(task);
+import { TaskProps } from './taskProps';
 
-    const handleChange = <K extends keyof typeof task>(key: K, value: typeof task[K]) => {
-        const updated = { ...localTask, [key]: value };
-        setLocalTask(updated);
-        onUpdate(updated);
-    };
-
+const LongTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
     return (
         <div className="task long-task">
             <input
                 type="checkbox"
                 className="task-completed"
-                checked={localTask.isCompleted}
-                onChange={(e) => handleChange('isCompleted', e.target.checked)}
+                checked={task.isCompleted}
+                onChange={(e) => onUpdate(task.id, 'isCompleted', e.target.checked)}
             />
+            
             <input
                 type="text"
                 className="task-title"
-                value={localTask.title}
-                onChange={(e) => handleChange('title', e.target.value)}
+                value={task.title}
+                onChange={(e) => onUpdate(task.id, 'title', e.target.value)}
             />
+            
             <textarea
                 className="task-description"
-                value={localTask.description}
-                onChange={(e) => handleChange('description', e.target.value)}
+                value={task.description}
+                onChange={(e) => onUpdate(task.id, 'description', e.target.value)}
             />
+            
             <input
-                type="text"
+                type="date"
                 className="task-due-date"
-                value={localTask.dueDate}
-                onChange={(e) => handleChange('dueDate', e.target.value)}
+                value={task.dueDate}
+                onChange={(e) => onUpdate(task.id, 'dueDate', e.target.value)}
             />
+            
             <input
                 type="number"
-                className="task-seconds-logged"
-                value={localTask.secondsLogged}
-                onChange={(e) => handleChange('secondsLogged', Number(e.target.value))}
+                className="task-hours-logged"
+                value={task.secondsLogged}
+                onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
+            />
+            
+            <input
+                type="number"
+                className="task-minutes-logged"
+                value={task.secondsLogged}
+                onChange={(e) => onUpdate(task.id, 'secondsLogged', e.target.value)}
             />
         </div>
     );

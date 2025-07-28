@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { taskLayouts } from "./Task/taskLayouts";
+import { TaskLayoutType, taskLayouts } from "./Task/taskLayouts";
 
 import { TaskDto } from "../types/task.dto";
-import { TaskLayoutType } from "../types/task-layout";
 
 interface TaskListProps {
     tasks: TaskDto[];
     layout: TaskLayoutType;
-    onUpdate: (task: TaskDto) => void;
+    onTaskUpdate: (id: number, field: any, value: any) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onUpdate }: TaskListProps) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onTaskUpdate }: TaskListProps) => {
     const TaskComponent = taskLayouts[layout];
     
     return (
@@ -21,7 +20,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, layout, onUpdate }: TaskList
                     <TaskComponent
                         key={task.id}
                         task={task}
-                        onUpdate={onUpdate}
+                        onUpdate={onTaskUpdate}
                     />
                 </>
             ))}

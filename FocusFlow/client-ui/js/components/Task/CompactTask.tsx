@@ -1,12 +1,8 @@
 import React from 'react';
 
-import { TaskDto } from "../../types/task.dto";
+import { TaskProps } from "./taskProps";
 
-interface TaskProps {
-    task: TaskDto
-}
-
-const CompactTask: React.FC<TaskProps> = ({ task }: TaskProps) => {
+const CompactTask: React.FC<TaskProps> = ({ task, onUpdate }: TaskProps) => {
     return (
         <div className="task compact-task">
             <span>{task.isCompleted ? "Complete" : "Incomplete" }</span>

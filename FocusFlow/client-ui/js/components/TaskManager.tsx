@@ -16,17 +16,20 @@ const TaskManager: React.FC = () => {
             })
     }, []);
 
-    const handleTaskUpdate = (updatedTask: TaskDto) => {
-        setTasks(tasks =>
-            tasks.map(task => task.id === updatedTask.id ? updatedTask : task)
+    const handleTaskUpdate = (id: number, field: any, value: any) => {
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, [field]: value } : task
+            )
         );
     };
+
 
     return (
         <TaskList
             tasks={tasks}
             layout="long"
-            onUpdate={handleTaskUpdate}
+            onTaskUpdate={handleTaskUpdate}
         />
     )
 }
