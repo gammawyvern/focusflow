@@ -9,12 +9,16 @@
     border: var(--common-border-width) solid var(--border-color);
 }
 
-.task-set-complete:hover {
-    border: var(--common-border-width) solid var(--accent-1-hover);
+.task-set-complete.complete {
+    background-image: url("../../../assets/check.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-1);
 }
 
-.task-set-complete.complete {
-    background-color: var(--accent-1);
+.task-set-complete:hover {
+    border: var(--common-border-width) solid var(--accent-1);
 }
 
 .task-set-complete.complete:hover {
@@ -25,16 +29,33 @@
     border: var(--common-border-width) solid var(--accent-3-hover);
 }
 
+.task .task-set-active {
+    background-image: url("../../../assets/set-active.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
 .task.active .task-set-active {
+    background-image: url("../../../assets/active.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    border: var(--common-border-width) solid var(--accent-3);
     background-color: var(--accent-3);
 }
 
 .task.active .task-set-active:hover {
+    border: var(--common-border-width) solid var(--accent-3-hover);
     background-color: var(--accent-3-hover);
 }
 
 .task.active {
     border: var(--common-border-width) solid var(--accent-3);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .task-description {
@@ -53,4 +74,12 @@
 
 .task-hours-logged {
     text-align: right;
+}
+
+.task-delete {
+    background-image: url("../../../assets/trash.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-2);
 }
