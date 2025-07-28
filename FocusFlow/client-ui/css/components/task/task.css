@@ -18,7 +18,7 @@
 }
 
 .task.complete {
-    border: var(--common-border-width) solid var(--accent-1-hover);
+    /* border: var(--common-border-width) solid var(--accent-1-hover); */
 }
 
 .complete .task-set-complete {
