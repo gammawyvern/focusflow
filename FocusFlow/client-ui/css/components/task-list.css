@@ -1,0 +1,32 @@
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.active-task {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.task-create {
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    
+    width: 100%;
+    margin-top: 5px;
+    padding: var(--common-spacing);
+    
+    color: var(--text-color);
+    background-color: var(--input-background-color);
+    
+    border: 1px solid var(--accent-3);
+    border-radius: var(--common-border-radius);
+}
+
+.task-create:hover {
+    border: 1px solid var(--accent-3-hover);
+}

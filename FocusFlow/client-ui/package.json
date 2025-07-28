@@ -8,7 +8,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "rebuild": "npm run clean && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit"
   },
   "author": "",
   "license": "MIT",
@@ -16,14 +17,21 @@
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "mini-css-extract-plugin": "^2.9.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "rimraf": "^6.0.1",
+    "typescript": "^5.8.3",
     "webpack": "^5.100.1",
     "webpack-cli": "^6.0.1",
     "webpack-remove-empty-scripts": "^1.1.1"
+  },
+  "dependencies": {
+    "npm": "^11.5.1"
   }
 }

@@ -1,10 +1,11 @@
 @import './base/variables.css';
 @import './base/base.css';
 @import './base/app-layout.css';
-@import './base/task.css';
 
 @import './pages/dashboard.css';
 @import './pages/task-manager.css';
 
 @import './components/task-summary.css';
 @import './components/task-manager.css';
+@import './components/task-list.css';
+@import './components/task/index.css';

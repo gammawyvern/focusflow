@@ -1,0 +1,56 @@
+/* Base Task Styling */
+
+.task {
+    background-color: var(--card-background-color-2);
+    padding: var(--common-padding);
+    
+    border-radius: var(--common-border-radius);
+    /* TODO This color will change on active / hover. */
+    border: var(--common-border-width) solid var(--border-color);
+}
+
+.task-set-complete:hover {
+    border: var(--common-border-width) solid var(--accent-1-hover);
+}
+
+.task-set-complete.complete {
+    background-color: var(--accent-1);
+}
+
+.task-set-complete.complete:hover {
+    background-color: var(--accent-1-hover);
+}
+
+.task-set-active:hover {
+    border: var(--common-border-width) solid var(--accent-3-hover);
+}
+
+.task.active .task-set-active {
+    background-color: var(--accent-3);
+}
+
+.task.active .task-set-active:hover {
+    background-color: var(--accent-3-hover);
+}
+
+.task.active {
+    border: var(--common-border-width) solid var(--accent-3);
+}
+
+.task-description {
+    field-sizing: content;
+    overflow: hidden;
+    resize: none;
+}
+
+.task-time-logged {
+    align-self: start;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-hours-logged {
+    text-align: right;
+}

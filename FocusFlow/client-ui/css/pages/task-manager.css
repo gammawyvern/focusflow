@@ -8,11 +8,11 @@
     grid-template-rows: 1fr;
     grid-template-areas:
         "task-manager-main";
-    gap: var(--default-spacing);
+    gap: var(--common-spacing);
 
     height: 100%;
     overflow-y: hidden;
-    border-radius: var(--default-border-radius);
+    border-radius: var(--common-border-radius);
 }
 
 .task-manager-panel {
