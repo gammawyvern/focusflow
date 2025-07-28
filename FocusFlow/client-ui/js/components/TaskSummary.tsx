@@ -71,15 +71,19 @@ const TaskSummary: React.FC = () => {
         if (id == activeTaskId) setActiveTaskId(undefined);
     }
 
+
     const sortedTasks = useMemo(() => {
-        return [...tasks].sort((a, b) => {
-            if (activeTaskId !== undefined) {
-                if (a.id === activeTaskId) return -1;
-                if (b.id === activeTaskId) return 1;
-            }
-            
-            return Number(a.isCompleted) - Number(b.isCompleted);
-        });
+        const today = new Date().toISOString().slice(0, 10);
+        
+        return tasks
+            .filter(t => t.dueDate === today)
+            .sort((a, b) => {
+                if (activeTaskId !== undefined) {
+                    if (a.id === activeTaskId) return -1;
+                    if (b.id === activeTaskId) return 1;
+                }
+                return Number(a.isCompleted) - Number(b.isCompleted);
+            });
     }, [tasks, activeTaskId]);
 
     return (
