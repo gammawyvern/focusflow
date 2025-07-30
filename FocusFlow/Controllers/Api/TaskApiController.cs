@@ -4,22 +4,19 @@ using FocusFlow.Helpers.Mapping;
 using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
 using FocusFlow.Dtos;
+using FocusFlow.Services;
 
 namespace FocusFlow.Controllers.Api;
 
 [ApiController]
 [Route("api/tasks")]
-public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
+public class TaskApiController(ITaskItemRepository taskItemRepository, ITaskService taskService) : Controller
 {
     [HttpPost]
-    public async Task<IActionResult> CreateTask([FromBody] TaskItemDto? dto)
+    public async Task<IActionResult> CreateEmptyTaskAsync()
     {
-        var entity = dto == null ? new TaskItem() : TaskItemMapper.ToEntity(dto);
-        await taskItemRepository.AddAsync(entity);
-        await taskItemRepository.SaveChangesAsync();
-        
+        var entity = await taskService.CreateEmptyTaskAsync();
         var resultDto = TaskItemMapper.ToDto(entity);
-
         return CreatedAtAction(nameof(GetTask), new { id = resultDto.Id }, resultDto);
     }
 
