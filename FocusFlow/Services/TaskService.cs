@@ -39,4 +39,16 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
             await taskItemRepository.SaveChangesAsync();
         }
     }
+
+    public async Task UpdateTaskAsync(int id, string? title, string? description, DateOnly? dueDate, long? secondsLogged)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity == null) return;
+        
+        if (title != null) entity.Title = title;
+        if (description != null) entity.Description = description;
+        if (dueDate != null) entity.DueDate = dueDate.Value;
+        if (secondsLogged != null) entity.SecondsLogged = secondsLogged.Value;
+        await taskItemRepository.SaveChangesAsync();
+    }
 }
