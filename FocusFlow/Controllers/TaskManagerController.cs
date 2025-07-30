@@ -1,19 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 
-using FocusFlow.Data;
+using FocusFlow.Helpers.Mapping;
+using FocusFlow.Models;
+using FocusFlow.Repositories;
 
 namespace FocusFlow.Controllers;
 
-public class TaskManagerController: Controller
+public class TaskManagerController(ITaskItemRepository taskItemRepository): Controller
 {
-    private readonly AppDbContext _dbContext;
-
-    public TaskManagerController(AppDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         return View();
     }
