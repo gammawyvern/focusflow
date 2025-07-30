@@ -1,5 +1,4 @@
-
-.long-task {
+.task {
     display: grid;
     grid-template-columns: 30px auto 120px 30px;
     grid-template-rows: auto auto;
@@ -7,42 +6,42 @@
         "complete  title duedate    del"
         "setactive desc  loggedtime editsave"
     ;
-    
+
     gap: var(--common-padding);
 }
 
-.long-task .task-completed {
+.task .task-completed {
     grid-area: complete;
 }
 
-.long-task .task-set-active {
+.task .task-set-active {
     grid-area: setactive;
 }
 
-.long-task .task-title {
+.task .task-title {
     grid-area: title;
 }
 
-.long-task .task-description {
+.task .task-description {
     grid-area: desc;
 }
 
-.long-task .task-due-date {
+.task .task-due-date {
     grid-area: duedate;
 }
 
-.long-task .task-time-logged {
+.task .task-time-logged {
     grid-area: loggedtime;
 }
 
-.long-task .task-delete {
+.task .task-delete {
     grid-area: del;
 }
 
-.long-task .task-edit {
+.task .task-edit {
     grid-area: editsave;
 }
 
-.long-task .task-save {
+.task .task-save {
     grid-area: editsave;
 }

@@ -1,6 +1,6 @@
 @model FocusFlow.Models.TaskItemViewModel
 
-<div class="task long-task @(Model.IsCompleted ? "complete" : "")">
+<div class="task @(Model.IsCompleted ? "complete" : "")">
     <form asp-controller="TaskManager"
         asp-action="SetTaskComplete"
         asp-route-id="@Model.Id"
@@ -10,7 +10,7 @@
         <button type="submit" class="task-set-complete"></button>
     </form>
 
-    <button class="task-set-active"></button>
+    @*<button class="task-set-active"></button>*@
 
     <form asp-controller="TaskManager"
           asp-action="UpdateTask"
@@ -44,13 +44,18 @@
                    name="DisplayMinutes"
                    class="task-minutes-logged"
                    value="@Model.DisplayMinutes"
-                   disabled/>
-            :
-            <input type="number"
+                   min="0"
+                   step="1"
+                   disabled
+            />:<input type="number"
                    name="DisplaySeconds"
                    class="task-seconds-logged"
                    value="@Model.DisplaySeconds"
-                   disabled/>
+                   min="0"
+                   max="59"
+                   step="1"
+                   disabled
+            />
         </div>
         
         <button type="button" class="task-edit" onclick="enableEdit(this)">[E]</button>
