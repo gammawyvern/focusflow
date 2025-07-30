@@ -3,11 +3,13 @@
 <div class="card" style="min-height: 100%;">
     <h2 class="task-manager-header">Manage Tasks</h2>
     <div id="task-manager-component" style="height: 100%">
-        @{
-            foreach (var taskView in @Model.TaskItems)
-            {
-                <div>@taskView.Title</div>
+        <div class="task-list">
+            @{
+                foreach (var taskView in @Model.TaskItems)
+                {
+                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+                }
             }
-        }
+        </div>
     </div>
 </div>

@@ -1,5 +1,38 @@
 @model FocusFlow.Models.TaskItemViewModel
 
-<div>
-    Test Task
+<div class="task long-task">
+    <input
+        type="text"
+        class="task-title"
+        value="@Model.Title"
+        disabled
+    />
+    
+    <textarea 
+        class="task-description"
+        disabled
+    >
+        @Model.Description
+    </textarea>
+
+    <input
+        type="date"
+        class="task-due-date"
+        value="@Model.DueDate.ToString("yyyy-MM-dd")"
+        disabled
+    />
+
+    <div class="task-time-logged">
+        <input type="number"
+               class="task-minutes-logged"
+               value="@Model.DisplayMinutes"
+               disabled
+        />
+        :
+        <input type="number"
+            class="task-seconds-logged"
+            value="@Model.DisplaySeconds"
+            disabled
+        />
+    </div>
 </div>
