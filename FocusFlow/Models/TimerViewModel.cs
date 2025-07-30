@@ -2,5 +2,6 @@ namespace FocusFlow.Models;
 
 public class TimerViewModel
 {
-    public DateTime StartTime { get; init; }
+    public int? ActiveTaskItemId { get; init; }
+    public DateTime? StartedTime { get; init; }
 }

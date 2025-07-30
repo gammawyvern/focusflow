@@ -11,6 +11,11 @@ public class TaskItemRepository(AppDbContext appDbContext): ITaskItemRepository
     
     /* IRepository Functions. */
 
+    public IQueryable<TaskItem> Get()
+    {
+        return _appDbContext.TaskItems.AsQueryable();
+    }
+
     public async Task<TaskItem?> GetByIdAsync(int id)
     {
         return await _appDbContext.TaskItems.FindAsync(id);

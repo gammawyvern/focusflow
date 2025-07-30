@@ -41,24 +41,24 @@ const LongTask: React.FC<TaskProps> = ({ task, active, onUpdate, onDelete, onCom
                 <input
                     type="number"
                     min={0} step={1}
-                    className="task-hours-logged"
-                    value={Math.floor(task.secondsLogged / 3600)}
+                    className="task-minutes-logged"
+                    value={Math.floor((task.secondsLogged / 60))}
                     onChange={(e) => {
-                        const hours = Math.max(0, parseInt(e.target.value) || 0);
-                        const minutes = Math.floor((task.secondsLogged % 3600) / 60);
-                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                        const minutes = parseInt(e.target.value) || 0;
+                        const seconds = task.secondsLogged % 60; 
+                        onUpdate(task.id, 'secondsLogged', (minutes * 60) + seconds);
                     }}
                 />
                 :
                 <input
                     type="number"
                     min={0} max={59} step={1}
-                    className="task-minutes-logged"
-                    value={Math.floor((task.secondsLogged % 3600) / 60)}
+                    className="task-seconds-logged"
+                    value={task.secondsLogged % 60}
                     onChange={(e) => {
-                        const minutes = Math.min(59, Math.max(0, parseInt(e.target.value) || 0));
-                        const hours = Math.floor(task.secondsLogged / 3600);
-                        onUpdate(task.id, 'secondsLogged', hours * 3600 + minutes * 60);
+                        const minutes = Math.floor(task.secondsLogged / 60);
+                        const seconds = Math.min(59, parseInt(e.target.value) || 0);
+                        onUpdate(task.id, 'secondsLogged', (minutes * 60) + seconds);
                     }}
                 />
             </div>

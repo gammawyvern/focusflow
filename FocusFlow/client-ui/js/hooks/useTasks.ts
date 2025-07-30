@@ -15,18 +15,20 @@ export function useTasks() {
             .finally(() => setIsLoading(false));
     }, []);
 
+    /*
     useEffect(() => {
         const handleBeforeUnload = async () => {
             await fetch('/api/tasks/bulk', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(tasks),
+                body: JSON.stringify(tasks)
             });
         };
 
         window.addEventListener('beforeunload', handleBeforeUnload);
         return () => window.removeEventListener('beforeunload', handleBeforeUnload);
     }, [tasks]);
+    */
 
     const createTask = async () => {
         const res = await fetch('/api/tasks', { method: 'POST' });

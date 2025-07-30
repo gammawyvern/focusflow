@@ -5,4 +5,5 @@ namespace FocusFlow.Repositories;
 public interface ITaskItemRepository: IRepository<TaskItem>
 {
     public IEnumerable<TaskItem> GetTaskItemsByDueDate(DateOnly dueDate);
+    public IQueryable<TaskItem> Get();
 }
