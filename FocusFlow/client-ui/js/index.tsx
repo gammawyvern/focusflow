@@ -7,6 +7,7 @@ import TaskManager from './components/TaskManager';
 /* Individual View Component Logic. */
 
 import './components/PomodoroTimer';
+import './components/Task/Task';
 
 const mounts: any[] = [
     // { id: 'task-summary-component', component: <TaskSummary /> },

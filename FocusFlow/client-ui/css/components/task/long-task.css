@@ -5,7 +5,7 @@
     grid-template-rows: auto auto;
     grid-template-areas:
         "complete  title duedate    del"
-        "setactive desc  loggedtime ."
+        "setactive desc  loggedtime editsave"
     ;
     
     gap: var(--common-padding);
@@ -37,4 +37,12 @@
 
 .long-task .task-delete {
     grid-area: del;
+}
+
+.long-task .task-edit {
+    grid-area: editsave;
+}
+
+.long-task .task-save {
+    grid-area: editsave;
 }
