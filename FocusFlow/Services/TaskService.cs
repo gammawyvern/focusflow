@@ -10,7 +10,6 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
         var entity = new TaskItem();
         await taskItemRepository.AddAsync(entity);
         await taskItemRepository.SaveChangesAsync();
-        
         return entity;
     }
     
@@ -18,5 +17,15 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
     {
         var entities = await taskItemRepository.GetAllAsync();
         return entities.ToList();
+    }
+
+    public async Task DeleteTaskAsync(int id)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity != null)
+        {
+            taskItemRepository.Delete(entity);
+            await taskItemRepository.SaveChangesAsync();
+        }
     }
 }

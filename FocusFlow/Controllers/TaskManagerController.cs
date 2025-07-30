@@ -9,7 +9,7 @@ namespace FocusFlow.Controllers;
 
 public class TaskManagerController(ITaskService taskService): Controller
 {
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
         return View();
     }
@@ -18,6 +18,13 @@ public class TaskManagerController(ITaskService taskService): Controller
     public async Task<IActionResult> CreateTask()
     {
         await taskService.CreateEmptyTaskAsync();
+        return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> DeleteTask(int id)
+    {
+        await taskService.DeleteTaskAsync(id);
         return RedirectToAction("Index");
     }
 }

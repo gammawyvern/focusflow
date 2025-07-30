@@ -56,6 +56,10 @@ hr {
 
 /* Input Styling */
 
+form {
+    display: contents;
+}
+
 button {
   cursor: pointer;
   padding: var(--common-padding);

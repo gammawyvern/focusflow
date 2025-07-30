@@ -6,4 +6,5 @@ public interface ITaskService
 {
     Task<List<TaskItem>> GetAllAsync();
     Task<TaskItem> CreateEmptyTaskAsync();
+    Task DeleteTaskAsync(int id);
 }

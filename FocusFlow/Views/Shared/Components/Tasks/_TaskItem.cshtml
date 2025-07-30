@@ -1,13 +1,15 @@
 @model FocusFlow.Models.TaskItemViewModel
 
 <div class="task long-task">
+    <button class="task-set-complete"></button>
+    <button class="task-set-active"></button>
+    
     <input
         type="text"
         class="task-title"
         value="@Model.Title"
-        disabled
-    />
-    
+        disabled/>
+
     <textarea 
         class="task-description"
         disabled
@@ -19,20 +21,21 @@
         type="date"
         class="task-due-date"
         value="@Model.DueDate.ToString("yyyy-MM-dd")"
-        disabled
-    />
+        disabled/>
 
     <div class="task-time-logged">
         <input type="number"
                class="task-minutes-logged"
                value="@Model.DisplayMinutes"
-               disabled
-        />
+               disabled/>
         :
         <input type="number"
-            class="task-seconds-logged"
-            value="@Model.DisplaySeconds"
-            disabled
-        />
+               class="task-seconds-logged"
+               value="@Model.DisplaySeconds"
+               disabled/>
     </div>
+    
+    <form asp-controller="TaskManager" asp-action="DeleteTask" asp-route-id="@Model.Id" method="post">
+        <button type="submit" class="task-delete accent-2"></button>
+    </form>
 </div>
