@@ -4,11 +4,13 @@ import { createRoot } from 'react-dom/client';
 import TaskSummary from './components/TaskSummary';
 import TaskManager from './components/TaskManager';
 
+/* Individual View Component Logic. */
+
 import './components/PomodoroTimer';
 
-const mounts = [
-    { id: 'task-summary-component', component: <TaskSummary /> },
-    { id: 'task-manager-component', component: <TaskManager /> }
+const mounts: any[] = [
+    // { id: 'task-summary-component', component: <TaskSummary /> },
+    // { id: 'task-manager-component', component: <TaskManager /> }
 ];
 
 mounts.forEach(({ id, component }) => {
