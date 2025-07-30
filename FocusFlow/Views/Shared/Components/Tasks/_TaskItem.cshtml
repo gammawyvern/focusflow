@@ -1,9 +1,18 @@
 @model FocusFlow.Models.TaskItemViewModel
 
-<div class="task long-task">
-    <button class="task-set-complete"></button>
+<div class="task long-task @(Model.IsCompleted ? "complete" : "")">
+    <form
+        asp-controller="TaskManager"
+        asp-action="SetTaskComplete"
+        asp-route-id="@Model.Id"
+        asp-route-complete="@(!Model.IsCompleted)"
+        method="post"
+    >
+        <button type="submit" class="task-set-complete"></button>
+    </form>
+
     <button class="task-set-active"></button>
-    
+
     <input
         type="text"
         class="task-title"
@@ -34,8 +43,8 @@
                value="@Model.DisplaySeconds"
                disabled/>
     </div>
-    
+
     <form asp-controller="TaskManager" asp-action="DeleteTask" asp-route-id="@Model.Id" method="post">
-        <button type="submit" class="task-delete accent-2"></button>
+        <button type="submit" class="task-delete"></button>
     </form>
 </div>

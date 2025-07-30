@@ -27,4 +27,12 @@ public class TaskManagerController(ITaskService taskService): Controller
         await taskService.DeleteTaskAsync(id);
         return RedirectToAction("Index");
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> SetTaskComplete(int id, bool complete)
+    {
+        await taskService.SetTaskCompleteAsync(id, complete);
+        return RedirectToAction("Index");
+    }
+
 }

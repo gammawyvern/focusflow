@@ -10,6 +10,7 @@ public static class TaskItemViewModelMapper
         return new TaskItemViewModel
         {
             Id = dto.Id,
+            IsCompleted = dto.IsCompleted,
             Title = dto.Title,
             Description = dto.Description,
             DueDate = dto.DueDate,

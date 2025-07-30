@@ -1,5 +1,6 @@
 using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace FocusFlow.Services;
 
@@ -25,6 +26,16 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
         if (entity != null)
         {
             taskItemRepository.Delete(entity);
+            await taskItemRepository.SaveChangesAsync();
+        }
+    }
+    
+    public async Task SetTaskCompleteAsync(int id, bool complete)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity != null)
+        {
+            entity.IsCompleted = complete;
             await taskItemRepository.SaveChangesAsync();
         }
     }
