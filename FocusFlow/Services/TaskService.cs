@@ -39,6 +39,20 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
             await taskItemRepository.SaveChangesAsync();
         }
     }
+    
+    public async Task SetActiveTaskAsync(int activeTaskId)
+    {
+        var allTasks = await taskItemRepository.GetAllAsync();
+
+        foreach (var task in allTasks)
+        {
+            task.StartedTime = null;
+            task.IsActive = (task.Id == activeTaskId);
+        }
+
+        await taskItemRepository.SaveChangesAsync();
+    }
+
 
     public async Task UpdateTaskAsync(int id, string? title, string? description, DateOnly? dueDate, long? secondsLogged)
     {

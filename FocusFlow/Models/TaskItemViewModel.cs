@@ -9,4 +9,7 @@ public class TaskItemViewModel
     public DateOnly DueDate { get; init; }
     public long DisplayMinutes { get; init; }
     public long DisplaySeconds { get; init; }
+    
+    public bool IsActive { get; init; }
+    public required string Controller { get; init; }
 }

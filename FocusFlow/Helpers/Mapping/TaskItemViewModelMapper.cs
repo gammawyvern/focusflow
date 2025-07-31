@@ -1,11 +1,12 @@
 using FocusFlow.Dtos;
 using FocusFlow.Models;
+using Microsoft.JSInterop.Infrastructure;
 
 namespace FocusFlow.Helpers.Mapping;
 
 public static class TaskItemViewModelMapper
 {
-    public static TaskItemViewModel ToTaskItemViewModel(TaskItemDto dto)
+    public static TaskItemViewModel ToTaskItemViewModel(TaskItemDto dto, string controller)
     {
         return new TaskItemViewModel
         {
@@ -15,7 +16,11 @@ public static class TaskItemViewModelMapper
             Description = dto.Description,
             DueDate = dto.DueDate,
             DisplayMinutes = dto.SecondsLogged / 60,
-            DisplaySeconds = dto.SecondsLogged % 60
+            DisplaySeconds = dto.SecondsLogged % 60,
+            
+            IsActive = dto.IsActive,
+            
+            Controller = controller
         };
     }
 }

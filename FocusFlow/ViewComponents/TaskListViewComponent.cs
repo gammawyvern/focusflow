@@ -14,7 +14,7 @@ public class TaskListViewComponent(ITaskService taskService): ViewComponent
         var entities = await taskService.GetAllAsync();
         var taskItemViewModels = entities
             .Select(TaskItemMapper.ToDto)
-            .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
+            .Select(dto => TaskItemViewModelMapper.ToTaskItemViewModel(dto, controller))
             .ToList();
 
         var model = new TaskListViewModel

@@ -13,7 +13,7 @@
                 @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
             }
         }
-            
+        
         <form asp-controller="@Model.Controller" asp-action="CreateTask" method="post">
             <button type="submit" class="task-create">New Task</button>
         </form>

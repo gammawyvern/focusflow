@@ -8,5 +8,6 @@ public interface ITaskService
     Task<TaskItem> CreateEmptyTaskAsync();
     Task DeleteTaskAsync(int id);
     Task SetTaskCompleteAsync(int id, bool complete);
+    Task SetActiveTaskAsync(int activeTaskId);
     Task UpdateTaskAsync(int id, string? title, string? description, DateOnly? dueDate, long? secondsLogged);
 }

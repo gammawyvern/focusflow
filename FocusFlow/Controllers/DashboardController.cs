@@ -30,6 +30,13 @@ public class DashboardController(ITaskService taskService): Controller
         await taskService.SetTaskCompleteAsync(id, complete);
         return RedirectToAction("Index");
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> SetTaskActive(int id)
+    {
+        await taskService.SetActiveTaskAsync(id);
+        return RedirectToAction("Index");
+    }
 
     [HttpPost]
     public async Task<IActionResult> UpdateTask(int id, string? title, string? description, DateOnly? dueDate, long? displayMinutes, long? displaySeconds)
