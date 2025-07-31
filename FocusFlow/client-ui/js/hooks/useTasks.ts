@@ -4,31 +4,23 @@ import { TaskDto } from "../types/task.dto";
 
 export function useTasks() {
     const [tasks, setTasks] = useState<TaskDto[]>([]);
-    
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/tasks')
-            .then(res => res.json())
-            .then(setTasks)
-            .catch(err => console.error(err))
-            .finally(() => setIsLoading(false));
-    }, []);
-
-    /*
-    useEffect(() => {
-        const handleBeforeUnload = async () => {
-            await fetch('/api/tasks/bulk', {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(tasks)
-            });
+        const loadTasks = async () => {
+            try {
+                const response = await fetch('/api/tasks');
+                const tasks = await response.json();
+                setTasks(tasks);
+            } catch (e) {
+                console.error(e);
+            } finally {
+                setIsLoading(false);
+            }
         };
 
-        window.addEventListener('beforeunload', handleBeforeUnload);
-        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-    }, [tasks]);
-    */
+        loadTasks();
+    }, []);
 
     const createTask = async () => {
         const res = await fetch('/api/tasks', { method: 'POST' });

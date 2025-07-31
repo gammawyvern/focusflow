@@ -4,14 +4,10 @@ import { createRoot } from 'react-dom/client';
 import TaskSummary from './components/TaskSummary';
 import TaskManager from './components/TaskManager';
 
-/* Individual View Component Logic. */
-
-import './components/PomodoroTimer';
-import './components/Task/Task';
+/* Mounting React Components. */
 
 const mounts: any[] = [
-    // { id: 'task-summary-component', component: <TaskSummary /> },
-    // { id: 'task-manager-component', component: <TaskManager /> }
+    
 ];
 
 mounts.forEach(({ id, component }) => {
@@ -20,3 +16,8 @@ mounts.forEach(({ id, component }) => {
         createRoot(el).render(component);
     }
 });
+
+/* Small code chunks for Views. */
+
+import './components/PomodoroTimer';
+import './components/Task/Task';
