@@ -4,6 +4,9 @@
 
 <div class="task-manager-main">
     <div class="task-manager-panel">
-        @await Component.InvokeAsync("TaskManager")
+        @await Component.InvokeAsync("TaskList", new {
+            controller = "TaskManager",
+            header = "Manage Tasks" 
+        })
     </div>
 </div>

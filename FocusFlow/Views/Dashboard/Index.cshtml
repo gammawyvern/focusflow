@@ -4,7 +4,10 @@
 
 <div class="dashboard-main">
     <div class="dashboard-task-summary-panel">
-        @await Component.InvokeAsync("TaskSummary")
+        @await Component.InvokeAsync("TaskList", new {
+            controller = "DashBoard",
+            header = "Today's Tasks" 
+        })
     </div>
     <div class="dashboard-timer-panel">
         @await Component.InvokeAsync("Timer")
