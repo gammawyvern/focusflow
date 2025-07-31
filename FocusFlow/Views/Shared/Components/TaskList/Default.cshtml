@@ -7,11 +7,9 @@
     }
     
     <div class="task-list" style="height: 100%;">
-        @{
-            foreach (var taskView in @Model.TaskItems)
-            {
-                @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
-            }
+        @foreach (var taskView in @Model.TaskItems)
+        {
+            @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
         }
         
         <form asp-controller="@Model.Controller" asp-action="CreateTask" method="post">
