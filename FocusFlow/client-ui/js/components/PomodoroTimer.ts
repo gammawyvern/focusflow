@@ -14,24 +14,19 @@ function pad2(num: number): string {
 }
 
 function initPomodoroTimer() {
-    const timers = [...document.getElementsByClassName("js-pomodoro-timer")];
+    const timers = document.getElementsByClassName("js-pomodoro-timer");
     
     for (const timer of timers) {
-        // @ts-ignore
-        let activeTaskId = timer.dataset.taskId;
+        let activeTaskId = (timer as HTMLElement).dataset.taskId;
         if (!activeTaskId) { continue; }
         
-        let secondsElapsed = 0;
         let secondsElapsedOffset = 0;
-        // TODO: Set offset based on the initial runningTime string
         
         let running = false;
-        // TODO: Set running based on a new entity var? 
         let intervalId: NodeJS.Timeout;
 
         const runningTime = timer.querySelector(".js-pomodoro-running-time");
         const startButton = timer.querySelector(".js-pomodoro-start");
-        // const stopButton = timer.querySelector(".js-pomodoro-stop");
 
         if (!runningTime || !startButton /*|| !stopButton*/) {
             console.error("Failed to find time text, start button, or stop button element(s).", runningTime, startButton /*, stopButton*/);
