@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FocusFlow.Models.DashboardViewModel
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -6,7 +8,9 @@
     <div class="dashboard-task-summary-panel">
         @await Component.InvokeAsync("TaskList", new {
             controller = "Dashboard",
-            header = "Today's Tasks" 
+            header = "Today's Tasks",
+            showActive = true,
+            showCompleted = @Model.ShowCompleted
         })
     </div>
     <div class="dashboard-timer-panel">

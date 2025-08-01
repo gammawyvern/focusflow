@@ -1,3 +1,4 @@
+using FocusFlow.Models;
 using FocusFlow.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,9 +6,14 @@ namespace FocusFlow.Controllers;
 
 public class DashboardController(ITaskService taskService): Controller
 {
-    public IActionResult Index()
+    public IActionResult Index(bool? showCompleted)
     {
-        return View();
+        var model = new DashboardViewModel
+        {
+            ShowCompleted = showCompleted ?? true
+        };
+            
+        return View(model);
     }
     
     [HttpPost]

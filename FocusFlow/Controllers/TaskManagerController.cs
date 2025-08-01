@@ -9,9 +9,14 @@ namespace FocusFlow.Controllers;
 
 public class TaskManagerController(ITaskService taskService): Controller
 {
-    public IActionResult Index()
+    public IActionResult Index(bool? showCompleted)
     {
-        return View();
+        var model = new TaskManagerViewModel
+        {
+            ShowCompleted = showCompleted ?? true
+        };
+
+        return View(model);
     }
     
     [HttpPost]

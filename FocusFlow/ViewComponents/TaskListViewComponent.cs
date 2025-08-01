@@ -42,7 +42,8 @@ public class TaskListViewComponent(ITaskService taskService): ViewComponent
         {
             Controller = controller,
             Header = header,
-            TaskItems = taskItemViewModels
+            TaskItems = taskItemViewModels,
+            ShowCompleted = showCompleted ?? true,
         };
         
         return View(model);

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FocusFlow.Models.TaskManagerViewModel 
+
+@{
     ViewData["Title"] = "Task Manager";
 }
 
@@ -6,7 +8,9 @@
     <div class="task-manager-panel">
         @await Component.InvokeAsync("TaskList", new {
             controller = "TaskManager",
-            header = "Manage Tasks" 
+            header = "Manage Tasks",
+            showActive = false,
+            showCompleted = @Model.ShowCompleted
         })
     </div>
 </div>
