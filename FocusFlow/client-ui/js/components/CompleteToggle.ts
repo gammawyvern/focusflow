@@ -6,7 +6,7 @@ function initTaskListCompleteToggle() {
     }
 }
 
-async function handleCompletedToggleClick(toggleCompleteEvent: Event, toggleCompleteForm: HTMLFormElement) {
+function handleCompletedToggleClick(toggleCompleteEvent: Event, toggleCompleteForm: HTMLFormElement) {
     toggleCompleteEvent.preventDefault();
     const formData = new FormData(toggleCompleteForm);
     const showCompleted = formData.get("showCompleted") === "true";
