@@ -42,7 +42,6 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
     [HttpPost("{id:int}/complete")]
     public async Task SetTaskCompleteAsync([FromRoute] int id, [FromBody] TaskCompleteDto dto)
     {
-        Console.WriteLine($"{id} {dto}");
         var entity = await taskItemRepository.GetByIdAsync(id);
         if (entity != null)
         {
@@ -50,6 +49,19 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
             if (entity.IsCompleted && entity.IsActive) entity.IsActive = false;
             await taskItemRepository.SaveChangesAsync();
         }
+    }
+    
+    [HttpPost("{id:int}/active")]
+    public async Task SetTaskActiveAsync([FromRoute] int id, [FromBody] TaskActiveDto dto)
+    {
+        var allEntities = await taskItemRepository.GetAllAsync();
+        foreach (var entity in allEntities)
+        {
+            entity.StartedTime = null;
+            entity.IsActive = (entity.Id == id) ? dto.Active : false;
+        }
+        
+        await taskItemRepository.SaveChangesAsync();
     }
     
     [HttpGet]
@@ -67,11 +79,25 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
         return entity == null ? NotFound() : Ok(TaskItemMapper.ToDto(entity));
     }
     
+    [HttpPatch("{id:int}")]
+    public async Task<IActionResult> PatchTask([FromRoute] int id, [FromBody] TaskPatchDto dto)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity == null) { return NotFound(); }
+        
+        TaskItemMapper.ApplyPatchDtoToEntity(dto, entity);
+        await taskItemRepository.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateTask([FromRoute] int id, [FromBody] TaskItemDto dto)
     {
         var entity = await taskItemRepository.GetByIdAsync(id);
         if (entity == null) { return NotFound(); }
+        
         TaskItemMapper.ApplyDtoToEntity(dto, entity);
         await taskItemRepository.SaveChangesAsync();
 

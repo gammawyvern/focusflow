@@ -11,29 +11,31 @@
     {
         <form class="js-task-active-form">
             <input type="hidden" name="id" value="@Model.Id"/> 
-            <input type="hidden" name="active" value="@(!Model.IsActive)"/> 
+            <input type="hidden" name="active" value="@((!Model.IsActive).ToString().ToLower())"/> 
             <button type="submit" class="task-set-active"></button>
         </form>
     }
 
     <form class="js-task-edit-form">
+        <input type="hidden" name="id" value="@Model.Id"/> 
+        
         <input
             type="text"
-            name="Title"
+            name="title"
             class="task-title"
             value="@Model.Title"
             disabled
         />
 
         <textarea 
-            name="Description"
+            name="description"
             class="task-description" 
             disabled
         >@Model.Description</textarea>
 
         <input
             type="date"
-            name="DueDate"
+            name="dueDate"
             class="task-due-date"
             value="@Model.DueDate.ToString("yyyy-MM-dd")"
             disabled
@@ -41,14 +43,14 @@
 
         <div class="task-time-logged">
             <input type="number"
-                   name="DisplayMinutes"
+                   name="displayMinutes"
                    class="task-minutes-logged"
                    value="@Model.DisplayMinutes"
                    min="0"
                    step="1"
                    disabled
             />:<input type="number"
-                   name="DisplaySeconds"
+                   name="displaySeconds"
                    class="task-seconds-logged"
                    value="@Model.DisplaySeconds"
                    min="0"

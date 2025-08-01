@@ -44,4 +44,12 @@ public static class TaskItemMapper
         entity.IsActive = dto.IsActive;
         entity.StartedTime = dto.StartedTime;
     }
+
+    public static void ApplyPatchDtoToEntity(TaskPatchDto dto, TaskItem entity)
+    {
+        if (dto.Title != null) entity.Title = dto.Title;
+        if (dto.Description != null) entity.Description = dto.Description;
+        if (dto.DueDate != null) entity.DueDate = dto.DueDate.Value;
+        if (dto.SecondsLogged != null) entity.SecondsLogged = dto.SecondsLogged.Value;
+    }
 }
