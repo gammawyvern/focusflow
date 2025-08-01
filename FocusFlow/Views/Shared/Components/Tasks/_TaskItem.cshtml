@@ -10,7 +10,8 @@
         <button type="submit" class="task-set-complete"></button>
     </form>
 
-    @if (!Model.IsCompleted)
+    @* TODO: Uhhh, not this... *@
+    @if (!Model.IsCompleted && Model.Controller != "TaskManager")
     {
         <form asp-controller="@Model.Controller"
               asp-action="SetTaskActive"

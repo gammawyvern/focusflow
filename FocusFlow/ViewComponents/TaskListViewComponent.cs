@@ -17,15 +17,10 @@ public class TaskListViewComponent(ITaskService taskService): ViewComponent
             .ThenByDescending(e => e.IsActive)
             .ToList();
 
-        if (showActive ?? true)
-        {
-            entities = entities.Where(e => !e.IsActive).ToList();
-        }
-        
         if (startDate.HasValue)
         {
             entities = entities
-                .Where(task => task.DueDate >= startDate.Value.Date)
+                .Where(task => task.DueDate.Date >= startDate.Value.Date)
                 .ToList();
         }
 
