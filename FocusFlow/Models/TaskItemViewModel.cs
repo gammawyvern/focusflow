@@ -6,7 +6,7 @@ public class TaskItemViewModel
     public bool IsCompleted { get; init; } 
     public required string Title { get; init; }
     public required string Description { get; init; }
-    public DateOnly DueDate { get; init; }
+    public DateTime DueDate { get; init; }
     public long DisplayMinutes { get; init; }
     public long DisplaySeconds { get; init; }
     

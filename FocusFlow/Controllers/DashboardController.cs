@@ -39,11 +39,11 @@ public class DashboardController(ITaskService taskService): Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdateTask(int id, string? title, string? description, DateOnly? dueDate, long? displayMinutes, long? displaySeconds)
+    public async Task<IActionResult> UpdateTask(int id, string? title, string? description, DateTime? dueDate, long? displayMinutes, long? displaySeconds)
     {
         var seconds = displaySeconds ?? 0; 
         seconds += displayMinutes == null ? 0 : displayMinutes.Value * 60;
-        await taskService.UpdateTaskAsync(id,  title, description, dueDate, seconds);
+        await taskService.UpdateTaskAsync(id, title, description, dueDate, seconds);
         return RedirectToAction("Index");
     }
 }

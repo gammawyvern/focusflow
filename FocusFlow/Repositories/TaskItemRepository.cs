@@ -49,10 +49,10 @@ public class TaskItemRepository(AppDbContext appDbContext): ITaskItemRepository
 
     /* ITaskRepository Functions. */
 
-    public IEnumerable<TaskItem> GetTaskItemsByDueDate(DateOnly dueDate)
+    public IEnumerable<TaskItem> GetTaskItemsByDueDate(DateTime dueDate)
     {
         return appDbContext.TaskItems
-            .Where(taskItem => taskItem.DueDate == dueDate)
+            .Where(taskItem => taskItem.DueDate.Date == dueDate.Date)
             .ToList();
     }
 }

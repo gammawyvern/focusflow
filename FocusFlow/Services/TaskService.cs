@@ -36,6 +36,7 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
         if (entity != null)
         {
             entity.IsCompleted = complete;
+            entity.IsActive = false;
             await taskItemRepository.SaveChangesAsync();
         }
     }
@@ -46,15 +47,15 @@ public class TaskService(ITaskItemRepository taskItemRepository): ITaskService
 
         foreach (var task in allTasks)
         {
-            task.StartedTime = null;
-            task.IsActive = (task.Id == activeTaskId);
+            task.StartedTime = null; // TODO Do I want to do this here?
+            task.IsActive = (task.Id == activeTaskId) ? !task.IsActive : false; 
         }
 
         await taskItemRepository.SaveChangesAsync();
     }
 
 
-    public async Task UpdateTaskAsync(int id, string? title, string? description, DateOnly? dueDate, long? secondsLogged)
+    public async Task UpdateTaskAsync(int id, string? title, string? description, DateTime? dueDate, long? secondsLogged)
     {
         var entity = await taskItemRepository.GetByIdAsync(id);
         if (entity == null) return;
