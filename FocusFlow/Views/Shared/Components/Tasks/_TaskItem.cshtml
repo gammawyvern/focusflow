@@ -10,13 +10,16 @@
         <button type="submit" class="task-set-complete"></button>
     </form>
 
-    <form asp-controller="@Model.Controller"
-          asp-action="SetTaskActive"
-          asp-route-id="@Model.Id"
-          method="post"
-    >
-        <button class="task-set-active"></button>
-    </form>
+    @if (!Model.IsCompleted)
+    {
+        <form asp-controller="@Model.Controller"
+              asp-action="SetTaskActive"
+              asp-route-id="@Model.Id"
+              method="post"
+        >
+            <button class="task-set-active"></button>
+        </form>
+    }
 
     <form asp-controller="@Model.Controller"
           asp-action="UpdateTask"
