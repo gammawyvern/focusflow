@@ -1,16 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
-using FocusFlow.Data;
-using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
-using FocusFlow.Services;
+using FocusFlow.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITaskItemRepository, TaskItemRepository>();
-builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

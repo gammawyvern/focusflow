@@ -1,8 +1,4 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
-
-import TaskSummary from './components/TaskSummary';
-import TaskManager from './components/TaskManager';
 
 /* Mounting React Components. */
 
@@ -22,3 +18,4 @@ mounts.forEach(({ id, component }) => {
 import './components/PomodoroTimer';
 import './components/Task/Task';
 import './components/DateFilter'
+import './components/TaskManager'

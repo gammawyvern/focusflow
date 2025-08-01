@@ -83,4 +83,6 @@ function initPomodoroTimer() {
     }
 }
 
-initPomodoroTimer();
+document.addEventListener("DOMContentLoaded", () => {
+    initPomodoroTimer();
+})

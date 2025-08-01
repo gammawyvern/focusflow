@@ -1,32 +1,22 @@
 @model FocusFlow.Models.TaskItemViewModel
 
 <div class="task @(Model.IsCompleted ? "complete" : "") @(Model.IsActive ? "active" : "")">
-    <form asp-controller="@Model.Controller"
-        asp-action="SetTaskComplete"
-        asp-route-id="@Model.Id"
-        asp-route-complete="@(!Model.IsCompleted)"
-        method="post"
-    >
-        <button type="submit" class="task-set-complete"></button>
+    <form class="js-task-complete-form">
+        <input type="hidden" name="id" value="@Model.Id"/> 
+        <input type="hidden" name="complete" value="@((!Model.IsCompleted).ToString().ToLower())"/> 
+        <button type="submit" class="task-complete"></button>
     </form>
 
-    @* TODO: Uhhh, not this... *@
-    @if (!Model.IsCompleted && Model.Controller != "TaskManager")
+    @if (!Model.IsCompleted)
     {
-        <form asp-controller="@Model.Controller"
-              asp-action="SetTaskActive"
-              asp-route-id="@Model.Id"
-              method="post"
-        >
-            <button class="task-set-active"></button>
+        <form class="js-task-active-form">
+            <input type="hidden" name="id" value="@Model.Id"/> 
+            <input type="hidden" name="active" value="@(!Model.IsActive)"/> 
+            <button type="submit" class="task-set-active"></button>
         </form>
     }
 
-    <form asp-controller="@Model.Controller"
-          asp-action="UpdateTask"
-          asp-route-id="@Model.Id"
-          method="post"
-    >
+    <form class="js-task-edit-form">
         <input
             type="text"
             name="Title"
@@ -72,7 +62,8 @@
         <button type="submit" class="task-save" style="display: none;">[S]</button>
     </form>
 
-    <form asp-controller="@Model.Controller" asp-action="DeleteTask" asp-route-id="@Model.Id" method="post">
+    <form class="js-task-delete-form">
+        <input type="hidden" name="id" value="@Model.Id" />
         <button type="submit" class="task-delete"></button>
     </form>
 </div>

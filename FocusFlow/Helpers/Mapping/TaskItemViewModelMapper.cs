@@ -6,7 +6,7 @@ namespace FocusFlow.Helpers.Mapping;
 
 public static class TaskItemViewModelMapper
 {
-    public static TaskItemViewModel ToTaskItemViewModel(TaskItemDto dto, string controller)
+    public static TaskItemViewModel ToTaskItemViewModel(TaskItemDto dto)
     {
         return new TaskItemViewModel
         {
@@ -19,8 +19,6 @@ public static class TaskItemViewModelMapper
             DisplaySeconds = dto.SecondsLogged % 60,
             
             IsActive = dto.IsActive,
-            
-            Controller = controller
         };
     }
 }

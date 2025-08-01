@@ -1,23 +1,24 @@
+using FocusFlow.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 using FocusFlow.Helpers.Mapping;
-using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
 using FocusFlow.Dtos;
-using FocusFlow.Services;
 
 namespace FocusFlow.Controllers.Api;
 
 [ApiController]
 [Route("api/tasks")]
-public class TaskApiController(ITaskItemRepository taskItemRepository, ITaskService taskService) : Controller
+public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
 {
     [HttpPost]
     public async Task<IActionResult> CreateEmptyTaskAsync()
     {
-        var entity = await taskService.CreateEmptyTaskAsync();
-        var resultDto = TaskItemMapper.ToDto(entity);
-        return CreatedAtAction(nameof(GetTask), new { id = resultDto.Id }, resultDto);
+        var entity = new TaskItem();
+        await taskItemRepository.AddAsync(entity);
+        await taskItemRepository.SaveChangesAsync();
+        var dto = TaskItemMapper.ToDto(entity);
+        return CreatedAtAction(nameof(GetTask), new { id = dto.Id }, dto);
     }
 
     [HttpPost("bulk")]
@@ -35,6 +36,20 @@ public class TaskApiController(ITaskItemRepository taskItemRepository, ITaskServ
             .ToList();
         
         return Ok(createdDtos);
+    }
+    
+    [HttpPost("{id:int}/complete")]
+    public async Task SetTaskCompleteAsync(int id, [FromBody] bool? complete)
+    {
+        Console.WriteLine($"{id}: {complete}");
+            
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity != null)
+        {
+            entity.IsCompleted = complete ?? true;
+            if (entity.IsCompleted && entity.IsActive) entity.IsActive = false;
+            await taskItemRepository.SaveChangesAsync();
+        }
     }
     
     [HttpGet]

@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 
 using FocusFlow.Helpers.Mapping;
-using FocusFlow.Services;
 using FocusFlow.Models;
+using FocusFlow.Repositories;
 
 namespace FocusFlow.ViewComponents;
 
-public class TaskListViewComponent(ITaskService taskService): ViewComponent
+public class TaskListViewComponent(ITaskItemRepository taskItemRepository): ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync(string controller, string? header, bool? showCompleted, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
+    public async Task<IViewComponentResult> InvokeAsync(string? header, bool? showCompleted, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
     {
-        var entities = await taskService.GetAllAsync();
+        var entities = await taskItemRepository.GetAllAsync();
         
         entities = entities
             .Where(e => showCompleted == true || showCompleted == null || !e.IsCompleted)
@@ -35,12 +35,11 @@ public class TaskListViewComponent(ITaskService taskService): ViewComponent
 
         var taskItemViewModels = entities
             .Select(TaskItemMapper.ToDto)
-            .Select(dto => TaskItemViewModelMapper.ToTaskItemViewModel(dto, controller))
+            .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
             .ToList();
 
         var model = new TaskListViewModel
         {
-            Controller = controller,
             Header = header,
             TaskItems = taskItemViewModels,
             ShowCompleted = showCompleted ?? true,

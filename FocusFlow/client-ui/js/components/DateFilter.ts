@@ -19,4 +19,6 @@ export function initTaskListDateSelector() {
     }
 }
 
-initTaskListDateSelector();
+document.addEventListener("DOMContentLoaded", () => {
+    initTaskListDateSelector();
+})
