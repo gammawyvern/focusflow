@@ -5,6 +5,9 @@
         "task-tag"
         "task-main"
     ;
+    
+    padding: var(--common-padding);
+    gap: var(--common-padding);
 }
 
 .task .task-tag {
