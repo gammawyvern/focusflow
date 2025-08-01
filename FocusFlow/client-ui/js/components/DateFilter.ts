@@ -6,8 +6,6 @@ export function initTaskListDateSelector() {
             const selectedDate = (taskListDateSelector as HTMLInputElement).value;
             const params = new URLSearchParams(window.location.search);
 
-            console.log("running handler");
-
             if (selectedDate) {
                 params.set("startDate", selectedDate);
                 params.set("endDate", selectedDate);
