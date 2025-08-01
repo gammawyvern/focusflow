@@ -97,8 +97,6 @@ async function handleTaskEditSubmit(editFormEvent: Event, editForm: HTMLFormElem
         secondsLogged: secondsLogged
     }
 
-    console.log(JSON.stringify(patchPayload));
-
     await fetch(`/api/tasks/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -108,6 +106,7 @@ async function handleTaskEditSubmit(editFormEvent: Event, editForm: HTMLFormElem
     window.location.reload();
 }
 
+/* Call Forms Initializer. */
 
 document.addEventListener("DOMContentLoaded", () => {
     initTaskForms();
