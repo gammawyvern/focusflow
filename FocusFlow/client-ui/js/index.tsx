@@ -1,12 +1,9 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import TaskSummary from './components/TaskSummary';
-import TaskManager from './components/TaskManager';
+/* Mounting React Components. */
 
-const mounts = [
-    { id: 'task-summary-component', component: <TaskSummary /> },
-    { id: 'task-manager-component', component: <TaskManager /> }
+const mounts: any[] = [
+    
 ];
 
 mounts.forEach(({ id, component }) => {
@@ -15,3 +12,11 @@ mounts.forEach(({ id, component }) => {
         createRoot(el).render(component);
     }
 });
+
+/* Small code chunks for Views. */
+
+import './components/PomodoroTimer';
+import './components/Task/Task';
+import './components/DateFilter'
+import './components/TaskManager'
+import './components/CompleteToggle';

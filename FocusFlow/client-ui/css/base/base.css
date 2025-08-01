@@ -56,6 +56,10 @@ hr {
 
 /* Input Styling */
 
+form {
+    display: contents;
+}
+
 button {
   cursor: pointer;
   padding: var(--common-padding);
@@ -162,6 +166,10 @@ img {
 
   border: var(--common-border-width) solid var(--border-color);
   border-radius: var(--common-border-radius);
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
 }
 
 /* Scrollbar Styles */

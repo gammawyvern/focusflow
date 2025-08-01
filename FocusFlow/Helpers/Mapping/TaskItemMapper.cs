@@ -14,7 +14,9 @@ public static class TaskItemMapper
             Description = entity.Description,
             IsCompleted = entity.IsCompleted,
             SecondsLogged = entity.SecondsLogged,
-            DueDate = entity.DueDate
+            DueDate = entity.DueDate,
+            IsActive = entity.IsActive,
+            StartedTime = entity.StartedTime
         };
     }
     
@@ -26,7 +28,9 @@ public static class TaskItemMapper
             Description = dto.Description,
             IsCompleted = dto.IsCompleted,
             SecondsLogged = dto.SecondsLogged,
-            DueDate = dto.DueDate
+            DueDate = dto.DueDate,
+            IsActive = dto.IsActive,
+            StartedTime = dto.StartedTime
         };
     }
 
@@ -37,5 +41,15 @@ public static class TaskItemMapper
         entity.IsCompleted = dto.IsCompleted;
         entity.SecondsLogged = dto.SecondsLogged;
         entity.DueDate = dto.DueDate;
+        entity.IsActive = dto.IsActive;
+        entity.StartedTime = dto.StartedTime;
+    }
+
+    public static void ApplyPatchDtoToEntity(TaskPatchDto dto, TaskItem entity)
+    {
+        if (dto.Title != null) entity.Title = dto.Title;
+        if (dto.Description != null) entity.Description = dto.Description;
+        if (dto.DueDate != null) entity.DueDate = dto.DueDate.Value;
+        if (dto.SecondsLogged != null) entity.SecondsLogged = dto.SecondsLogged.Value;
     }
 }

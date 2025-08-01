@@ -1,0 +1,34 @@
+@model FocusFlow.Models.TaskListViewModel
+
+<div class="card" style="min-height: 100%;">
+    <div class="task-list-header-line">
+        <h2 class="task-list-header">@Model.Header</h2>
+        
+        @if (@Model.ShowDateSelector)
+        {
+            <input
+                class="task-list-date-selector"
+                name="date"
+                type="date"
+                value="@Model.StartDate?.ToString("yyyy-MM-dd")"
+            />
+        }
+        
+        <form class="js-task-list-complete-toggle-form">
+            <input type="hidden" name="showCompleted" value="@(!Model.ShowCompleted ? "true" : "false")" />
+            <button class="task-list-complete-toggle accent-1" type="submit" title="@(Model.ShowCompleted ? "Hide completed tasks" : "Show completed tasks")">
+                @(Model.ShowCompleted ? "Hide Completed Tasks" : "Show Completed Tasks")
+            </button>
+        </form>
+        
+    </div>
+
+    <div class="task-list" style="height: 100%;">
+        @foreach (var taskView in @Model.TaskItems)
+        {
+            @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+        }
+
+        <button class="js-task-create task-create">New Task</button>
+    </div>
+</div>

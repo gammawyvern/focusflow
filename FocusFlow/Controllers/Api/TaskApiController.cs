@@ -1,9 +1,10 @@
+using FocusFlow.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 using FocusFlow.Helpers.Mapping;
-using FocusFlow.Data.Entities;
 using FocusFlow.Repositories;
 using FocusFlow.Dtos;
+using Microsoft.JSInterop.Infrastructure;
 
 namespace FocusFlow.Controllers.Api;
 
@@ -12,15 +13,13 @@ namespace FocusFlow.Controllers.Api;
 public class TaskApiController(ITaskItemRepository taskItemRepository) : Controller
 {
     [HttpPost]
-    public async Task<IActionResult> CreateTask([FromBody] TaskItemDto? dto)
+    public async Task<IActionResult> CreateEmptyTaskAsync()
     {
-        var entity = dto == null ? new TaskItem() : TaskItemMapper.ToEntity(dto);
+        var entity = new TaskItem();
         await taskItemRepository.AddAsync(entity);
         await taskItemRepository.SaveChangesAsync();
-        
-        var resultDto = TaskItemMapper.ToDto(entity);
-
-        return CreatedAtAction(nameof(GetTask), new { id = resultDto.Id }, resultDto);
+        var dto = TaskItemMapper.ToDto(entity);
+        return CreatedAtAction(nameof(GetTask), new { id = dto.Id }, dto);
     }
 
     [HttpPost("bulk")]
@@ -40,6 +39,31 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
         return Ok(createdDtos);
     }
     
+    [HttpPost("{id:int}/complete")]
+    public async Task SetTaskCompleteAsync([FromRoute] int id, [FromBody] TaskCompleteDto dto)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity != null)
+        {
+            entity.IsCompleted = dto.Complete;
+            if (entity.IsCompleted && entity.IsActive) entity.IsActive = false;
+            await taskItemRepository.SaveChangesAsync();
+        }
+    }
+    
+    [HttpPost("{id:int}/active")]
+    public async Task SetTaskActiveAsync([FromRoute] int id, [FromBody] TaskActiveDto dto)
+    {
+        var allEntities = await taskItemRepository.GetAllAsync();
+        foreach (var entity in allEntities)
+        {
+            entity.StartedTime = null;
+            entity.IsActive = (entity.Id == id) ? dto.Active : false;
+        }
+        
+        await taskItemRepository.SaveChangesAsync();
+    }
+    
     [HttpGet]
     public async Task<IActionResult> GetTasks()
     {
@@ -55,11 +79,25 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
         return entity == null ? NotFound() : Ok(TaskItemMapper.ToDto(entity));
     }
     
+    [HttpPatch("{id:int}")]
+    public async Task<IActionResult> PatchTask([FromRoute] int id, [FromBody] TaskPatchDto dto)
+    {
+        var entity = await taskItemRepository.GetByIdAsync(id);
+        if (entity == null) { return NotFound(); }
+        
+        TaskItemMapper.ApplyPatchDtoToEntity(dto, entity);
+        await taskItemRepository.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateTask([FromRoute] int id, [FromBody] TaskItemDto dto)
     {
         var entity = await taskItemRepository.GetByIdAsync(id);
         if (entity == null) { return NotFound(); }
+        
         TaskItemMapper.ApplyDtoToEntity(dto, entity);
         await taskItemRepository.SaveChangesAsync();
 

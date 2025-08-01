@@ -1,0 +1,71 @@
+@model FocusFlow.Models.TaskItemViewModel
+
+<div class="task @(Model.IsCompleted ? "complete" : "") @(Model.IsActive ? "active" : "")">
+    <form class="js-task-complete-form">
+        <input type="hidden" name="id" value="@Model.Id"/> 
+        <input type="hidden" name="complete" value="@((!Model.IsCompleted).ToString().ToLower())"/> 
+        <button type="submit" class="task-complete"></button>
+    </form>
+
+    @if (!Model.IsCompleted)
+    {
+        <form class="js-task-active-form">
+            <input type="hidden" name="id" value="@Model.Id"/> 
+            <input type="hidden" name="active" value="@((!Model.IsActive).ToString().ToLower())"/> 
+            <button type="submit" class="task-set-active"></button>
+        </form>
+    }
+
+    <form class="js-task-edit-form">
+        <input type="hidden" name="id" value="@Model.Id"/> 
+        
+        <input
+            type="text"
+            name="title"
+            class="task-title"
+            value="@Model.Title"
+            disabled
+        />
+
+        <textarea 
+            name="description"
+            class="task-description" 
+            disabled
+        >@Model.Description</textarea>
+
+        <input
+            type="date"
+            name="dueDate"
+            class="task-due-date"
+            value="@Model.DueDate.ToString("yyyy-MM-dd")"
+            disabled
+        />
+
+        <div class="task-time-logged">
+            <input type="number"
+                   name="displayMinutes"
+                   class="task-minutes-logged"
+                   value="@Model.DisplayMinutes"
+                   min="0"
+                   step="1"
+                   disabled
+            />:<input type="number"
+                   name="displaySeconds"
+                   class="task-seconds-logged"
+                   value="@Model.DisplaySeconds"
+                   min="0"
+                   max="59"
+                   step="1"
+                   disabled
+            />
+        </div>
+        
+        <button type="button" class="task-edit" onclick="enableEdit(this)">[E]</button>
+        <button type="submit" class="task-save" style="display: none;">[S]</button>
+    </form>
+
+    <form class="js-task-delete-form">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="task-delete"></button>
+    </form>
+</div>

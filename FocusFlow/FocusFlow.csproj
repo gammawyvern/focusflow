@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <AdditionalFiles Include="Views\Focus\Index.cshtml" />
+      <AdditionalFiles Include="Views\Shared\Components\TaskList\Default.cshtml" />
       <AdditionalFiles Include="Views\StyleGuide\Index.cshtml" />
       <AdditionalFiles Include="Views\TaskManager\Index.cshtml" />
     </ItemGroup>
@@ -26,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Components\TaskSummary\Default.cshtml" />
     </ItemGroup>
 
 </Project>

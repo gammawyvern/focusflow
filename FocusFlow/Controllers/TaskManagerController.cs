@@ -1,20 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 
-using FocusFlow.Data;
+using FocusFlow.Models;
 
 namespace FocusFlow.Controllers;
 
 public class TaskManagerController: Controller
 {
-    private readonly AppDbContext _dbContext;
-
-    public TaskManagerController(AppDbContext dbContext)
+    public IActionResult Index(bool? showCompleted, DateTime? startDate, DateTime? endDate)
     {
-        _dbContext = dbContext;
-    }
-
-    public IActionResult Index()
-    {
-        return View();
+        var model = new TaskManagerViewModel
+        {
+            ShowCompleted = showCompleted ?? true,
+            StartDate = startDate,
+            EndDate = endDate
+        };
+            
+        return View(model);
     }
 }

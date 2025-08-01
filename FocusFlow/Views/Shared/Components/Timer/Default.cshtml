@@ -1,0 +1,12 @@
+@model FocusFlow.Models.TimerViewModel
+
+<div class="card" style="height: 100%;">
+    <div class="js-pomodoro-timer" data-task-id="@Model.ActiveTaskItemId">
+        <div class="js-pomodoro-running-time">
+            @Model.StartedTime
+        </div>
+        <div class="timer-controls">
+            <button class="accent-1 js-pomodoro-start">Start</button>
+        </div>
+    </div>
+</div>
