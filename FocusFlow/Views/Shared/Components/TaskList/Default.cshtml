@@ -4,14 +4,20 @@
     <div class="task-list-header-line">
         <h2 class="task-list-header">@Model.Header</h2>
         
-        @if (@Model.ShowDateSelector)
+        @if (Model.ShowDateSelector)
         {
-            <input
-                class="task-list-date-selector"
-                name="date"
-                type="date"
-                value="@Model.StartDate?.ToString("yyyy-MM-dd")"
-            />
+            <div class="task-list-date-selector">
+                <input
+                    type="date"
+                    name="date"
+                    class="task-list-date-selector-input"
+                    value="@Model.StartDate?.ToString("yyyy-MM-dd")"
+                />
+
+                <button type="button" title="Choose date" class="task-list-date-selector-button">
+                    [D]
+                </button>
+            </div>
         }
         
         <form asp-controller="@Model.Controller" asp-action="Index" method="get" >

@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+
 using FocusFlow.Models;
 using FocusFlow.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FocusFlow.Controllers;
 
