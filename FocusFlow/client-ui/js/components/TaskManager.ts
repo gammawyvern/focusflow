@@ -50,7 +50,7 @@ async function handleTaskCompleteClick(createFormEvent: Event, completeForm: HTM
     await fetch(`/api/tasks/${id}/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(complete),
+        body: JSON.stringify({ complete }),
     });
     
     window.location.reload();

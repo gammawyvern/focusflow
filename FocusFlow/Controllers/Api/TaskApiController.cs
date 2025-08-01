@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using FocusFlow.Helpers.Mapping;
 using FocusFlow.Repositories;
 using FocusFlow.Dtos;
+using Microsoft.JSInterop.Infrastructure;
 
 namespace FocusFlow.Controllers.Api;
 
@@ -39,14 +40,13 @@ public class TaskApiController(ITaskItemRepository taskItemRepository) : Control
     }
     
     [HttpPost("{id:int}/complete")]
-    public async Task SetTaskCompleteAsync(int id, [FromBody] bool? complete)
+    public async Task SetTaskCompleteAsync([FromRoute] int id, [FromBody] TaskCompleteDto dto)
     {
-        Console.WriteLine($"{id}: {complete}");
-            
+        Console.WriteLine($"{id} {dto}");
         var entity = await taskItemRepository.GetByIdAsync(id);
         if (entity != null)
         {
-            entity.IsCompleted = complete ?? true;
+            entity.IsCompleted = dto.Complete;
             if (entity.IsCompleted && entity.IsActive) entity.IsActive = false;
             await taskItemRepository.SaveChangesAsync();
         }
