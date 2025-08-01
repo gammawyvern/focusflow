@@ -11,4 +11,6 @@ public class TaskItemViewModel
     public long DisplaySeconds { get; init; }
     
     public bool IsActive { get; init; }
+    
+    public string? Tag { get; init; }
 }

@@ -22,6 +22,10 @@
     --accent-2-hover: #e6b388;
     --accent-3: #d7b9d5;
     --accent-3-hover: #cba9c3;
+    --accent-4: #b7eacb;
+    --accent-4-hover: #a2dab8;
+    --accent-5: #f2a5a5;
+    --accent-5-hover: #e68c8c;
 
     --link-color: var(--accent-1);
 

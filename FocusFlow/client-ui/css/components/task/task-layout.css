@@ -1,5 +1,20 @@
 .task {
     display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "task-tag"
+        "task-main"
+    ;
+}
+
+.task .task-tag {
+    grid-area: task-tag;
+}
+
+.task .task-main-content {
+    grid-area: task-main;
+    
+    display: grid;
     grid-template-columns: 30px auto 120px 30px;
     grid-template-rows: auto auto;
     grid-template-areas:

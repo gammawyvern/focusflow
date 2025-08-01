@@ -19,6 +19,7 @@ public static class TaskItemViewModelMapper
             DisplaySeconds = dto.SecondsLogged % 60,
             
             IsActive = dto.IsActive,
+            Tag = dto.IsActive ? "Active Task" : null
         };
     }
 }
