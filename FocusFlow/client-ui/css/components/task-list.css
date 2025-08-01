@@ -50,6 +50,6 @@
     grid-area: date;
 }
 
-.task-list-completed-toggle {
+.task-list-complete-toggle {
     grid-area: complete;
 }

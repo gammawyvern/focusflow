@@ -19,3 +19,4 @@ import './components/PomodoroTimer';
 import './components/Task/Task';
 import './components/DateFilter'
 import './components/TaskManager'
+import './components/CompleteToggle';

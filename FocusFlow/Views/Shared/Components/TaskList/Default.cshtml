@@ -14,10 +14,10 @@
             />
         }
         
-        <form asp-controller="Dashboard" asp-action="Index" method="get" >
-            <input class="task-list-completed-toggle" type="hidden" name="showCompleted" value="@(Model.ShowCompleted ? "false" : "true")" />
-            <button class="task-list-completed-toggle" type="submit" class="accent-1" title="Toggle Completed Tasks">
-                @(Model.ShowCompleted ? "[✓]" : "[C]")
+        <form class="js-task-list-complete-toggle-form">
+            <input type="hidden" name="showCompleted" value="@(!Model.ShowCompleted ? "true" : "false")" />
+            <button class="task-list-complete-toggle accent-1" type="submit" title="@(Model.ShowCompleted ? "Hide completed tasks" : "Show completed tasks")">
+                @(Model.ShowCompleted ? "Hide Completed Tasks" : "Show Completed Tasks")
             </button>
         </form>
         
