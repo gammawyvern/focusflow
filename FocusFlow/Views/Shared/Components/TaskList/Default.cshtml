@@ -3,11 +3,20 @@
 <div class="card" style="min-height: 100%;">
     <div class="task-list-header-line">
         <h2 class="task-list-header">@Model.Header</h2>
-        <div class="flex-spacer"></div>
         
-        <form method="get" asp-controller="@Model.Controller" asp-action="Index">
-            <input type="hidden" name="showCompleted" value="@(Model.ShowCompleted ? "false" : "true")" />
-            <button type="submit" class="accent-1" title="Toggle Completed Tasks">
+        @if (@Model.ShowDateSelector)
+        {
+            <input
+                class="task-list-date-selector"
+                name="date"
+                type="date"
+                value="@Model.StartDate?.ToString("yyyy-MM-dd")"
+            />
+        }
+        
+        <form asp-controller="@Model.Controller" asp-action="Index" method="get" >
+            <input class="task-list-completed-toggle" type="hidden" name="showCompleted" value="@(Model.ShowCompleted ? "false" : "true")" />
+            <button class="task-list-completed-toggle" type="submit" class="accent-1" title="Toggle Completed Tasks">
                 @(Model.ShowCompleted ? "[✓]" : "[C]")
             </button>
         </form>

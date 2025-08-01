@@ -33,12 +33,23 @@
 /* Header line */
 
 .task-list-header-line {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto auto 120px 30px;
+    grid-template-areas: "task-list-header . date complete";
+    gap: var(--common-padding);
 
+    padding: 0 var(--common-padding);
     margin-bottom: var(--common-spacing);
 }
 
 .task-list-header {
-    
+    grid-area: task-list-header;
+}
+
+.task-list-date-selector {
+    grid-area: date;
+}
+
+.task-list-completed-toggle {
+    grid-area: complete;
 }

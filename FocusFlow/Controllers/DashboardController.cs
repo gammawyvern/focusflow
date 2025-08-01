@@ -10,7 +10,9 @@ public class DashboardController(ITaskService taskService): Controller
     {
         var model = new DashboardViewModel
         {
-            ShowCompleted = showCompleted ?? true
+            ShowCompleted = showCompleted ?? true,
+            StartDate = DateTime.Today,
+            EndDate = DateTime.Today
         };
             
         return View(model);

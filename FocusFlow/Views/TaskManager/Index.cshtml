@@ -9,8 +9,12 @@
         @await Component.InvokeAsync("TaskList", new {
             controller = "TaskManager",
             header = "Manage Tasks",
-            showActive = false,
-            showCompleted = @Model.ShowCompleted
+            
+            showCompleted = @Model.ShowCompleted,
+            showDateSelector = true,
+            
+            startDate = @Model.StartDate,
+            endDate = @Model.EndDate
         })
     </div>
 </div>
