@@ -1,17 +1,18 @@
 @model FocusFlow.Models.TaskListViewModel
 
 <div class="card" style="min-height: 100%;">
-    @if (@Model.Header != null)
-    {
+    <div class="task-list-header-line">
         <h2 class="task-list-header">@Model.Header</h2>
-    }
-    
+        <div class="flex-spacer"></div>
+        <button class="accent-1">[C]</button>
+    </div>
+
     <div class="task-list" style="height: 100%;">
         @foreach (var taskView in @Model.TaskItems)
         {
             @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
         }
-        
+
         <form asp-controller="@Model.Controller" asp-action="CreateTask" method="post">
             <button type="submit" class="task-create">New Task</button>
         </form>

@@ -6,7 +6,5 @@
 @import './pages/dashboard.css';
 @import './pages/task-manager.css';
 
-@import './components/task-summary.css';
-@import './components/task-manager.css';
 @import './components/task-list.css';
 @import './components/task/index.css';

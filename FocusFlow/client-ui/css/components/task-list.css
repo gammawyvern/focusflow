@@ -1,4 +1,3 @@
-
 .task-list {
     display: flex;
     flex-direction: column;
@@ -29,4 +28,17 @@
 
 .task-create:hover {
     border: 1px solid var(--accent-3-hover);
+}
+
+/* Header line */
+
+.task-list-header-line {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: var(--common-spacing);
+}
+
+.task-list-header {
+    
 }

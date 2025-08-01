@@ -1,5 +1,0 @@
-.task-manager-header {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: var(--common-spacing);
-}
