@@ -8,13 +8,15 @@ namespace FocusFlow.ViewComponents;
 
 public class TaskListViewComponent(ITaskService taskService): ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync(string controller, string? header, bool? showActive, DateTime? startDate, DateTime? endDate)
+    public async Task<IViewComponentResult> InvokeAsync(string controller, string? header, bool? showCompleted, DateTime? startDate, DateTime? endDate)
     {
         var entities = await taskService.GetAllAsync();
         
         entities = entities
+            .Where(e => showCompleted == true || showCompleted == null || !e.IsCompleted)
             .OrderBy(e => e.IsCompleted)
             .ThenByDescending(e => e.IsActive)
+            .ThenBy(e => e.DueDate.Date)
             .ToList();
 
         if (startDate.HasValue)
