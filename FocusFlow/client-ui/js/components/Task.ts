@@ -1,15 +1,8 @@
+import { TaskPatchDto, TaskActiveDto, TaskCompleteDto } from "../types/Task.dto";
 
 function initTaskForms() {
-    /* Task Create Button. */
-    const taskCreateButtons = document.querySelectorAll(".js-task-create");
-    if (taskCreateButtons.length > 0) {
-        taskCreateButtons.forEach((button) => {
-            button.addEventListener("click", handleTaskCreateClick)
-        });
-    }
-    
     /* Task Delete Form. */
-    const taskDeleteForms= document.querySelectorAll(".js-task-delete-form");
+    const taskDeleteForms = document.querySelectorAll(".js-task-delete-form");
     taskDeleteForms.forEach((form) => {
         form.addEventListener("submit", (e) => handleTaskDeleteSubmit(e, form as HTMLFormElement));
     });
@@ -29,16 +22,16 @@ function initTaskForms() {
     /* Task Edit Form. */
     const taskEditForms = document.querySelectorAll(".js-task-edit-form");
     taskEditForms.forEach((form) => {
+        const taskEditEnableButton = form.querySelector(".js-task-edit") as HTMLButtonElement;
+        const taskEditSaveButton = form.querySelector(".js-task-save") as HTMLButtonElement;
+        if (!taskEditEnableButton || !taskEditSaveButton) { return; }
+        
+        taskEditEnableButton.addEventListener("click", () => handleTaskEditEnableClick(form as HTMLFormElement))
         form.addEventListener("submit", (e) => handleTaskEditSubmit(e, form as HTMLFormElement));
     });
 }
 
 /* Handlers For actions. */
-
-async function handleTaskCreateClick() {
-    await fetch("/api/tasks", { method: "POST" });
-    window.location.reload();
-}
 
 async function handleTaskDeleteSubmit(deleteFormEvent: Event, deleteForm: HTMLFormElement) {
     deleteFormEvent.preventDefault();
@@ -54,12 +47,16 @@ async function handleTaskCompleteSubmit(completeFormEvent: Event, completeForm: 
     const id = formData.get("id");
     const complete = formData.get("complete") === "true";
     
+    const payload: TaskCompleteDto = {
+        complete: complete
+    }
+
     await fetch(`/api/tasks/${id}/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ complete: complete }),
+        body: JSON.stringify(payload),
     });
-    
+
     window.location.reload();
 }
 
@@ -68,11 +65,15 @@ async function handleTaskActiveSubmit(activeFormEvent: Event, completeForm: HTML
     const formData = new FormData(completeForm);
     const id = formData.get("id");
     const active = formData.get("active") === "true";
+    
+    const payload: TaskActiveDto = {
+        active: active
+    }
 
     await fetch(`/api/tasks/${id}/active`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ active: active }),
+        body: JSON.stringify(payload),
     });
 
     window.location.reload();
@@ -82,15 +83,14 @@ async function handleTaskEditSubmit(editFormEvent: Event, editForm: HTMLFormElem
     editFormEvent.preventDefault();
     const formData = new FormData(editForm);
     const id = formData.get("id");
-    const title = formData.get("title");
-    const description = formData.get("description");
-    const dueDate = formData.get("dueDate");
+    const title = formData.get("title") as string | null;
+    const description = formData.get("description") as string | null;
+    const dueDate = formData.get("dueDate") as string | null;
     const displayMinutes = Number(formData.get("displayMinutes"));
     const displaySeconds = Number(formData.get("displaySeconds"));
     const secondsLogged = (displayMinutes * 60) + displaySeconds;
-    
-    const patchPayload = {
-        id: id,
+
+    const patchPayload: TaskPatchDto = {
         title: title,
         description: description,
         dueDate: dueDate,
@@ -105,8 +105,22 @@ async function handleTaskEditSubmit(editFormEvent: Event, editForm: HTMLFormElem
 
     window.location.reload();
 }
-
-/* Call Forms Initializer. */
+    
+function handleTaskEditEnableClick(taskEditForm: HTMLFormElement) {
+    const editButton = taskEditForm.querySelector(".js-task-edit") as HTMLButtonElement;
+    const saveButton = taskEditForm.querySelector('.js-task-save') as HTMLButtonElement;
+    if (!editButton || !saveButton) { return; }
+    
+    document.querySelectorAll('.js-task-edit').forEach(button => {
+        (button as HTMLButtonElement).style.display = 'none';
+    })
+    
+    const inputs = taskEditForm.querySelectorAll('input, textarea');
+    inputs.forEach(input => input.removeAttribute('disabled'));
+    
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline-block';
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     initTaskForms();

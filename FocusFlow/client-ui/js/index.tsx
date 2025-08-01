@@ -18,5 +18,5 @@ mounts.forEach(({ id, component }) => {
 import './components/PomodoroTimer';
 import './components/Task/Task';
 import './components/DateFilter'
-import './components/TaskManager'
+import './components/TaskList'
 import './components/CompleteToggle';
