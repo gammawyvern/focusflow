@@ -53,6 +53,10 @@ hr {
 .accent-2:hover { background-color: var(--accent-2-hover); }
 .accent-3 { background-color: var(--accent-3); color: var(--accent-text-color); }
 .accent-3:hover { background-color: var(--accent-3-hover); }
+.accent-4 { background-color: var(--accent-4); color: var(--accent-text-color); }
+.accent-4:hover { background-color: var(--accent-4-hover); }
+.accent-5 { background-color: var(--accent-5); color: var(--accent-text-color); }
+.accent-5:hover { background-color: var(--accent-5-hover); }
 
 /* Input Styling */
 
