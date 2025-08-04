@@ -1,10 +1,11 @@
 @model FocusFlow.Models.TaskSublistViewModel
 
-<div class="task-sublist @Model.StyleClass">
+<div class="js-task-sublist task-sublist expanded @Model.StyleClass">
     <div class="task-sublist-header">
         <div class="task-sublist-header-text">@Model.Header</div>
-        <button class="js-task-sublist-expand task-sublist-header-expand"></button>
+        <button class="task-sublist-header-expand @Model.StyleClass"></button>
     </div>
+    
     <div class="task-sublist-content">
         @foreach (var taskView in @Model.TaskItemViews)
         {

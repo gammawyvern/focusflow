@@ -1,4 +1,5 @@
 /* Layout. */
+
 .task-sublist {
     display: grid;
     grid-template-columns: 1fr;
@@ -18,7 +19,7 @@
     grid-area: header;
     
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 30px;
     grid-template-areas: "text expand";
     
     color: var(--accent-text-color);
@@ -31,6 +32,17 @@
 
 .task-sublist-header-expand {
     grid-area: expand;
+
+    background-image: url("../../assets/carrot-left.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    border-radius: var(--common-border-radius);
+}
+
+.task-sublist.expanded .task-sublist-header-expand {
+    background-image: url("../../assets/carrot-down.svg");
 }
 
 /* Content. */
@@ -45,14 +57,29 @@
 
 /* Color Styles. */
 
-.task-sublist.active {
+.task-sublist.active,
+.task-sublist-header-expand.active {
     background-color: var(--accent-3);
 }
 
-.task-sublist.incomplete{
+.task-sublist.incomplete,
+.task-sublist-header-expand.incomplete {
     background-color: var(--accent-2);
 }
 
-.task-sublist.complete {
+.task-sublist.complete,
+.task-sublist-header-expand.complete {
     background-color: var(--accent-4);
+}
+
+.task-sublist-header-expand.active:hover {
+    background-color: var(--accent-3-hover);
+}
+
+.task-sublist-header-expand.incomplete:hover {
+    background-color: var(--accent-2-hover);
+}
+
+.task-sublist-header-expand.complete:hover {
+    background-color: var(--accent-4-hover);
 }
