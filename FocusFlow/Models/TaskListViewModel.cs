@@ -8,6 +8,8 @@ public class TaskListViewModel
     public TaskSublistViewModel? IncompleteTaskSublist { get; init; }
     public TaskSublistViewModel? CompleteTaskSublist { get; init; }
     
+    
+    public bool ShowActiveTask { get; init; }
     public bool ShowDateSelector { get; init; } = true;
     
     public DateTime? StartDate { get; init; }

@@ -2,6 +2,9 @@
 
 <div class="card" style="height: 100%;">
     <div class="js-timer timer" data-task-id="@Model.ActiveTaskItemId" data-started-time="@Model.StartedTime">
+        <div class="timer-active-task">
+            @await Html.PartialAsync("Components/TaskSublist/_TaskSublist", Model.ActiveTaskSublist)
+        </div>
         <div class="js-timer-display timer-display"></div>
         <div class="timer-controls">
             <button class="accent-1 js-timer-play-pause timer-play-pause"></button>

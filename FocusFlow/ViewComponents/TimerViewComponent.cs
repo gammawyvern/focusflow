@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 
-using FocusFlow.Models;
+using FocusFlow.Helpers.Mapping;
 using FocusFlow.Repositories;
+using FocusFlow.Models;
 
 namespace FocusFlow.ViewComponents;
 
@@ -11,11 +12,25 @@ public class TimerViewComponent(ITaskItemRepository taskItemRepository): ViewCom
     {
         var activeTaskItem = taskItemRepository.Get()
             .FirstOrDefault(task => task.IsActive);
-
+        
+        var taskItemViews = new List<TaskItemViewModel>();
+        if (activeTaskItem != null)
+        {
+            var taskDto = TaskItemMapper.ToDto(activeTaskItem);
+            var taskView = TaskItemViewModelMapper.ToTaskItemViewModel(taskDto);
+            taskItemViews.Add(taskView);
+        }
+        
         var viewModel = new TimerViewModel
         {
             ActiveTaskItemId = activeTaskItem?.Id,
-            StartedTime = activeTaskItem?.StartedTime
+            StartedTime = activeTaskItem?.StartedTime,
+            ActiveTaskSublist = new TaskSublistViewModel
+            {
+                StyleClass = "active",
+                Header = "Active Task",
+                TaskItemViews = taskItemViews
+            }
         };
         
         return View(viewModel);

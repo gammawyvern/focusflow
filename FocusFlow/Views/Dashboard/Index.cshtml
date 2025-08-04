@@ -7,12 +7,9 @@
 <div class="dashboard-main">
     <div class="dashboard-task-summary-panel">
         @await Component.InvokeAsync("TaskList", new {
-            controller = "Dashboard",
             header = "Today's Tasks",
-            
-            showCompleted = @Model.ShowCompleted,
+            showActiveTask = false,
             showDateSelector = false,
-            
             startDate = @Model.StartDate,
             endDate = @Model.EndDate
         })

@@ -8,7 +8,7 @@ namespace FocusFlow.ViewComponents;
 
 public class TaskListViewComponent(ITaskItemRepository taskItemRepository): ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync(string? header, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
+    public async Task<IViewComponentResult> InvokeAsync(string? header, bool? showActiveTask, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
     {
         var entities = await taskItemRepository.GetAllAsync();
         
@@ -73,6 +73,7 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
                 TaskItemViews = completeTasks
             },
             
+            ShowActiveTask = showActiveTask ?? true,
             ShowDateSelector = showDateSelector ?? true,
             StartDate = startDate,
             EndDate = endDate

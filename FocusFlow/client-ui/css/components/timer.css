@@ -1,13 +1,18 @@
 .timer {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 40px;
+    grid-template-rows: auto 1fr 40px;
     grid-template-areas:
+        "active-task"
         "display"
         "controls"
     ;
     
     height: 100%;
+}
+
+.timer-active-task {
+    grid-area: active-task;
 }
 
 .timer-display {
