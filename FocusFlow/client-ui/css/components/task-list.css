@@ -1,7 +1,7 @@
 .task-list {
     display: flex;
     flex-direction: column;
-    row-gap: 4px;
+    gap: var(--common-spacing);
 }
 
 .task-create {
@@ -29,7 +29,7 @@
 .task-list-header-line {
     display: grid;
     grid-template-columns: auto auto 120px 30px;
-    grid-template-areas: "task-list-header . date complete";
+    grid-template-areas: "task-list-header . date";
     gap: var(--common-padding);
 
     padding: 0 var(--common-padding);
@@ -42,8 +42,4 @@
 
 .task-list-date-selector {
     grid-area: date;
-}
-
-.task-list-complete-toggle {
-    grid-area: complete;
 }

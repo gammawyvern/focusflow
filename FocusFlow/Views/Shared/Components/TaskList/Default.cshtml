@@ -13,21 +13,38 @@
                 value="@Model.StartDate?.ToString("yyyy-MM-dd")"
             />
         }
-        
-        <form class="js-task-list-complete-toggle-form">
-            <input type="hidden" name="showCompleted" value="@(!Model.ShowCompleted ? "true" : "false")" />
-            <button class="task-list-complete-toggle accent-1" type="submit" title="@(Model.ShowCompleted ? "Hide completed tasks" : "Show completed tasks")">
-                @(Model.ShowCompleted ? "Hide Completed Tasks" : "Show Completed Tasks")
-            </button>
-        </form>
-        
     </div>
 
     <div class="task-list" style="height: 100%;">
-        @foreach (var taskView in @Model.TaskItems)
-        {
-            @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
-        }
+        <div class="task-sublist active">
+            <div class="task-sublist-header">Active Task</div>
+            <div class="task-sublist-content">
+                @foreach (var taskView in @Model.ActiveTaskItems)
+                {
+                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+                }
+            </div>
+        </div>
+        
+        <div class="task-sublist incomplete">
+            <div class="task-sublist-header">Incomplete Tasks</div>
+            <div class="task-sublist-content">
+                @foreach (var taskView in @Model.IncompleteTaskItems)
+                {
+                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+                }
+            </div>
+        </div>
+        
+        <div class="task-sublist complete">
+            <div class="task-sublist-header">Complete Tasks</div>
+            <div class="task-sublist-content">
+                @foreach (var taskView in @Model.CompleteTaskItems)
+                {
+                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+                }
+            </div>
+        </div>
 
         <button class="js-task-create task-create">New Task</button>
     </div>
