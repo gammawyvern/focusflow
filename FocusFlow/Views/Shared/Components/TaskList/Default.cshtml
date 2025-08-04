@@ -16,35 +16,9 @@
     </div>
 
     <div class="task-list" style="height: 100%;">
-        <div class="task-sublist active">
-            <div class="task-sublist-header">Active Task</div>
-            <div class="task-sublist-content">
-                @foreach (var taskView in @Model.ActiveTaskItems)
-                {
-                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
-                }
-            </div>
-        </div>
-        
-        <div class="task-sublist incomplete">
-            <div class="task-sublist-header">Incomplete Tasks</div>
-            <div class="task-sublist-content">
-                @foreach (var taskView in @Model.IncompleteTaskItems)
-                {
-                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
-                }
-            </div>
-        </div>
-        
-        <div class="task-sublist complete">
-            <div class="task-sublist-header">Complete Tasks</div>
-            <div class="task-sublist-content">
-                @foreach (var taskView in @Model.CompleteTaskItems)
-                {
-                    @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
-                }
-            </div>
-        </div>
+        @await Html.PartialAsync("Components/TaskSublist/_TaskSublist", Model.ActiveTaskSublist)
+        @await Html.PartialAsync("Components/TaskSublist/_TaskSublist", Model.IncompleteTaskSublist)
+        @await Html.PartialAsync("Components/TaskSublist/_TaskSublist", Model.CompleteTaskSublist)
 
         <button class="js-task-create task-create">New Task</button>
     </div>

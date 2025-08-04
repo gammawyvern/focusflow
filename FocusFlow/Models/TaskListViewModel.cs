@@ -4,9 +4,9 @@ public class TaskListViewModel
 {
     public string? Header { get; init; }
     
-    public IEnumerable<TaskItemViewModel> ActiveTaskItems { get; init; } = [];
-    public IEnumerable<TaskItemViewModel> IncompleteTaskItems { get; init; } = [];
-    public IEnumerable<TaskItemViewModel> CompleteTaskItems { get; init; } = [];
+    public TaskSublistViewModel? ActiveTaskSublist { get; init; }
+    public TaskSublistViewModel? IncompleteTaskSublist { get; init; }
+    public TaskSublistViewModel? CompleteTaskSublist { get; init; }
     
     public bool ShowDateSelector { get; init; } = true;
     

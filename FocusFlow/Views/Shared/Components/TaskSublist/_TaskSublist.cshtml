@@ -1,0 +1,14 @@
+@model FocusFlow.Models.TaskSublistViewModel
+
+<div class="task-sublist @Model.StyleClass">
+    <div class="task-sublist-header">
+        <div class="task-sublist-header-text">@Model.Header</div>
+        <button class="js-task-sublist-expand task-sublist-header-expand"></button>
+    </div>
+    <div class="task-sublist-content">
+        @foreach (var taskView in @Model.TaskItemViews)
+        {
+            @await Html.PartialAsync("Components/Tasks/_TaskItem", taskView)
+        }
+    </div>
+</div>

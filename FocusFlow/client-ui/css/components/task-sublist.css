@@ -1,3 +1,4 @@
+/* Layout. */
 .task-sublist {
     display: grid;
     grid-template-columns: 1fr;
@@ -11,6 +12,39 @@
     border-radius: var(--common-border-radius);
 }
 
+/* Header. */
+
+.task-sublist-header {
+    grid-area: header;
+    
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "text expand";
+    
+    color: var(--accent-text-color);
+    padding: var(--common-padding);
+}
+
+.task-sublist-header-text {
+    grid-area: text;
+}
+
+.task-sublist-header-expand {
+    grid-area: expand;
+}
+
+/* Content. */
+
+.task-sublist-content {
+    grid-area: content;
+    
+    display: flex;
+    flex-direction: column;
+    gap: var(--common-padding);
+}
+
+/* Color Styles. */
+
 .task-sublist.active {
     background-color: var(--accent-3);
 }
@@ -21,19 +55,4 @@
 
 .task-sublist.complete {
     background-color: var(--accent-4);
-}
-
-.task-sublist-header {
-    grid-area: header;
-    
-    color: var(--accent-text-color);
-    padding: var(--common-padding);
-}
-
-.task-sublist-content {
-    grid-area: content;
-    
-    display: flex;
-    flex-direction: column;
-    gap: var(--common-padding);
 }

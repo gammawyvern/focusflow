@@ -42,7 +42,7 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
             .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
             .ToList();
 
-        var completedTasks = taskItemDtos
+        var completeTasks = taskItemDtos
             .Where(task =>  task.IsCompleted && !task.IsActive)
             .OrderBy(task => task.DueDate)
             .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
@@ -52,9 +52,26 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
         {
             Header = header,
             
-            ActiveTaskItems = activeTasks,
-            IncompleteTaskItems = incompleteTasks,
-            CompleteTaskItems = completedTasks,
+            ActiveTaskSublist = new TaskSublistViewModel
+            {
+                StyleClass = "active",
+                Header = "Active Task",
+                TaskItemViews = activeTasks
+            },
+            
+            IncompleteTaskSublist = new TaskSublistViewModel
+            {
+                StyleClass = "incomplete",
+                Header = "Incomplete Tasks",
+                TaskItemViews = incompleteTasks
+            },
+            
+            CompleteTaskSublist =  new TaskSublistViewModel
+            {
+                StyleClass = "complete",
+                Header = "Complete Tasks",
+                TaskItemViews = completeTasks
+            },
             
             ShowDateSelector = showDateSelector ?? true,
             StartDate = startDate,
