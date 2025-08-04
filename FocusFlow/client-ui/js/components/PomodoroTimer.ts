@@ -1,83 +1,102 @@
 import moment, { Moment, Duration } from "moment";
 
-function formatTimeElapsed(startTime: Moment, endTime: Moment, secondsElapsedOffset: number) {
-    const duration: Duration = moment.duration(endTime.diff(startTime)).add(secondsElapsedOffset);
-    return formatDuration(duration);
+function initPomodoroTimer() {
+    const timers = document.querySelectorAll(".js-timer");
+    
+    for (const timer of timers) {
+        let activeTaskId = (timer as HTMLElement).dataset.taskId;
+        let activeTaskTimeStarted = (timer as HTMLElement).dataset.startedTime;
+        
+        /* TODO: Calculations later on for if user leaves for long time. */
+        
+        const display = timer.querySelector(".js-timer-display");
+        const startButton = timer.querySelector(".js-timer-play-pause");
+        const resetButton = timer.querySelector(".js-timer-reset");
+        
+        if (!display || !startButton || !resetButton) {
+            console.error("Failed to find timer elements.");
+            return;
+        }
+        
+        let secondsElapsedOffset = 0;
+        let intervalId: NodeJS.Timeout;
+        
+        display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
+
+        async function startCounter(): Promise<void> {
+            if (!activeTaskTimeStarted) {
+                activeTaskTimeStarted = moment().format();
+                
+                const response = await fetch(`/api/tasks/${activeTaskId}`);
+                const taskDto = await response.json();
+                taskDto.startedTime = activeTaskTimeStarted;
+                await fetch(`/api/tasks/${activeTaskId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(taskDto)
+                });
+            }
+
+            intervalId = setInterval(() => {
+                display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset); 
+            }, 1000)
+        }
+
+        async function stopCounter(): Promise<void> {
+            if (!activeTaskTimeStarted) {
+                return;
+            }
+            
+            const secondsToLog = moment().diff(activeTaskTimeStarted, "seconds"); 
+            secondsElapsedOffset += secondsToLog;
+            activeTaskTimeStarted = undefined;
+            clearInterval(intervalId);
+            
+            const response = await fetch(`/api/tasks/${activeTaskId}`);
+            const taskDto = await response.json();
+            taskDto.secondsLogged += secondsToLog;
+            taskDto.startedTime = null;
+            await fetch(`/api/tasks/${activeTaskId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(taskDto)
+            });
+        }
+        
+        function resetCounter() {
+            stopCounter();
+            secondsElapsedOffset = 0;
+            display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
+        }
+
+        startButton!.addEventListener("click", () => {
+            activeTaskTimeStarted ? stopCounter() : startCounter();
+        });
+        
+        resetButton!.addEventListener("click", () => {
+            resetCounter();
+        })
+        
+        if (activeTaskTimeStarted) {
+            startCounter();
+        }
+    }
 }
 
-function formatDuration(duration: Duration): string {
-    return `${pad2(duration.hours())}h ${pad2(duration.minutes())}m ${pad2(duration.seconds())}s`;
+/* Helpers. */
+
+function formatTimeElapsed(startTime: Moment, endTime: Moment, secondsElapsedOffset: number) {
+    let duration: Duration = moment.duration(endTime.diff(startTime));
+    if (!duration.isValid()) duration = moment.duration();
+    duration.add(secondsElapsedOffset, "seconds");
+    return `${pad2(duration.minutes())}:${pad2(duration.seconds())}`;
 }
 
 function pad2(num: number): string {
     return String(num).padStart(2, "0");
 }
 
-function initPomodoroTimer() {
-    const timers = document.getElementsByClassName("js-pomodoro-timer");
-    
-    for (const timer of timers) {
-        let activeTaskId = (timer as HTMLElement).dataset.taskId;
-        if (!activeTaskId) { continue; }
-        
-        let secondsElapsedOffset = 0;
-        
-        let running = false;
-        let intervalId: NodeJS.Timeout;
-
-        const runningTime = timer.querySelector(".js-pomodoro-running-time");
-        const startButton = timer.querySelector(".js-pomodoro-start");
-
-        if (!runningTime || !startButton /*|| !stopButton*/) {
-            console.error("Failed to find time text, start button, or stop button element(s).", runningTime, startButton /*, stopButton*/);
-            continue;
-        }
-        
-        runningTime.textContent = formatDuration(moment.duration());
-        
-        async function startCounter(): Promise<void> {
-            const response = await fetch(`/api/tasks/${activeTaskId}`);
-            const taskDto = await response.json();
-            
-            const startedTime = moment()
-            taskDto.startedTime = startedTime.format();
-
-            await fetch(`/api/tasks/${activeTaskId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(taskDto)
-            });
-
-            intervalId = setInterval(() => {
-                runningTime!.textContent = formatTimeElapsed(taskDto.startedTime, moment(), secondsElapsedOffset)
-            }, 1000)
-        }
-
-        async function stopCounter(): Promise<void> {
-            clearInterval(intervalId);
-            
-            const response = await fetch(`/api/tasks/${activeTaskId}`);
-            const taskDto = await response.json();
-
-            const start: Moment = moment(taskDto.startedTime);
-            const secondsToLog: number = moment().diff(start, 'seconds');
-            secondsElapsedOffset += secondsToLog;
-            taskDto.secondsLogged += secondsToLog;
-            taskDto.startedTime = null;
-            
-            await fetch(`/api/tasks/${activeTaskId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(taskDto)
-            });
-        }
-
-        startButton.addEventListener("click", () => {
-            running ? stopCounter() : startCounter();
-            running = !running;
-        });
-    }
-}
+/* Init call. */
 
 document.addEventListener("DOMContentLoaded", () => {
     initPomodoroTimer();
