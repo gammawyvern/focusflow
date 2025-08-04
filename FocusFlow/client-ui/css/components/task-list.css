@@ -4,12 +4,6 @@
     row-gap: 4px;
 }
 
-.active-task {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
 .task-create {
     position: sticky;
     bottom: 0;

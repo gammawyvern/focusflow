@@ -1,4 +1,5 @@
 @using Microsoft.IdentityModel.Tokens
+
 @model FocusFlow.Models.TaskItemViewModel
 
 <div class="task @(Model.IsCompleted ? "complete" : "") @(Model.IsActive ? "active" : "")">
@@ -64,8 +65,8 @@
                        disabled/>
             </div>
 
-            <button type="button" class="js-task-edit task-edit">[E]</button>
-            <button type="submit" class="js-task-save task-save" style="display: none;">[S]</button>
+            <button type="button" class="js-task-edit task-edit"></button>
+            <button type="submit" class="js-task-save task-save" style="display: none;"></button>
         </form>
 
         <form class="js-task-delete-form">

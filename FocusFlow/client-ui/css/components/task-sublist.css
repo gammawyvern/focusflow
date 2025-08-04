@@ -1,0 +1,36 @@
+.task-sublist {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "header"
+        "content"
+    ;
+    
+    gap: var(--common-spacing);
+}
+
+.task-sublist-header {
+    grid-area: header;
+}
+
+.task-sublist-content {
+    grid-area: content;
+    
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.task-sublist-content.active {
+    background-color: var(--accent-3);
+}
+
+.task-sublist-content.uncompleted {
+    background-color: var(--accent-2);
+}
+
+.task-sublist-content.completed {
+    background-color: var(--accent-4);
+}
+
