@@ -102,3 +102,27 @@
 .task-delete:hover {
     background-color: var(--accent-5-hover);
 }
+
+.task-edit {
+    background-image: url("../../../assets/edit.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-1);
+}
+
+.task-edit:hover {
+    background-color: var(--accent-1-hover);
+}
+
+.task-save {
+    background-image: url("../../../assets/save.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-1);
+}
+
+.task-save:hover {
+    background-color: var(--accent-1-hover);
+}
