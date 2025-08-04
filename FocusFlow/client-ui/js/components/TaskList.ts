@@ -12,11 +12,11 @@ function initTaskListForms() {
     for (const taskListDateSelector of taskListDateSelectors) {
         taskListDateSelector.addEventListener("change", () => handleTaskListDateSelectorChange(taskListDateSelector as HTMLInputElement));
     }
-    
-    /* Show Completed Form. */
-    const taskListCompleteToggleForms = document.getElementsByClassName("js-task-list-complete-toggle-form");
-    for (const taskListCompleteToggleForm of taskListCompleteToggleForms) {
-        taskListCompleteToggleForm.addEventListener("submit", (e) => handleCompletedToggleClick(e, taskListCompleteToggleForm as HTMLFormElement));
+
+    /* Sublist Expand Form. */
+    const taskSublists = document.querySelectorAll(".js-task-sublist");
+    for (const taskSublist of taskSublists) {
+        setupSublistExpandHandler(taskSublist as HTMLElement);
     }
 }
 
@@ -42,19 +42,24 @@ function handleTaskListDateSelectorChange(taskListDateSelector: HTMLInputElement
     window.location.search = params.toString();
 }
 
-function handleCompletedToggleClick(toggleCompleteEvent: Event, toggleCompleteForm: HTMLFormElement) {
-    toggleCompleteEvent.preventDefault();
-    const formData = new FormData(toggleCompleteForm);
-    const showCompleted = formData.get("showCompleted") === "true";
-
-    const params = new URLSearchParams(window.location.search);
-    if (!showCompleted) {
-        params.set("showCompleted", String(showCompleted));
-    } else {
-        params.delete("showCompleted");
+function setupSublistExpandHandler(taskSublist: HTMLElement) {
+    const expandButtons = taskSublist.querySelectorAll(".task-sublist-header-expand"); 
+    for (const expandButton of expandButtons) {
+        expandButton.addEventListener("click", () => {
+            handleTaskSublistExpandClick(taskSublist);
+        });
     }
+}
 
-    window.location.search = params.toString();
+function handleTaskSublistExpandClick(taskSublist: HTMLElement) {
+    const isExpanded = taskSublist.classList.contains("expanded")
+    const sublistContent = taskSublist.querySelectorAll(".task-sublist-content");
+    
+    for (const content of sublistContent) {
+        (content as HTMLElement).style.display = isExpanded ? "none" : "";
+    }
+    
+    taskSublist.classList.toggle("expanded");
 }
 
 /* Call Forms Initializer. */

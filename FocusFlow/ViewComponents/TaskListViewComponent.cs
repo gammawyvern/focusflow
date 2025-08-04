@@ -8,41 +8,71 @@ namespace FocusFlow.ViewComponents;
 
 public class TaskListViewComponent(ITaskItemRepository taskItemRepository): ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync(string? header, bool? showCompleted, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
+    public async Task<IViewComponentResult> InvokeAsync(string? header, bool? showDateSelector, DateTime? startDate, DateTime? endDate)
     {
         var entities = await taskItemRepository.GetAllAsync();
         
-        entities = entities
-            .Where(e => showCompleted == true || showCompleted == null || !e.IsCompleted)
-            .OrderBy(e => e.IsCompleted)
-            .ThenByDescending(e => e.IsActive)
-            .ThenBy(e => e.DueDate.Date)
-            .ToList();
-
         if (startDate.HasValue)
         {
-            entities = entities
-                .Where(task => task.DueDate.Date >= startDate.Value.Date)
-                .ToList();
+            entities = entities.Where(task => task.DueDate.Date >= startDate.Value.Date).ToList();
         }
 
         if (endDate.HasValue)
         {
-            entities = entities
-                .Where(t => t.DueDate.Date <= endDate.Value.Date)
-                .ToList();
+            entities = entities.Where(t => t.DueDate.Date <= endDate.Value.Date).ToList();
         }
-
-        var taskItemViewModels = entities
+        
+        // Convert to DTOs
+        
+        var taskItemDtos = entities
             .Select(TaskItemMapper.ToDto)
+            .ToList();
+        
+        // Map DTOs to needed lists
+
+        var activeTasks= taskItemDtos
+            .Where(task => task.IsActive)
+            .OrderBy(task => task.DueDate)
+            .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
+            .ToList();
+
+        var incompleteTasks = taskItemDtos
+            .Where(task => !task.IsCompleted && !task.IsActive)
+            .OrderBy(task => task.DueDate)
+            .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
+            .ToList();
+
+        var completeTasks = taskItemDtos
+            .Where(task =>  task.IsCompleted && !task.IsActive)
+            .OrderBy(task => task.DueDate)
             .Select(TaskItemViewModelMapper.ToTaskItemViewModel)
             .ToList();
 
         var model = new TaskListViewModel
         {
             Header = header,
-            TaskItems = taskItemViewModels,
-            ShowCompleted = showCompleted ?? true,
+            
+            ActiveTaskSublist = new TaskSublistViewModel
+            {
+                StyleClass = "active",
+                Header = "Active Task",
+                TaskItemViews = activeTasks
+            },
+            
+            IncompleteTaskSublist = new TaskSublistViewModel
+            {
+                StyleClass = "incomplete",
+                Header = "Incomplete Tasks",
+                TaskItemViews = incompleteTasks
+            },
+            
+            CompleteTaskSublist =  new TaskSublistViewModel
+            {
+                StyleClass = "complete",
+                Header = "Complete Tasks",
+                TaskItemViews = completeTasks
+            },
+            
             ShowDateSelector = showDateSelector ?? true,
             StartDate = startDate,
             EndDate = endDate

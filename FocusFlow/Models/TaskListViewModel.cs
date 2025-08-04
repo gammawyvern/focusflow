@@ -3,9 +3,11 @@ namespace FocusFlow.Models;
 public class TaskListViewModel
 {
     public string? Header { get; init; }
-    public IEnumerable<TaskItemViewModel> TaskItems { get; init; } = [];
     
-    public bool ShowCompleted { get; init; } = true;
+    public TaskSublistViewModel? ActiveTaskSublist { get; init; }
+    public TaskSublistViewModel? IncompleteTaskSublist { get; init; }
+    public TaskSublistViewModel? CompleteTaskSublist { get; init; }
+    
     public bool ShowDateSelector { get; init; } = true;
     
     public DateTime? StartDate { get; init; }

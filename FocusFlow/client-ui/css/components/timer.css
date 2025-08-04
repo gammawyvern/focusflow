@@ -1,0 +1,53 @@
+.timer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 40px;
+    grid-template-areas:
+        "display"
+        "controls"
+    ;
+    
+    height: 100%;
+}
+
+.timer-display {
+    grid-area: display;
+    justify-self: center;
+    align-self: center;
+    
+    font-size: calc(4 * var(--font-size));
+}
+
+.timer-controls {
+    grid-area: controls;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "play-pause reset";
+    gap: var(--common-spacing);
+}
+
+.timer-play-pause {
+    grid-area: play-pause;
+    
+    background-image: url("../../assets/play-pause.svg");
+    background-size: auto 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    width: 100%;
+    height: 100%;
+}
+
+.timer-reset {
+    grid-area: reset;
+    
+    background-image: url("../../assets/reset.svg");
+    background-size: auto 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    width: 100%;
+    height: 100%;
+}

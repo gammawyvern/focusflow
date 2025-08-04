@@ -1,0 +1,85 @@
+/* Layout. */
+
+.task-sublist {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "header"
+        "content"
+    ;
+    
+    padding: var(--common-padding);
+    border-radius: var(--common-border-radius);
+}
+
+/* Header. */
+
+.task-sublist-header {
+    grid-area: header;
+    
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    grid-template-areas: "text expand";
+    
+    color: var(--accent-text-color);
+    padding: var(--common-padding);
+}
+
+.task-sublist-header-text {
+    grid-area: text;
+}
+
+.task-sublist-header-expand {
+    grid-area: expand;
+
+    background-image: url("../../assets/carrot-left.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    border-radius: var(--common-border-radius);
+}
+
+.task-sublist.expanded .task-sublist-header-expand {
+    background-image: url("../../assets/carrot-down.svg");
+}
+
+/* Content. */
+
+.task-sublist-content {
+    grid-area: content;
+    
+    display: flex;
+    flex-direction: column;
+    gap: var(--common-padding);
+}
+
+/* Color Styles. */
+
+.task-sublist.active,
+.task-sublist-header-expand.active {
+    background-color: var(--accent-3);
+}
+
+.task-sublist.incomplete,
+.task-sublist-header-expand.incomplete {
+    background-color: var(--accent-2);
+}
+
+.task-sublist.complete,
+.task-sublist-header-expand.complete {
+    background-color: var(--accent-4);
+}
+
+.task-sublist-header-expand.active:hover {
+    background-color: var(--accent-3-hover);
+}
+
+.task-sublist-header-expand.incomplete:hover {
+    background-color: var(--accent-2-hover);
+}
+
+.task-sublist-header-expand.complete:hover {
+    background-color: var(--accent-4-hover);
+}

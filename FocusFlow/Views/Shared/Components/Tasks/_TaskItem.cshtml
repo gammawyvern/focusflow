@@ -1,76 +1,72 @@
-@using Microsoft.IdentityModel.Tokens
 @model FocusFlow.Models.TaskItemViewModel
 
 <div class="task @(Model.IsCompleted ? "complete" : "") @(Model.IsActive ? "active" : "")">
-    @if (!Model.Tag.IsNullOrEmpty())
+    <form class="js-task-complete-form">
+        <input type="hidden" name="id" value="@Model.Id"/>
+        <input type="hidden" name="complete" value="@((!Model.IsCompleted).ToString().ToLower())"/>
+        <button type="submit" class="task-set-complete"></button>
+    </form>
+
+    @if (!Model.IsCompleted)
     {
-        <div class="task-tag">@Model.Tag</div>
+        <form class="js-task-active-form">
+            <input type="hidden" name="id" value="@Model.Id"/>
+            <input type="hidden" name="active" value="@((!Model.IsActive).ToString().ToLower())"/>
+            <button type="submit" class="task-set-active"></button>
+        </form>
     }
 
-    <div class="task-main-content">
-        <form class="js-task-complete-form">
-            <input type="hidden" name="id" value="@Model.Id"/>
-            <input type="hidden" name="complete" value="@((!Model.IsCompleted).ToString().ToLower())"/>
-            <button type="submit" class="task-complete"></button>
-        </form>
+    <form class="js-task-edit-form">
+        <input type="hidden" name="id" value="@Model.Id"/>
 
-        @if (!Model.IsCompleted)
-        {
-            <form class="js-task-active-form">
-                <input type="hidden" name="id" value="@Model.Id"/>
-                <input type="hidden" name="active" value="@((!Model.IsActive).ToString().ToLower())"/>
-                <button type="submit" class="task-set-active"></button>
-            </form>
-        }
+        <input
+            type="text"
+            name="title"
+            class="task-title"
+            value="@Model.Title"
+            disabled/>
 
-        <form class="js-task-edit-form">
-            <input type="hidden" name="id" value="@Model.Id"/>
+        <textarea 
+            name="description"
+            class="task-description" 
+            disabled
+        >@Model.Description</textarea>
 
-            <input
-                type="text"
-                name="title"
-                class="task-title"
-                value="@Model.Title"
-                disabled/>
+        <input
+            type="date"
+            name="dueDate"
+            class="task-due-date"
+            value="@Model.DueDate.ToString("yyyy-MM-dd")"
+            disabled/>
 
-            <textarea 
-                name="description"
-                class="task-description" 
-                disabled
-            >@Model.Description</textarea>
+        <div class="task-time-logged">
+            <input type="number"
+                   name="displayMinutes"
+                   class="task-minutes-logged"
+                   value="@Model.DisplayMinutes"
+                   min="0"
+                   step="1"
+                   disabled/>:
+            <input type="number"
+                   name="displaySeconds"
+                   class="task-seconds-logged"
+                   value="@Model.DisplaySeconds"
+                   min="0"
+                   max="59"
+                   step="1"
+                   disabled/>
+        </div>
 
-            <input
-                type="date"
-                name="dueDate"
-                class="task-due-date"
-                value="@Model.DueDate.ToString("yyyy-MM-dd")"
-                disabled/>
-
-            <div class="task-time-logged">
-                <input type="number"
-                       name="displayMinutes"
-                       class="task-minutes-logged"
-                       value="@Model.DisplayMinutes"
-                       min="0"
-                       step="1"
-                       disabled/>:
-                <input type="number"
-                       name="displaySeconds"
-                       class="task-seconds-logged"
-                       value="@Model.DisplaySeconds"
-                       min="0"
-                       max="59"
-                       step="1"
-                       disabled/>
-            </div>
-
-            <button type="button" class="js-task-edit task-edit">[E]</button>
-            <button type="submit" class="js-task-save task-save" style="display: none;">[S]</button>
-        </form>
-
+        <button type="button" class="js-task-edit task-edit"></button>
+        <button type="submit" class="js-task-save task-save" style="display: none;"></button>
+    </form>
+    
+    @if (!Model.IsActive)
+    {
         <form class="js-task-delete-form">
             <input type="hidden" name="id" value="@Model.Id"/>
             <button type="submit" class="task-delete"></button>
         </form>
-    </div>
+        
+    }
 </div>

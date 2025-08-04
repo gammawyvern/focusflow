@@ -1,43 +1,25 @@
 /* Base Task Styling */
 
 .task {
-    background-color: var(--input-background-color);
-    border-radius: var(--common-border-radius);
-}
-
-.task .task-tag {
-    
-}
-
-.task.active .task-tag {
-    background-color: var(--accent-3)
-}
-
-.task .task-main-content {
     padding: var(--common-padding);
-    
+
     background-color: var(--card-background-color-2);
     border-radius: var(--common-border-radius);
 }
 
-.task.active {
-    background-color: var(--accent-3);
-}
-
-.task.active .task-tag {
-    color: var(--accent-text-color);
-}
-
 .task-set-complete {
-    background-color: var(--accent-1);
+    background-color: var(--input-background-color);
+    border: var(--common-border-width) solid var(--accent-1);
+    border-radius: var(--common-border-radius);
 }
 
 .task-set-complete:hover {
+    background-image: url("../../../assets/check.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
     background-color: var(--accent-1-hover);
-}
-
-.task.complete {
-    /* border: var(--common-border-width) solid var(--accent-1-hover); */
 }
 
 .complete .task-set-complete {
@@ -45,6 +27,13 @@
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: center center;
+
+    background-color: var(--accent-1);
+    border: none;
+}
+
+.complete .task-set-complete:hover {
+    background-color: var(--accent-1-hover);
 }
 
 .task-set-active {
@@ -101,4 +90,28 @@
 
 .task-delete:hover {
     background-color: var(--accent-5-hover);
+}
+
+.task-edit {
+    background-image: url("../../../assets/edit.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-1);
+}
+
+.task-edit:hover {
+    background-color: var(--accent-1-hover);
+}
+
+.task-save {
+    background-image: url("../../../assets/save.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: var(--accent-1);
+}
+
+.task-save:hover {
+    background-color: var(--accent-1-hover);
 }

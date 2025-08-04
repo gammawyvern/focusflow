@@ -7,4 +7,7 @@
 @import './pages/task-manager.css';
 
 @import './components/task-list.css';
+@import './components/task-sublist.css';
 @import './components/task/index.css';
+
+@import './components/timer.css';

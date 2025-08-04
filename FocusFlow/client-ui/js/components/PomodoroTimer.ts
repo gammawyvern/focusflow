@@ -48,8 +48,6 @@ function initPomodoroTimer() {
                 body: JSON.stringify(taskDto)
             });
 
-            startButton!.textContent = "Pause";
-
             intervalId = setInterval(() => {
                 runningTime!.textContent = formatTimeElapsed(taskDto.startedTime, moment(), secondsElapsedOffset)
             }, 1000)
@@ -72,8 +70,6 @@ function initPomodoroTimer() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(taskDto)
             });
-
-            startButton!.textContent = "Start";
         }
 
         startButton.addEventListener("click", () => {
