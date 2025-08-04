@@ -1,5 +1,8 @@
 import moment, { Moment, Duration } from "moment";
 
+const FOCUS_DURATION: Duration = moment.duration(25 * 60, "seconds");
+const BREAK_DURATION: Duration = moment.duration(5 * 60, "seconds");
+
 function initPomodoroTimer() {
     const timers = document.querySelectorAll(".js-timer");
     
@@ -10,10 +13,11 @@ function initPomodoroTimer() {
         /* TODO: Calculations later on for if user leaves for long time. */
         
         const display = timer.querySelector(".js-timer-display");
+        const title = timer.querySelector(".js-timer-title");
         const startButton = timer.querySelector(".js-timer-play-pause");
         const resetButton = timer.querySelector(".js-timer-reset");
         
-        if (!display || !startButton || !resetButton) {
+        if (!display || !title || !startButton || !resetButton) {
             console.error("Failed to find timer elements.");
             return;
         }
@@ -21,7 +25,8 @@ function initPomodoroTimer() {
         let secondsElapsedOffset = 0;
         let intervalId: NodeJS.Timeout;
         
-        display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
+        display.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
+        title.textContent = "Focus";
 
         async function startCounter(): Promise<void> {
             if (!activeTaskTimeStarted) {
@@ -89,7 +94,9 @@ function formatTimeElapsed(startTime: Moment, endTime: Moment, secondsElapsedOff
     let duration: Duration = moment.duration(endTime.diff(startTime));
     if (!duration.isValid()) duration = moment.duration();
     duration.add(secondsElapsedOffset, "seconds");
-    return `${pad2(duration.minutes())}:${pad2(duration.seconds())}`;
+    
+    const remaining = FOCUS_DURATION.clone().subtract(duration);
+    return `${pad2(remaining.minutes())}:${pad2(remaining.seconds())}`;
 }
 
 function pad2(num: number): string {

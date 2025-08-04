@@ -1,10 +1,11 @@
 .timer {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr 40px;
+    grid-template-rows: auto 10fr 7fr 40px;
     grid-template-areas:
         "active-task"
         "display"
+        "title"
         "controls"
     ;
     
@@ -18,9 +19,18 @@
 .timer-display {
     grid-area: display;
     justify-self: center;
-    align-self: center;
+    align-self: end;
     
-    font-size: calc(4 * var(--font-size));
+    font-size: calc(8 * var(--font-size));
+}
+
+.timer-title {
+    grid-area: title;
+    justify-self: center;
+    align-self: start;
+
+    font-size: calc(2 * var(--font-size));
+    color: var(--text-color);
 }
 
 .timer-controls {
