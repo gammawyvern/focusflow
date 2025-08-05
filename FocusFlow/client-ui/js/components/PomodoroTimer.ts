@@ -1,4 +1,4 @@
-import moment, { Moment, Duration } from "moment";
+import moment, { Moment, Duration, duration } from "moment";
 
 const FOCUS_DURATION: Duration = moment.duration(25 * 60, "seconds");
 const BREAK_DURATION: Duration = moment.duration(5 * 60, "seconds");
@@ -7,99 +7,119 @@ function initPomodoroTimer() {
     const timers = document.querySelectorAll(".js-timer");
     
     for (const timer of timers) {
-        let activeTaskId = (timer as HTMLElement).dataset.taskId;
-        let activeTaskTimeStarted = (timer as HTMLElement).dataset.startedTime;
+        const display = timer.querySelector(".js-timer-display") as HTMLElement;
+        const title = timer.querySelector(".js-timer-title") as HTMLElement;
+        const pausePlayButton = timer.querySelector(".js-timer-play-pause") as HTMLElement;
+        const resetButton = timer.querySelector(".js-timer-reset") as HTMLElement;
         
-        /* TODO: Calculations later on for if user leaves for long time. */
-        
-        const display = timer.querySelector(".js-timer-display");
-        const title = timer.querySelector(".js-timer-title");
-        const startButton = timer.querySelector(".js-timer-play-pause");
-        const resetButton = timer.querySelector(".js-timer-reset");
-        
-        if (!display || !title || !startButton || !resetButton) {
+        if (!display || !title || !pausePlayButton || !resetButton) {
             console.error("Failed to find timer elements.");
             return;
         }
         
-        let secondsElapsedOffset = 0;
+        /* Timer Setup On Load. */
+        
+        const newActiveTask: string | null = (timer as HTMLElement).dataset.taskId ?? null; 
+        let activeTask: string | null = localStorage.getItem("activeTask") ?? null; 
+        let startedTime: string | null = localStorage.getItem("startedTime");
+        let timeOffset: number = Number(localStorage.getItem("timeOffset") ?? 0);
+
+        display.textContent = formatTimeElapsed(moment(startedTime), moment(), duration(timeOffset, "seconds"));
+
+        if (!!startedTime) {
+            stopTimer().then(startTimer);
+        }
+        
+        activeTask = newActiveTask;
+        localStorage.setItem("activeTask", activeTask ?? "");
+
+        /* Interval / Counter Handlers. */
+        
         let intervalId: NodeJS.Timeout;
         
-        display.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
-        title.textContent = "Focus";
-
-        async function startCounter(): Promise<void> {
-            if (!activeTaskTimeStarted) {
-                activeTaskTimeStarted = moment().format();
-                
-                const response = await fetch(`/api/tasks/${activeTaskId}`);
-                const taskDto = await response.json();
-                taskDto.startedTime = activeTaskTimeStarted;
-                await fetch(`/api/tasks/${activeTaskId}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(taskDto)
-                });
-            }
-
+        function startCounter() {
             intervalId = setInterval(() => {
-                display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset); 
-            }, 1000)
+                display.textContent = formatTimeElapsed(moment(startedTime), moment(), duration(timeOffset, "seconds"));
+            }, 500)
         }
-
-        async function stopCounter(): Promise<void> {
-            if (!activeTaskTimeStarted) {
-                return;
-            }
-            
-            const secondsToLog = moment().diff(activeTaskTimeStarted, "seconds"); 
-            secondsElapsedOffset += secondsToLog;
-            activeTaskTimeStarted = undefined;
+        
+        function stopCounter() {
             clearInterval(intervalId);
+        }
+        
+        /* Timer Handlers. */
+        
+        async function startTimer(): Promise<void> {
+            if (startedTime) return;
             
-            const response = await fetch(`/api/tasks/${activeTaskId}`);
-            const taskDto = await response.json();
-            taskDto.secondsLogged += secondsToLog;
-            taskDto.startedTime = null;
-            await fetch(`/api/tasks/${activeTaskId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(taskDto)
-            });
-        }
-        
-        function resetCounter() {
-            stopCounter();
-            secondsElapsedOffset = 0;
-            display!.textContent = formatTimeElapsed(moment(activeTaskTimeStarted), moment(), secondsElapsedOffset);
-        }
-
-        startButton!.addEventListener("click", () => {
-            activeTaskTimeStarted ? stopCounter() : startCounter();
-        });
-        
-        resetButton!.addEventListener("click", () => {
-            resetCounter();
-        })
-        
-        if (activeTaskTimeStarted) {
+            startedTime = moment().format();
+            localStorage.setItem("startedTime", startedTime);
+            
             startCounter();
         }
+
+        async function stopTimer(): Promise<void> {
+            if (!startedTime) return;
+            
+            stopCounter();
+            const stoppedTime = moment();
+            const timeElapsed = stoppedTime.diff(startedTime, "seconds");
+            if (activeTask) await LogSecondsToTaskDb(activeTask, timeElapsed);
+            
+            startedTime = null;
+            timeOffset += timeElapsed;
+
+            localStorage.setItem("startedTime", startedTime ?? "");
+            localStorage.setItem("timeOffset", String(timeOffset)); 
+        }
+        
+        async function resetTimer() {
+            await stopTimer();
+            
+            timeOffset = 0;
+            localStorage.setItem("timeOffset", String(timeOffset));
+            display.textContent = formatDuration(duration(timeOffset, "seconds"));
+        }
+        
+        /* Add Timer Event Listeners. */
+
+        pausePlayButton.addEventListener("click", () => {
+            startedTime ? stopTimer() : startTimer();
+        });
+        
+        resetButton.addEventListener("click", () => {
+            resetTimer();
+        });
     }
 }
 
 /* Helpers. */
-
-function formatTimeElapsed(startTime: Moment, endTime: Moment, secondsElapsedOffset: number) {
-    let duration: Duration = moment.duration(endTime.diff(startTime));
-    if (!duration.isValid()) duration = moment.duration();
-    duration.add(secondsElapsedOffset, "seconds");
-    
-    const remaining = FOCUS_DURATION.clone().subtract(duration);
-    return `${pad2(remaining.minutes())}:${pad2(remaining.seconds())}`;
+ 
+async function LogSecondsToTaskDb(taskId: string, seconds: number) {
+    const response = await fetch(`/api/tasks/${taskId}`);
+    if (response.ok) {
+        const taskDto = await response.json();
+        taskDto.secondsLogged += seconds;
+        await fetch(`/api/tasks/${taskId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(taskDto)
+        });
+    }
 }
 
-function pad2(num: number): string {
+function formatTimeElapsed(startTime: Moment, endTime: Moment, timeElapsedOffset: Duration) {
+    let timeElapsed: Duration = duration(endTime.diff(startTime, "seconds"), "seconds");
+    timeElapsed = timeElapsed.isValid() ? timeElapsed.add(timeElapsedOffset) : timeElapsedOffset;
+    return formatDuration(timeElapsed); 
+}
+
+function formatDuration(duration: Duration): string {
+    if (!duration.isValid()) duration = moment.duration();
+    return `${padNumber(duration.minutes())}:${padNumber(duration.seconds())}`;
+}
+
+function padNumber(num: number): string {
     return String(num).padStart(2, "0");
 }
 

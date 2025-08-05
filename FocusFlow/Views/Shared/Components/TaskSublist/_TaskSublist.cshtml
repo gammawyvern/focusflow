@@ -1,6 +1,6 @@
 @model FocusFlow.Models.TaskSublistViewModel
 
-<div class="js-task-sublist task-sublist expanded @Model.StyleClass">
+<div class="js-task-sublist task-sublist expanded @Model.StyleClass" data-sublist-id="@Model.SublistId">
     <div class="task-sublist-header">
         <div class="task-sublist-header-text">@Model.Header</div>
         <button class="task-sublist-header-expand @Model.StyleClass"></button>

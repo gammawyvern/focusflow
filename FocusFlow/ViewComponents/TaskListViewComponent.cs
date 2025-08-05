@@ -54,6 +54,7 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
             
             ActiveTaskSublist = new TaskSublistViewModel
             {
+                SublistId = "active-tasks",
                 StyleClass = "active",
                 Header = "Active Task",
                 TaskItemViews = activeTasks
@@ -61,6 +62,7 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
             
             IncompleteTaskSublist = new TaskSublistViewModel
             {
+                SublistId = "incomplete-tasks",
                 StyleClass = "incomplete",
                 Header = "Incomplete Tasks",
                 TaskItemViews = incompleteTasks
@@ -68,6 +70,7 @@ public class TaskListViewComponent(ITaskItemRepository taskItemRepository): View
             
             CompleteTaskSublist =  new TaskSublistViewModel
             {
+                SublistId = "complete-tasks",
                 StyleClass = "complete",
                 Header = "Complete Tasks",
                 TaskItemViews = completeTasks

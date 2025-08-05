@@ -27,6 +27,7 @@ public class TimerViewComponent(ITaskItemRepository taskItemRepository): ViewCom
             StartedTime = activeTaskItem?.StartedTime,
             ActiveTaskSublist = new TaskSublistViewModel
             {
+                SublistId = "active-tasks",
                 StyleClass = "active",
                 Header = "Active Task",
                 TaskItemViews = taskItemViews
